@@ -1,3 +1,6 @@
 node_modules
 .cache
 .parcel-cache
+
+# Project notes file - not relevant to repo
+change-log.txt
