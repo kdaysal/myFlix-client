@@ -14,5 +14,9 @@
   "bugs": {
     "url": "https://github.com/kdaysal/myFlix-client/issues"
   },
-  "homepage": "https://github.com/kdaysal/myFlix-client#readme"
+  "homepage": "https://github.com/kdaysal/myFlix-client#readme",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
 }
