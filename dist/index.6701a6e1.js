@@ -25216,6 +25216,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _movieCard = require("./movie-card/movie-card");
 class MainView extends _reactDefault.default.Component {
     constructor(){
         super(); //call the constructor of the parent class ('React.Component'). This initializes the component's state, and is needed in order for 'this.state' (below) to work.
@@ -25249,65 +25250,89 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 20
+                lineNumber: 21
             },
             __self: this,
             children: "The list is empty!"
         }));
         //code below will only run if [movies] is not empty. Syntax note: 'Else' logic is implied because if the 'return' statement above were called, the function would stop executing before this line
-        //added 'key={movie_id}' to the movie title <div> in order to resolve the console warning: Each child in a list should have a unique "key" prop.
+        //<MovieCard /> component replaces: <div key={movie._id}>{movie.Title}</div>. But still must add 'key={movie._id}'
+        //'movieData={movie}' is a prop - an attribute that can pass data to a child component
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 25
+                lineNumber: 27
             },
             __self: this,
-            children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx("div", {
+            children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
+                    movieData: movie,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 26
+                        lineNumber: 28
                     },
-                    __self: this,
-                    children: movie.Title
+                    __self: this
                 }, movie._id)
             )
         }));
     }
-    render() {
-        const movies = this.state.movies;
-        if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
-            className: "main-view",
-            __source: {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 34
-            },
-            __self: this,
-            children: "The list is empty!"
-        }));
-        else return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
-            className: "main-view",
-            __source: {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 37
-            },
-            __self: this,
-            children: movies.map((movie)=>{
-                return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
-                    __source: {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 39
-                    },
-                    __self: this,
-                    children: movie.Title
-                }, movie._id)); //added 'key={movie_id}' to <div> to resolve console warning: Each child in a list should have a unique "key" prop.
-            })
-        }));
-    }
-}
+} /* *************************************** */  //ORIGINAL CODE BLOCK for render() function
+ //   render() {
+ //     const movies = this.state.movies;
+ //     if (movies.length === 0) {
+ //       return <div className="main-view">The list is empty!</div>;
+ //     } else {
+ //       return (
+ //added 'key={movie_id}' to the movie title <div> in order to resolve the console warning: Each child in a list should have a unique "key" prop.
+ //         <div className="main-view">
+ //           {movies.map((movie) => {
+ //             return <div key={movie._id}>{movie.Title}</div>; //added 'key={movie_id}' to <div> to resolve console warning: Each child in a list should have a unique "key" prop.
+ //           })}
+ //         </div>
+ //       );
+ //     }
+ //   }
+ // }
+ /* *************************************** */ 
 exports.default = MainView;
 
   $parcel$ReactRefreshHelpers$35bf.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","./movie-card/movie-card":"2d1Ny"}],"2d1Ny":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$4d2d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$4d2d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+//create a MovieCard component
+//having granular components like this makes it easier to reuse these smaller components in different parts of the UI
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard
+);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+class MovieCard extends _reactDefault.default.Component {
+    render() {
+        const { movieData  } = this.props; //accessing (extracting) the passed data via 'props' property ('movieData' is the name of the prop used in <MovieCard ... />)
+        return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+            className: "movie-card",
+            __source: {
+                fileName: "src/components/main-view/movie-card/movie-card.jsx",
+                lineNumber: 8
+            },
+            __self: this,
+            children: movieData.Title
+        }));
+    }
+}
+
+  $parcel$ReactRefreshHelpers$4d2d.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
