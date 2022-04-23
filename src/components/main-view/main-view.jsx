@@ -18,28 +18,34 @@ export default class MainView extends React.Component { //by adding 'default', I
     }
   }
 
+  //custom component method 'setselectedMovie'
+  setSelectedMovie(newSelectedMovie) {
+    this.setState({
+      selectedMovie: newSelectedMovie
+    });
+  }
+
   //display to UI
   render() {
-    const { movies, selectedMovie } = this.state; //ES6 object destructuring. Shorter version of: const movies = this.state.movies;
-
-    if (selectedMovie) return <MovieView movie={selectedMovie} />;
+    const { movies, selectedMovie } = this.state;
 
     if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
-    //code below will only run if [movies] is not empty. Syntax note: 'Else' logic is implied because if the 'return' statement above were called, the function would stop executing before this line
 
-    //<MovieCard /> component replaces: <div key={movie._id}>{movie.Title}</div>. Must still include 'key={movie._id}' or you'll get a missing 'unique key' error
-    //'movieData={movie}' is a prop - an attribute that can pass data to a child component
-    //'onMovieClick' is an example of passing a function as a prop
     return (
       <div className="main-view">
-        {movies.map(movie => <MovieCard key={movie._id} movieData={movie} onMovieClick={(newSelectedMovie) => { this.setState({ selectedMovie: newSelectedMovie }); }} />)}
+        {selectedMovie
+          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+          : movies.map(movie => (
+            <MovieCard key={movie._id} movieData={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }} />
+          ))
+        }
       </div>
     );
   }
 }
 
 /* *************************************** */
-//ORIGINAL CODE BLOCK for render() function
+//ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning
 
 //   render() {
 //     const movies = this.state.movies;

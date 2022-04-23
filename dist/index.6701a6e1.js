@@ -25246,54 +25246,56 @@ class MainView extends _reactDefault.default.Component {
             selectedMovie: null //this variable will represent whether a movie card is clicked (null if no)
         };
     }
+    //custom component method 'setselectedMovie'
+    setSelectedMovie(newSelectedMovie) {
+        this.setState({
+            selectedMovie: newSelectedMovie
+        });
+    }
     //display to UI
     render() {
-        const { movies , selectedMovie  } = this.state; //ES6 object destructuring. Shorter version of: const movies = this.state.movies;
-        if (selectedMovie) return(/*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
-            movie: selectedMovie,
-            __source: {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 25
-            },
-            __self: this
-        }));
+        const { movies , selectedMovie  } = this.state;
         if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 27
+                lineNumber: 32
             },
             __self: this,
             children: "The list is empty!"
         }));
-        //code below will only run if [movies] is not empty. Syntax note: 'Else' logic is implied because if the 'return' statement above were called, the function would stop executing before this line
-        //<MovieCard /> component replaces: <div key={movie._id}>{movie.Title}</div>. Must still include 'key={movie._id}' or you'll get a missing 'unique key' error
-        //'movieData={movie}' is a prop - an attribute that can pass data to a child component
-        //'onMovieClick' is an example of passing a function as a prop
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 34
+                lineNumber: 35
             },
             __self: this,
-            children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
+            children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
+                movie: selectedMovie,
+                onBackClick: (newSelectedMovie)=>{
+                    this.setSelectedMovie(newSelectedMovie);
+                },
+                __source: {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 37
+                },
+                __self: this
+            }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
                     movieData: movie,
-                    onMovieClick: (newSelectedMovie)=>{
-                        this.setState({
-                            selectedMovie: newSelectedMovie
-                        });
+                    onMovieClick: (movie1)=>{
+                        this.setSelectedMovie(movie1);
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 35
+                        lineNumber: 39
                     },
                     __self: this
                 }, movie._id)
             )
         }));
     }
-} /* *************************************** */  //ORIGINAL CODE BLOCK for render() function
+} /* *************************************** */  //ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning
  //   render() {
  //     const movies = this.state.movies;
  //     if (movies.length === 0) {
