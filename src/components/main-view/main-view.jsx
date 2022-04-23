@@ -1,7 +1,7 @@
 import React from 'react';
 
 //import components
-import { MovieCard } from './movie-card/movie-card';
+import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
 export default class MainView extends React.Component { //by adding 'default', I won't need to enclose 'MainView' in {curly braces} for import statements
