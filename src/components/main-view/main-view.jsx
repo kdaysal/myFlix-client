@@ -1,4 +1,6 @@
 import React from 'react';
+
+//import components
 import { MovieCard } from './movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -18,16 +20,19 @@ export default class MainView extends React.Component { //by adding 'default', I
 
   //display to UI
   render() {
-    const { movies } = this.state; //ES6 object destructuring. Shorter version of: const movies = this.state.movies;
+    const { movies, selectedMovie } = this.state; //ES6 object destructuring. Shorter version of: const movies = this.state.movies;
+
+    if (selectedMovie) return <MovieView movie={selectedMovie} />;
 
     if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
     //code below will only run if [movies] is not empty. Syntax note: 'Else' logic is implied because if the 'return' statement above were called, the function would stop executing before this line
 
-    //<MovieCard /> component replaces: <div key={movie._id}>{movie.Title}</div>. But still must add 'key={movie._id}'
+    //<MovieCard /> component replaces: <div key={movie._id}>{movie.Title}</div>. Must still include 'key={movie._id}' or you'll get a missing 'unique key' error
     //'movieData={movie}' is a prop - an attribute that can pass data to a child component
+    //'onMovieClick' is an example of passing a function as a prop
     return (
       <div className="main-view">
-        {movies.map(movie => <MovieCard key={movie._id} movieData={movie} />)}
+        {movies.map(movie => <MovieCard key={movie._id} movieData={movie} onMovieClick={(newSelectedMovie) => { this.setState({ selectedMovie: newSelectedMovie }); }} />)}
       </div>
     );
   }

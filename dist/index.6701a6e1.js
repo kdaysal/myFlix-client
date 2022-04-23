@@ -25216,6 +25216,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+//import components
 var _movieCard = require("./movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 class MainView extends _reactDefault.default.Component {
@@ -25247,31 +25248,45 @@ class MainView extends _reactDefault.default.Component {
     }
     //display to UI
     render() {
-        const { movies  } = this.state; //ES6 object destructuring. Shorter version of: const movies = this.state.movies;
+        const { movies , selectedMovie  } = this.state; //ES6 object destructuring. Shorter version of: const movies = this.state.movies;
+        if (selectedMovie) return(/*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
+            movie: selectedMovie,
+            __source: {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 25
+            },
+            __self: this
+        }));
         if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 23
+                lineNumber: 27
             },
             __self: this,
             children: "The list is empty!"
         }));
         //code below will only run if [movies] is not empty. Syntax note: 'Else' logic is implied because if the 'return' statement above were called, the function would stop executing before this line
-        //<MovieCard /> component replaces: <div key={movie._id}>{movie.Title}</div>. But still must add 'key={movie._id}'
+        //<MovieCard /> component replaces: <div key={movie._id}>{movie.Title}</div>. Must still include 'key={movie._id}' or you'll get a missing 'unique key' error
         //'movieData={movie}' is a prop - an attribute that can pass data to a child component
+        //'onMovieClick' is an example of passing a function as a prop
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 29
+                lineNumber: 34
             },
             __self: this,
             children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
                     movieData: movie,
+                    onMovieClick: (newSelectedMovie)=>{
+                        this.setState({
+                            selectedMovie: newSelectedMovie
+                        });
+                    },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 30
+                        lineNumber: 35
                     },
                     __self: this
                 }, movie._id)
@@ -25321,9 +25336,12 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movieData  } = this.props; //accessing (extracting) the passed data via 'props' property ('movieData' is the name of the prop used in <MovieCard ... />)
+        const { movieData , onMovieClick  } = this.props; //accessing (extracting) the passed data via 'props' property ('movieData' is the name of the prop used in <MovieCard ... />)
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "movie-card",
+            onClick: ()=>{
+                onMovieClick(movieData);
+            },
             __source: {
                 fileName: "src/components/main-view/movie-card/movie-card.jsx",
                 lineNumber: 8
@@ -25355,7 +25373,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieView extends _reactDefault.default.Component {
     render() {
-        const { movieObj  } = this.props;
+        const { movie  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
             className: "movie-view",
             __source: {
