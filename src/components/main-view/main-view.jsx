@@ -10,9 +10,9 @@ export default class MainView extends React.Component { //by adding 'default', I
     super(); //call the constructor of the parent class ('React.Component'). This initializes the component's state, and is needed in order for 'this.state' (below) to work.
     this.state = { //initialize state
       movies: [
-        { _id: 1, Title: 'Inception', Description: 'desc1...', ImagePath: '...' },
-        { _id: 2, Title: 'The Shawshank Redemption', Description: 'desc2...', ImagePath: '...' },
-        { _id: 3, Title: 'Gladiator', Description: 'desc3...', ImagePath: '...' }
+        { _id: 1, Title: 'Inception', Description: 'desc1...', ImagePath: '...', Genre: 'genre1', Director: 'director1' },
+        { _id: 2, Title: 'The Shawshank Redemption', Description: 'desc2...', ImagePath: '...', Genre: 'genre2', Director: 'director2' },
+        { _id: 3, Title: 'Gladiator', Description: 'desc3...', ImagePath: '...', Genre: 'genre3', Director: 'director3' }
       ],
       selectedMovie: null //this variable will represent whether a movie card is clicked (null if no)
     }
