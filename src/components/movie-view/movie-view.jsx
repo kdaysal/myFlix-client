@@ -1,6 +1,23 @@
 import React from 'react';
 
+//creating/exporting the MovieView component
 export class MovieView extends React.Component {
+
+    // below code block is FOR DEMONSTRATION PURPOSES ONLY - adding/removing a keypress listener via componentDidMount() and componentWillUnmount()
+    /*
+    keypressCallback(event) {
+        console.log(event.key);
+    }
+
+    componentDidMount() {
+        document.addEventListener('keypress', this.keypressCallback);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keypress', this.keypressCallback);
+    }
+   */
+
     render() {
         const { movie, onBackClick } = this.props;
         return (
