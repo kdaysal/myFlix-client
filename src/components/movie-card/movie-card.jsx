@@ -1,6 +1,6 @@
 import React from 'react';
 
-//create a MovieCard component
+//creating/exporting a MovieCard component
 //having granular components like this makes it easier to reuse these smaller components in different parts of the UI
 export class MovieCard extends React.Component { //(just for sake of example) here there is no 'default' after 'export', so I'll need to enclose 'MovieCard' in {curly braces} in any import statement.
     render() {

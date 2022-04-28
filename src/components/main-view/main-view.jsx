@@ -5,6 +5,7 @@ import axios from 'axios'; //this will allow me to perform ajax operations. Axio
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
+//creating/exporting the MainView component
 export default class MainView extends React.Component { //by adding 'default', I won't need to enclose 'MainView' in {curly braces} for import statements
 
   constructor() { //React will use this method to create the component. Always initialize a state's values in the constructor, as it is called before render().
