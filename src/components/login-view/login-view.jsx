@@ -1,16 +1,21 @@
+//The 'LoginView' is rendered as long as there's no user in the state (because the 'user' property will be null in the 'MainView' state)
+
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'LoginView' as a more readable function component
 
-//create/export LoginView function component
+//create/export LoginView function component (with hook)
 export function LoginView(props) {
-    const [username, setUsername] = useState(''); //call the useState() method (imported from React) with an empty string (initial value of login variable)
-    const [password, setPassword] = useState(''); //the destructure syntax here = same as setting the current state value equal to: 'this.state.password'
+    //call the useState() method (imported from React) with empty strings (initial values of login variables)
+    //this gives me variables ('username', 'password') and methods to update them ('setUsername', 'setPassword')
+    const [username, setUsername] = useState(''); //the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
+    const [password, setPassword] = useState('');
 
+    //current structure below is just a temporary solution for rendering my SPA views, until proper authentication logic is implemented later
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
         console.log(username, password);
         /* Send a request to the server for authentication */
         /* then call props.onLoggedIn(username) */
-        // props.onLoggedIn(username);
+        props.onLoggedIn(username);
     };
 
     return (
