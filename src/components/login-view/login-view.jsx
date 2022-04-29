@@ -30,7 +30,7 @@ export function LoginView(props) {
                 Password:
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
             </label>
-            <button type="submit" onClick={handleSubmit}>Submit</button>
+            <button type="submit" onClick={handleSubmit}>Log me in!</button>
         </form>
     );
 }
@@ -40,5 +40,5 @@ LoginView.propTypes = {
     user: PropTypes.exact({
         username: PropTypes.string.isRequired,
         password: PropTypes.string.isRequired,
-    }) //.isRequired
+    }) //not chaining '.isRequired' here due to error: "The prop 'user' is marked as required in 'LoginView', but its value is 'undefined'."
 };
