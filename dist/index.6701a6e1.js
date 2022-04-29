@@ -25788,11 +25788,11 @@ function RegistrationView(props) {
     const [username, setUsername] = _react.useState(''); //the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
     const [password, setPassword] = _react.useState('');
     const [email, setEmail] = _react.useState('');
-    const [birthday, setBirthday] = _react.useState('');
+    const [birthdate, setBirthdate] = _react.useState('');
     //current structure below is just a temporary solution for rendering my SPA views, until proper authentication logic is implemented later
     const handleRegister = (e)=>{
         e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
-        console.log(`username: ${username}, password: ${password}, email: ${email}, birthday: ${birthday}`);
+        console.log(`username: ${username}, password: ${password}, email: ${email}, birthdate: ${birthdate}`);
         /* Send a request to the server for authentication */ /* then call props.onLoggedIn(username) */ props.onLoggedIn(username); //this may change to 'props.onRegistered(...) or something in the near future, but for now, I'm treating this as letting the newly registered user be automatically 'logged in'
     };
     return(/*#__PURE__*/ _jsxRuntime.jsxs("form", {
@@ -25875,8 +25875,8 @@ function RegistrationView(props) {
                     "Birthday:",
                     /*#__PURE__*/ _jsxRuntime.jsx("input", {
                         type: "date",
-                        value: birthday,
-                        onChange: (e)=>setEmail(e.target.value)
+                        value: birthdate,
+                        onChange: (e)=>setBirthdate(e.target.value)
                         ,
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
@@ -25899,7 +25899,7 @@ function RegistrationView(props) {
         ]
     }));
 }
-_s(RegistrationView, "tdA1KK8yaZidqYo0wscqshHt/KE=");
+_s(RegistrationView, "TD2fkD1Ab4Kck2JJHVZv+3f7f/8=");
 _c = RegistrationView;
 //using 'propTypes.exact' here (instead of 'propTypes.shape') because no other additional props should be accepted
 RegistrationView.propTypes = {
@@ -25907,7 +25907,7 @@ RegistrationView.propTypes = {
         username: _propTypesDefault.default.string.isRequired,
         password: _propTypesDefault.default.string.isRequired,
         email: _propTypesDefault.default.string.isRequired,
-        birthday: _propTypesDefault.default.string.isRequired
+        birthdate: _propTypesDefault.default.string.isRequired
     }).isRequired
 };
 var _c;

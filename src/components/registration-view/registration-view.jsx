@@ -12,12 +12,12 @@ export function RegistrationView(props) {
     const [username, setUsername] = useState(''); //the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [birthday, setBirthday] = useState('');
+    const [birthdate, setBirthdate] = useState('');
 
     //current structure below is just a temporary solution for rendering my SPA views, until proper authentication logic is implemented later
     const handleRegister = (e) => {
         e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
-        console.log(`username: ${username}, password: ${password}, email: ${email}, birthday: ${birthday}`);
+        console.log(`username: ${username}, password: ${password}, email: ${email}, birthdate: ${birthdate}`);
         /* Send a request to the server for authentication */
         /* then call props.onLoggedIn(username) */
         props.onLoggedIn(username); //this may change to 'props.onRegistered(...) or something in the near future, but for now, I'm treating this as letting the newly registered user be automatically 'logged in'
@@ -39,7 +39,7 @@ export function RegistrationView(props) {
             </label>
             <label>
                 Birthday:
-                <input type="date" value={birthday} onChange={e => setEmail(e.target.value)} />
+                <input type="date" value={birthdate} onChange={e => setBirthdate(e.target.value)} />
             </label>
             <button type="submit" onClick={handleRegister}>Register me!</button>
         </form>
@@ -52,6 +52,6 @@ RegistrationView.propTypes = {
         username: PropTypes.string.isRequired,
         password: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired,
-        birthday: PropTypes.string.isRequired
+        birthdate: PropTypes.string.isRequired
     }).isRequired
 };
