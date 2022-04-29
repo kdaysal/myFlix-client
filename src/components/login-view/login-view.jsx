@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'LoginView' as a more readable function component
 import PropTypes from 'prop-types';
+import { RegistrationView } from '../registration-view/registration-view';
 
 
 //create/export LoginView function component (with hook)
@@ -12,6 +13,7 @@ export function LoginView(props) {
     const [password, setPassword] = useState('');
 
     //current structure below is just a temporary solution for rendering my SPA views, until proper authentication logic is implemented later
+    //this is to handle existing users signing in with their credentials
     const handleSubmit = (e) => {
         e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
         console.log(username, password);
@@ -20,18 +22,35 @@ export function LoginView(props) {
         props.onLoggedIn(username);
     };
 
+    const handleRegister = (e) => {
+        e.preventDefault();
+        console.log('Redirecting to RegistrationView...');
+        //props.onRegistered - TBD
+        //return <RegistrationView />;
+    };
+
     return (
-        <form>
-            <label>
-                Username:
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </label>
-            <button type="submit" onClick={handleSubmit}>Log me in!</button>
-        </form>
+        <div>
+            <form>
+                <label>
+                    Username:
+                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                </label>
+                <label>
+                    Password:
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                </label>
+                <button type="submit" onClick={handleSubmit}>Log me in!</button>
+            </form>
+            <br></br>
+            <br></br>
+            <form>
+                <label>
+                    New User? Click here:
+                    <button type="submit" onClick={handleRegister}>Register me!</button>
+                </label>
+            </form>
+        </div>
     );
 }
 

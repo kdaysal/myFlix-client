@@ -25669,6 +25669,7 @@ var _react = require("react"); //the 'useState' hook provides a way to rewrite '
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _registrationView = require("../registration-view/registration-view");
 var _s = $RefreshSig$();
 function LoginView(props) {
     _s();
@@ -25677,69 +25678,126 @@ function LoginView(props) {
     const [username, setUsername] = _react.useState(''); //the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
     const [password, setPassword] = _react.useState('');
     //current structure below is just a temporary solution for rendering my SPA views, until proper authentication logic is implemented later
+    //this is to handle existing users signing in with their credentials
     const handleSubmit = (e)=>{
         e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
         console.log(username, password);
         /* Send a request to the server for authentication */ /* then call props.onLoggedIn(username) */ props.onLoggedIn(username);
     };
-    return(/*#__PURE__*/ _jsxRuntime.jsxs("form", {
+    const handleRegister = (e)=>{
+        e.preventDefault();
+        console.log('Redirecting to RegistrationView...');
+    //props.onRegistered - TBD
+    //return <RegistrationView />;
+    };
+    return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 24
+            lineNumber: 33
         },
         __self: this,
         children: [
-            /*#__PURE__*/ _jsxRuntime.jsxs("label", {
+            /*#__PURE__*/ _jsxRuntime.jsxs("form", {
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 25
+                    lineNumber: 34
                 },
                 __self: this,
                 children: [
-                    "Username:",
-                    /*#__PURE__*/ _jsxRuntime.jsx("input", {
-                        type: "text",
-                        value: username,
-                        onChange: (e)=>setUsername(e.target.value)
-                        ,
+                    /*#__PURE__*/ _jsxRuntime.jsxs("label", {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 27
+                            lineNumber: 35
                         },
-                        __self: this
+                        __self: this,
+                        children: [
+                            "Username:",
+                            /*#__PURE__*/ _jsxRuntime.jsx("input", {
+                                type: "text",
+                                value: username,
+                                onChange: (e)=>setUsername(e.target.value)
+                                ,
+                                __source: {
+                                    fileName: "src/components/login-view/login-view.jsx",
+                                    lineNumber: 37
+                                },
+                                __self: this
+                            })
+                        ]
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsxs("label", {
+                        __source: {
+                            fileName: "src/components/login-view/login-view.jsx",
+                            lineNumber: 39
+                        },
+                        __self: this,
+                        children: [
+                            "Password:",
+                            /*#__PURE__*/ _jsxRuntime.jsx("input", {
+                                type: "password",
+                                value: password,
+                                onChange: (e)=>setPassword(e.target.value)
+                                ,
+                                __source: {
+                                    fileName: "src/components/login-view/login-view.jsx",
+                                    lineNumber: 41
+                                },
+                                __self: this
+                            })
+                        ]
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsx("button", {
+                        type: "submit",
+                        onClick: handleSubmit,
+                        __source: {
+                            fileName: "src/components/login-view/login-view.jsx",
+                            lineNumber: 43
+                        },
+                        __self: this,
+                        children: "Log me in!"
                     })
                 ]
             }),
-            /*#__PURE__*/ _jsxRuntime.jsxs("label", {
+            /*#__PURE__*/ _jsxRuntime.jsx("br", {
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 29
+                    lineNumber: 45
                 },
-                __self: this,
-                children: [
-                    "Password:",
-                    /*#__PURE__*/ _jsxRuntime.jsx("input", {
-                        type: "password",
-                        value: password,
-                        onChange: (e)=>setPassword(e.target.value)
-                        ,
-                        __source: {
-                            fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 31
-                        },
-                        __self: this
-                    })
-                ]
+                __self: this
             }),
-            /*#__PURE__*/ _jsxRuntime.jsx("button", {
-                type: "submit",
-                onClick: handleSubmit,
+            /*#__PURE__*/ _jsxRuntime.jsx("br", {
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 33
+                    lineNumber: 46
+                },
+                __self: this
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsx("form", {
+                __source: {
+                    fileName: "src/components/login-view/login-view.jsx",
+                    lineNumber: 47
                 },
                 __self: this,
-                children: "Log me in!"
+                children: /*#__PURE__*/ _jsxRuntime.jsxs("label", {
+                    __source: {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 48
+                    },
+                    __self: this,
+                    children: [
+                        "New User? Click here:",
+                        /*#__PURE__*/ _jsxRuntime.jsx("button", {
+                            type: "submit",
+                            onClick: handleRegister,
+                            __source: {
+                                fileName: "src/components/login-view/login-view.jsx",
+                                lineNumber: 50
+                            },
+                            __self: this,
+                            children: "Register me!"
+                        })
+                    ]
+                })
             })
         ]
     }));
@@ -25761,7 +25819,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","prop-types":"1tgq3"}],"aP2YV":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","prop-types":"1tgq3","../registration-view/registration-view":"aP2YV"}],"aP2YV":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8dd4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -25872,7 +25930,7 @@ function RegistrationView(props) {
                 },
                 __self: this,
                 children: [
-                    "Birthday:",
+                    "BirthDate:",
                     /*#__PURE__*/ _jsxRuntime.jsx("input", {
                         type: "date",
                         value: birthdate,
@@ -25908,7 +25966,7 @@ RegistrationView.propTypes = {
         password: _propTypesDefault.default.string.isRequired,
         email: _propTypesDefault.default.string.isRequired,
         birthdate: _propTypesDefault.default.string.isRequired
-    }).isRequired
+    }) //.isRequired - commenting this out for now until I figure out how to handle error: Failed prop type: The prop `user` is marked as required in `RegistrationView`, but its value is `undefined` at RegistrationView
 };
 var _c;
 $RefreshReg$(_c, "RegistrationView");
