@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 //creating/exporting the MovieView component
 export class MovieView extends React.Component {
@@ -62,3 +63,22 @@ export class MovieView extends React.Component {
         );
     }
 }
+
+MovieView.propTypes = {
+    movie: PropTypes.shape({ //'shape({...})' means it is an object, and the '.isRequired' means this object IS required
+        Title: PropTypes.string.isRequired, //the 'movieData' object MAY contain a Title, and if it does, it MUST be of type 'string'
+        Description: PropTypes.string.isRequired,
+        ImagePath: PropTypes.string.isRequired,
+        Featured: PropTypes.bool,
+        Genre: PropTypes.shape({
+            Name: PropTypes.string.isRequired,
+            Description: PropTypes.string.isRequired
+        }),
+        Director: PropTypes.shape({
+            Name: PropTypes.string.isRequired,
+            Bio: PropTypes.string.isRequired,
+            Birth: PropTypes.string.isRequired,
+            Death: PropTypes.string
+        })
+    }).isRequired
+};
