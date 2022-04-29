@@ -7,6 +7,8 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
+import './main-view.scss';
+
 //creating/exporting the MainView component
 export default class MainView extends React.Component { //by adding 'default', I won't need to enclose 'MainView' in {curly braces} in any import statements
 
@@ -49,6 +51,8 @@ export default class MainView extends React.Component { //by adding 'default', I
   //display the desired visual output to the UI
   render() {
     const { movies, selectedMovie, user } = this.state;
+
+    //return <RegistrationView /> //THIS LINE IS ONLY HERE FOR TESTING PURPOSES (to immediately render the RegistrationView). DELETE THIS LINE LATER
 
     //If there is no user, render the LoginView. If there is a user logged in, pass the user details as a prop to the LoginView
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
