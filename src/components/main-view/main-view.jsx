@@ -3,6 +3,7 @@ import axios from 'axios'; //this will allow me to perform ajax operations. Axio
 
 //import components
 import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
