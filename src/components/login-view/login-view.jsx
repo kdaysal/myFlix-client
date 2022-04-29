@@ -1,6 +1,8 @@
 //The 'LoginView' is rendered as long as there's no user in the state (because the 'user' property will be null in the 'MainView' state)
 
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'LoginView' as a more readable function component
+import PropTypes from 'prop-types';
+
 
 //create/export LoginView function component (with hook)
 export function LoginView(props) {
@@ -32,3 +34,11 @@ export function LoginView(props) {
         </form>
     );
 }
+
+//using 'propTypes.exact' here (instead of 'propTypes.shape') because no other additional props should be accepted
+LoginView.propTypes = {
+    user: PropTypes.exact({
+        username: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired,
+    }) //.isRequired
+};
