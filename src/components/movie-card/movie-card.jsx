@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './movie-card.scss';
 
 //creating/exporting a MovieCard component
 //having granular components like this makes it easier to reuse these smaller components in different parts of the UI
