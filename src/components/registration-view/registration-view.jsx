@@ -3,7 +3,7 @@
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'RegistrationView' as a more readable function component
 import PropTypes from 'prop-types';
 //Note - will need to import axios later (when I'm actually connecting to my Heroku app)
-
+import './registration-view.scss';
 
 //create/export RegistrationView function component (with hook)
 export function RegistrationView(props) {
@@ -20,7 +20,7 @@ export function RegistrationView(props) {
         console.log(`username: ${username}, password: ${password}, email: ${email}, birthdate: ${birthdate}`);
         /* Send a request to the server for authentication */
         /* then call props.onLoggedIn(username) */
-        props.onLoggedIn(username); //this may change to 'props.onRegistered(...) or something in the near future, but for now, I'm treating this as letting the newly registered user be automatically 'logged in'
+        //props.onLoggedIn(username); //this may change to 'props.onRegistered(...) or something in the near future, but for now, I'm treating this as letting the newly registered user be automatically 'logged in'
     };
 
     return (
