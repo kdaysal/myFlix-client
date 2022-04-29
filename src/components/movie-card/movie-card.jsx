@@ -20,7 +20,7 @@ MovieCard.propTypes = {
         Title: PropTypes.string.isRequired, //the 'movieData' object MAY contain a Title, and if it does, it MUST be of type 'string'
         Description: PropTypes.string.isRequired,
         ImagePath: PropTypes.string.isRequired,
-        Featured: PropTypes.bool.isRequired,
+        Featured: PropTypes.bool,
         Genre: PropTypes.shape({
             Name: PropTypes.string.isRequired,
             Description: PropTypes.string.isRequired
