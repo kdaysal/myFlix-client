@@ -2,17 +2,19 @@ import React from 'react';
 import axios from 'axios'; //this will allow me to perform ajax operations. Axios will fetch the movies, then I'll set the 'state' of movies using this.setState
 
 //import components
+import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
 //creating/exporting the MainView component
-export default class MainView extends React.Component { //by adding 'default', I won't need to enclose 'MainView' in {curly braces} for import statements
+export default class MainView extends React.Component { //by adding 'default', I won't need to enclose 'MainView' in {curly braces} in any import statements
 
   constructor() { //React will use this method to create the component. Always initialize a state's values in the constructor, as it is called before render().
     super(); //call the constructor of the parent class ('React.Component'). This initializes the component's state, and is needed in order for 'this.state' (below) to work.
-    this.state = { //initialize state
+    this.state = { //initialize states to empty/null
       movies: [],
-      selectedMovie: null //this variable will represent whether a movie card is clicked (null if no)
+      selectedMovie: null, //this variable will represent whether a movie card is clicked (null if no)
+      user: null //this variable will represent whether a user is logged in (null if no)
     }
   }
 
@@ -29,19 +31,31 @@ export default class MainView extends React.Component { //by adding 'default', I
       });
   }
 
-  //custom component method 'setselectedMovie'
+  //custom component method 'setselectedMovie'. When a movie is clicked, this function is invoked and updates the state of the 'selectedMovie' property to that movie
   setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie
     });
   }
 
-  //display to UI
-  render() {
-    const { movies, selectedMovie } = this.state;
+  //When a user succesfully logs in, this method ('onLoggedIn') will update the user state of the 'MainView' component to that particular user
+  onLoggedIn(user) {
+    this.setState({
+      user
+    });
+  }
 
+  //display the desired visual output to the UI
+  render() {
+    const { movies, selectedMovie, user } = this.state;
+
+    //If there is no user, render the LoginView. If there is a user logged in, pass the user details as a prop to the LoginView
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+
+    //before the movies have been loaded, return blank <div>
     if (movies.length === 0) return <div className="main-view" />;
 
+    //If the state of 'selectedMovie' is not null, return that selected movie. Otherwise, return ALL movies.
     return (
       <div className="main-view">
         {selectedMovie
