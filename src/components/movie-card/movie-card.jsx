@@ -17,7 +17,20 @@ export class MovieCard extends React.Component { //(just for sake of example...)
 //This sets the static 'propTypes' property on 'MovieCard' to an object containing special value provided as utilities by 'prop-types'
 MovieCard.propTypes = {
     movieData: PropTypes.shape({ //'shape({...})' means it is an object, and the '.isRequired' means this object IS required
-        Title: PropTypes.string //the 'movieData' object MAY contain a Title, and if it does, it MUST be of type 'string'
+        Title: PropTypes.string.isRequired, //the 'movieData' object MAY contain a Title, and if it does, it MUST be of type 'string'
+        Description: PropTypes.string.isRequired,
+        ImagePath: PropTypes.string.isRequired,
+        Featured: PropTypes.bool.isRequired,
+        Genre: PropTypes.shape({
+            Name: PropTypes.string.isRequired,
+            Description: PropTypes.string.isRequired
+        }),
+        Director: PropTypes.shape({
+            Name: PropTypes.string.isRequired,
+            Bio: PropTypes.string.isRequired,
+            Birth: PropTypes.string.isRequired,
+            Death: PropTypes.string
+        })
     }).isRequired,
     onMovieClick: PropTypes.func.isRequired //'onMovieClick' MUST be a function and IS required
 };
