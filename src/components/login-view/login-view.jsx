@@ -3,7 +3,7 @@
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'LoginView' as a more readable function component
 import PropTypes from 'prop-types';
 import { RegistrationView } from '../registration-view/registration-view';
-
+import './login-view.scss';
 
 //create/export LoginView function component (with hook)
 export function LoginView(props) {
@@ -16,7 +16,7 @@ export function LoginView(props) {
     //this is to handle existing users signing in with their credentials
     const handleSubmit = (e) => {
         e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
-        console.log(username, password);
+        console.log(`username: ${username}, password: ${password}`);
         /* Send a request to the server for authentication */
         /* then call props.onLoggedIn(username) */
         props.onLoggedIn(username);
@@ -26,7 +26,7 @@ export function LoginView(props) {
         e.preventDefault();
         console.log('Redirecting to RegistrationView...');
         //props.onRegistered - TBD
-        //return <RegistrationView />;
+        //return <RegistrationView />; //this does not yet work - clicking the 'Register Me!' button does not render the RegistrationView
     };
 
     return (
