@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios'; //this will allow me to perform ajax operations. Axios will fetch the movies, then I'll set the 'state' of movies using this.setState
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 //import components
 import { LoginView } from '../login-view/login-view';
@@ -61,10 +63,18 @@ export default class MainView extends React.Component { //by adding 'default', I
     if (movies.length === 0) return <div className="main-view" />;
 
     //If the state of 'selectedMovie' is not null, return that selected movie. Otherwise, return ALL movies.
+    //remember that the "main-view" div itself is actually enclosed within <Container> tags, even though you don't see them below (see index.jsx)
+    //this ^ is what allows me to enclose "MovieView" within a <Row> Bootstrap component here
     return (
       <div className="main-view">
         {selectedMovie
-          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+          ? (
+            <Row className="justify-content-md-center">
+              <Col xs={12} sm={10} md={8} lg={6} xl={4}>
+                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              </Col>
+            </Row>
+          )
           : movies.map(movie => (
             <MovieCard key={movie._id} movieData={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
           ))
