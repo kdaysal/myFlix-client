@@ -23008,18 +23008,34 @@ class MainView extends _reactDefault.default.Component {
                         __self: this
                     })
                 })
-            }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                    movieData: movie,
-                    onMovieClick: (newSelectedMovie)=>{
-                        this.setSelectedMovie(newSelectedMovie);
-                    },
-                    __source: {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 79
-                    },
-                    __self: this
-                }, movie._id)
-            )
+            }) : /*#__PURE__*/ _jsxRuntime.jsx(_rowDefault.default, {
+                className: "justify-content-md-center",
+                __source: {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 79
+                },
+                __self: this,
+                children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                        md: 3,
+                        __source: {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 81
+                        },
+                        __self: this,
+                        children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
+                            movieData: movie,
+                            onMovieClick: (newSelectedMovie)=>{
+                                this.setSelectedMovie(newSelectedMovie);
+                            },
+                            __source: {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 82
+                            },
+                            __self: this
+                        }, movie._id)
+                    })
+                )
+            })
         }));
     }
 } /* *************************************** */  //ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning
@@ -24633,6 +24649,10 @@ var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _card = require("react-bootstrap/Card");
 var _cardDefault = parcelHelpers.interopDefault(_card);
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
+var _col = require("react-bootstrap/Col");
+var _colDefault = parcelHelpers.interopDefault(_col);
 var _movieCardScss = require("./movie-card.scss");
 class MovieCard extends _reactDefault.default.Component {
     //There are 2 props in the code below: one object ('movieData') and one function ('onMovieClick')
@@ -24642,7 +24662,7 @@ class MovieCard extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 17
+                lineNumber: 19
             },
             __self: this,
             children: [
@@ -24651,21 +24671,21 @@ class MovieCard extends _reactDefault.default.Component {
                     src: movieData.ImagePath,
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 18
+                        lineNumber: 20
                     },
                     __self: this
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default.Body, {
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 19
+                        lineNumber: 21
                     },
                     __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_cardDefault.default.Title, {
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 20
+                                lineNumber: 22
                             },
                             __self: this,
                             children: movieData.Title
@@ -24673,7 +24693,7 @@ class MovieCard extends _reactDefault.default.Component {
                         /*#__PURE__*/ _jsxRuntime.jsx(_cardDefault.default.Text, {
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 21
+                                lineNumber: 23
                             },
                             __self: this,
                             children: movieData.Description
@@ -24684,7 +24704,7 @@ class MovieCard extends _reactDefault.default.Component {
                             variant: "link",
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 22
+                                lineNumber: 24
                             },
                             __self: this,
                             children: "Open"
@@ -24722,7 +24742,7 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","prop-types":"1tgq3","react-bootstrap/Button":"9CzHT","react-bootstrap/Card":"MoOk8","./movie-card.scss":"cF5gT"}],"1tgq3":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","prop-types":"1tgq3","react-bootstrap/Button":"9CzHT","react-bootstrap/Card":"MoOk8","./movie-card.scss":"cF5gT","react-bootstrap/Row":"c0x1x","react-bootstrap/Col":"fbam0"}],"1tgq3":[function(require,module,exports) {
 var ReactIs = require('react-is');
 // By explicitly using `prop-types` you are opting into new development behavior.
 // http://fb.me/prop-types-in-prod
@@ -25832,7 +25852,90 @@ const context = /*#__PURE__*/ _react.createContext(null);
 context.displayName = 'CardHeaderContext';
 exports.default = context;
 
-},{"react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"cF5gT":[function() {},{}],"ikZdr":[function(require,module,exports) {
+},{"react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"cF5gT":[function() {},{}],"c0x1x":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _classnames = require("classnames");
+var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
+var _react = require("react");
+var _themeProvider = require("./ThemeProvider");
+var _jsxRuntime = require("react/jsx-runtime");
+const Row = /*#__PURE__*/ _react.forwardRef(({ bsPrefix , className , // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+as: Component = 'div' , ...props }, ref)=>{
+    const decoratedBsPrefix = _themeProvider.useBootstrapPrefix(bsPrefix, 'row');
+    const breakpoints = _themeProvider.useBootstrapBreakpoints();
+    const sizePrefix = `${decoratedBsPrefix}-cols`;
+    const classes = [];
+    breakpoints.forEach((brkPoint)=>{
+        const propValue = props[brkPoint];
+        delete props[brkPoint];
+        let cols;
+        if (propValue != null && typeof propValue === 'object') ({ cols  } = propValue);
+        else cols = propValue;
+        const infix = brkPoint !== 'xs' ? `-${brkPoint}` : '';
+        if (cols != null) classes.push(`${sizePrefix}${infix}-${cols}`);
+    });
+    return(/*#__PURE__*/ _jsxRuntime.jsx(Component, {
+        ref: ref,
+        ...props,
+        className: _classnamesDefault.default(className, decoratedBsPrefix, ...classes)
+    }));
+});
+Row.displayName = 'Row';
+exports.default = Row;
+
+},{"classnames":"bOXOh","react":"6TuXu","./ThemeProvider":"eeqfi","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"fbam0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "useCol", ()=>useCol
+);
+var _classnames = require("classnames");
+var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
+var _react = require("react");
+var _themeProvider = require("./ThemeProvider");
+var _jsxRuntime = require("react/jsx-runtime");
+function useCol({ as , bsPrefix , className , ...props }) {
+    bsPrefix = _themeProvider.useBootstrapPrefix(bsPrefix, 'col');
+    const breakpoints = _themeProvider.useBootstrapBreakpoints();
+    const spans = [];
+    const classes = [];
+    breakpoints.forEach((brkPoint)=>{
+        const propValue = props[brkPoint];
+        delete props[brkPoint];
+        let span;
+        let offset;
+        let order;
+        if (typeof propValue === 'object' && propValue != null) ({ span , offset , order  } = propValue);
+        else span = propValue;
+        const infix = brkPoint !== 'xs' ? `-${brkPoint}` : '';
+        if (span) spans.push(span === true ? `${bsPrefix}${infix}` : `${bsPrefix}${infix}-${span}`);
+        if (order != null) classes.push(`order${infix}-${order}`);
+        if (offset != null) classes.push(`offset${infix}-${offset}`);
+    });
+    return [
+        {
+            ...props,
+            className: _classnamesDefault.default(className, ...spans, ...classes)
+        },
+        {
+            as,
+            bsPrefix,
+            spans
+        }
+    ];
+}
+const Col = /*#__PURE__*/ _react.forwardRef((props, ref)=>{
+    const [{ className , ...colProps }, { as: Component = 'div' , bsPrefix , spans  }] = useCol(props);
+    return(/*#__PURE__*/ _jsxRuntime.jsx(Component, {
+        ...colProps,
+        ref: ref,
+        className: _classnamesDefault.default(className, !spans.length && bsPrefix)
+    }));
+});
+Col.displayName = 'Col';
+exports.default = Col;
+
+},{"classnames":"bOXOh","react":"6TuXu","./ThemeProvider":"eeqfi","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"ikZdr":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$3741 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -26927,58 +27030,7 @@ FormLabel.displayName = 'FormLabel';
 FormLabel.defaultProps = defaultProps;
 exports.default = FormLabel;
 
-},{"classnames":"bOXOh","react":"6TuXu","warning":"dbfUS","./Col":"fbam0","./FormContext":"7nyWW","./ThemeProvider":"eeqfi","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"fbam0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "useCol", ()=>useCol
-);
-var _classnames = require("classnames");
-var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _react = require("react");
-var _themeProvider = require("./ThemeProvider");
-var _jsxRuntime = require("react/jsx-runtime");
-function useCol({ as , bsPrefix , className , ...props }) {
-    bsPrefix = _themeProvider.useBootstrapPrefix(bsPrefix, 'col');
-    const breakpoints = _themeProvider.useBootstrapBreakpoints();
-    const spans = [];
-    const classes = [];
-    breakpoints.forEach((brkPoint)=>{
-        const propValue = props[brkPoint];
-        delete props[brkPoint];
-        let span;
-        let offset;
-        let order;
-        if (typeof propValue === 'object' && propValue != null) ({ span , offset , order  } = propValue);
-        else span = propValue;
-        const infix = brkPoint !== 'xs' ? `-${brkPoint}` : '';
-        if (span) spans.push(span === true ? `${bsPrefix}${infix}` : `${bsPrefix}${infix}-${span}`);
-        if (order != null) classes.push(`order${infix}-${order}`);
-        if (offset != null) classes.push(`offset${infix}-${offset}`);
-    });
-    return [
-        {
-            ...props,
-            className: _classnamesDefault.default(className, ...spans, ...classes)
-        },
-        {
-            as,
-            bsPrefix,
-            spans
-        }
-    ];
-}
-const Col = /*#__PURE__*/ _react.forwardRef((props, ref)=>{
-    const [{ className , ...colProps }, { as: Component = 'div' , bsPrefix , spans  }] = useCol(props);
-    return(/*#__PURE__*/ _jsxRuntime.jsx(Component, {
-        ...colProps,
-        ref: ref,
-        className: _classnamesDefault.default(className, !spans.length && bsPrefix)
-    }));
-});
-Col.displayName = 'Col';
-exports.default = Col;
-
-},{"classnames":"bOXOh","react":"6TuXu","./ThemeProvider":"eeqfi","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"bqPNW":[function(require,module,exports) {
+},{"classnames":"bOXOh","react":"6TuXu","warning":"dbfUS","./Col":"fbam0","./FormContext":"7nyWW","./ThemeProvider":"eeqfi","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"bqPNW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -27093,39 +27145,7 @@ const FloatingLabel = /*#__PURE__*/ _react.forwardRef(({ bsPrefix , className , 
 FloatingLabel.displayName = 'FloatingLabel';
 exports.default = FloatingLabel;
 
-},{"classnames":"bOXOh","react":"6TuXu","./FormGroup":"gWNri","./ThemeProvider":"eeqfi","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"jyMAr":[function() {},{}],"c0x1x":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _classnames = require("classnames");
-var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
-var _react = require("react");
-var _themeProvider = require("./ThemeProvider");
-var _jsxRuntime = require("react/jsx-runtime");
-const Row = /*#__PURE__*/ _react.forwardRef(({ bsPrefix , className , // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
-as: Component = 'div' , ...props }, ref)=>{
-    const decoratedBsPrefix = _themeProvider.useBootstrapPrefix(bsPrefix, 'row');
-    const breakpoints = _themeProvider.useBootstrapBreakpoints();
-    const sizePrefix = `${decoratedBsPrefix}-cols`;
-    const classes = [];
-    breakpoints.forEach((brkPoint)=>{
-        const propValue = props[brkPoint];
-        delete props[brkPoint];
-        let cols;
-        if (propValue != null && typeof propValue === 'object') ({ cols  } = propValue);
-        else cols = propValue;
-        const infix = brkPoint !== 'xs' ? `-${brkPoint}` : '';
-        if (cols != null) classes.push(`${sizePrefix}${infix}-${cols}`);
-    });
-    return(/*#__PURE__*/ _jsxRuntime.jsx(Component, {
-        ref: ref,
-        ...props,
-        className: _classnamesDefault.default(className, decoratedBsPrefix, ...classes)
-    }));
-});
-Row.displayName = 'Row';
-exports.default = Row;
-
-},{"classnames":"bOXOh","react":"6TuXu","./ThemeProvider":"eeqfi","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"2PRIq":[function(require,module,exports) {
+},{"classnames":"bOXOh","react":"6TuXu","./FormGroup":"gWNri","./ThemeProvider":"eeqfi","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"953P9"}],"jyMAr":[function() {},{}],"2PRIq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
