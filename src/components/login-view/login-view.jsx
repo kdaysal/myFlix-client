@@ -3,6 +3,8 @@
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'LoginView' as a more readable function component
 import PropTypes from 'prop-types';
 import { RegistrationView } from '../registration-view/registration-view';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import './login-view.scss';
 
 //create/export LoginView function component (with hook)
@@ -22,6 +24,7 @@ export function LoginView(props) {
         props.onLoggedIn(username);
     };
 
+    //this is only here for now to test that the 'Register' button's event listener is working
     const handleRegister = (e) => {
         e.preventDefault();
         console.log('Redirecting to RegistrationView...');
@@ -29,28 +32,35 @@ export function LoginView(props) {
         //return <RegistrationView />; //this does not yet work - clicking the 'Register Me!' button does not render the RegistrationView
     };
 
+    //replaced JSX elements with 'Form'-related Boostrap components 
+    //since I'm returning a 2nd 'Form' for the Register-New-User button, I enclosed both of the 'Forms' inside of <section> tags
     return (
-        <div>
-            <form>
-                <label>
-                    Username:
-                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                </label>
-                <button type="submit" onClick={handleSubmit}>Log me in!</button>
-            </form>
+        <section>
+            <Form>
+                <Form.Group controlId="formUsername">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control type="text" onChange={e => setUsername(e.target.value)} />
+                </Form.Group>
+
+                <Form.Group controlId="formPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
+                </Form.Group>
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    Submit
+                </Button>
+            </Form>
             <br></br>
             <br></br>
-            <form>
-                <label>
-                    New User? Click here:
-                    <button type="submit" onClick={handleRegister}>Register me!</button>
-                </label>
-            </form>
-        </div>
+            <Form>
+                <Form.Label>
+                    Don't have a myFlix account yet? Click here:
+                    <Button variant="primary" type="submit" onClick={handleRegister}>
+                        Register!
+                    </Button>
+                </Form.Label>
+            </Form>
+        </section>
     );
 }
 
