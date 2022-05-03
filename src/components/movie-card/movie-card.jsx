@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import './movie-card.scss';
 
 //creating/exporting a MovieCard component
@@ -10,7 +12,17 @@ export class MovieCard extends React.Component { //(just for sake of example...)
     render() {
         const { movieData, onMovieClick } = this.props; //accessing (extracting) the passed data via 'props' property ('movieData' is the name of the prop used in the return statement in MainView... <MovieCard ...movieData={movie}... />)
 
-        return <div className="movie-card" onClick={() => { onMovieClick(movieData); }}>{movieData.Title}</div>;
+        //replaced JSX elements with 'Card'-related Boostrap components
+        return (
+            <Card>
+                <Card.Img variant="top" src={movieData.ImagePath} />
+                <Card.Body>
+                    <Card.Title>{movieData.Title}</Card.Title>
+                    <Card.Text>{movieData.Description}</Card.Text>
+                    <Button onClick={() => onMovieClick(movieData)} variant="link">Open</Button>
+                </Card.Body>
+            </Card>
+        );
     }
 }
 
