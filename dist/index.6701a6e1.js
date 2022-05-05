@@ -22971,71 +22971,51 @@ class MainView extends _reactDefault.default.Component {
         //If the state of 'selectedMovie' is not null, return that selected movie. Otherwise, return ALL movies.
         //remember that the "main-view" div itself is actually enclosed within <Container> tags, even though you don't see them below (see index.jsx)
         //this ^ is what allows me to enclose "MovieView" within a <Row> Bootstrap component here
-        return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
-            className: "main-view",
+        return(/*#__PURE__*/ _jsxRuntime.jsx(_rowDefault.default, {
+            className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 69
             },
             __self: this,
-            children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_rowDefault.default, {
-                className: "justify-content-md-center",
+            children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                md: 8,
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 72
                 },
                 __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
-                    xs: 12,
-                    sm: 10,
-                    md: 8,
-                    lg: 6,
-                    xl: 4,
+                children: /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
+                    movie: selectedMovie,
+                    onBackClick: (newSelectedMovie)=>{
+                        this.setSelectedMovie(newSelectedMovie);
+                    },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 73
                     },
+                    __self: this
+                })
+            }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                    md: 3,
+                    __source: {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 77
+                    },
                     __self: this,
-                    children: /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
-                        movie: selectedMovie,
-                        onBackClick: (newSelectedMovie)=>{
+                    children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
+                        movieData: movie,
+                        onMovieClick: (newSelectedMovie)=>{
                             this.setSelectedMovie(newSelectedMovie);
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 74
+                            lineNumber: 78
                         },
                         __self: this
-                    })
+                    }, movie._id)
                 })
-            }) : /*#__PURE__*/ _jsxRuntime.jsx(_rowDefault.default, {
-                className: "justify-content-md-center",
-                __source: {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 79
-                },
-                __self: this,
-                children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
-                        md: 3,
-                        __source: {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 81
-                        },
-                        __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                            movieData: movie,
-                            onMovieClick: (newSelectedMovie)=>{
-                                this.setSelectedMovie(newSelectedMovie);
-                            },
-                            __source: {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 82
-                            },
-                            __self: this
-                        }, movie._id)
-                    })
-                )
-            })
+            )
         }));
     }
 } /* *************************************** */  //ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning

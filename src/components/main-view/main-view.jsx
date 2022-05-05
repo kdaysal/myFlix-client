@@ -66,26 +66,20 @@ export default class MainView extends React.Component { //by adding 'default', I
     //remember that the "main-view" div itself is actually enclosed within <Container> tags, even though you don't see them below (see index.jsx)
     //this ^ is what allows me to enclose "MovieView" within a <Row> Bootstrap component here
     return (
-      <div className="main-view">
+      <Row className="main-view justify-content-md-center">
         {selectedMovie
           ? (
-            <Row className="justify-content-md-center">
-              <Col xs={12} sm={10} md={8} lg={6} xl={4}>
-                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-              </Col>
-            </Row>
+            <Col md={8}>
+              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+            </Col>
           )
-          : (
-            <Row className="justify-content-md-center">
-              {movies.map(movie => (
-                <Col md={3}>
-                  <MovieCard key={movie._id} movieData={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-                </Col>
-              ))}
-            </Row>
-          )
+          : movies.map(movie => (
+            <Col md={3}>
+              <MovieCard key={movie._id} movieData={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+            </Col>
+          ))
         }
-      </div>
+      </Row>
     );
   }
 }
