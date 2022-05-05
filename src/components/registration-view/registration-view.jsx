@@ -2,8 +2,11 @@
 
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'RegistrationView' as a more readable function component
 import PropTypes from 'prop-types';
-//Note - will need to import axios later (when I'm actually connecting to my Heroku app)
+import { Form, Button } from 'react-bootstrap';
+
+
 import './registration-view.scss';
+//Note - will need to import axios later (when I'm actually connecting to my Heroku app)
 
 //create/export RegistrationView function component (with hook)
 export function RegistrationView(props) {
@@ -24,25 +27,57 @@ export function RegistrationView(props) {
     };
 
     return (
-        <form>
-            <label>
-                Username:
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </label>
-            <label>
-                Email:
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
-            </label>
-            <label>
-                BirthDate:
-                <input type="date" value={birthdate} onChange={e => setBirthdate(e.target.value)} />
-            </label>
-            <button type="submit" onClick={handleRegister}>Register me!</button>
-        </form>
+        <Form>
+            <Form.Group>
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
+                    type="text"
+                    value={username}
+                    onChange={e => setUsername(e.target.value)}
+                    required
+                    placeholder="Create a username"
+                />
+            </Form.Group>
+
+
+            <Form.Group>
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
+                    type="password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    required
+                    placeholder="Create a Password"
+                    minLength="8"
+                />
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    required
+                    placeholder="Your email address"
+                />
+            </Form.Group>
+
+            <Form.Group>
+                <Form.Label>BirthDay:</Form.Label>
+                <Form.Control
+                    type="date"
+                    value={birthdate}
+                    onChange={e => setBirthdate(e.target.value)}
+                    required
+                    placeholder="Your birthday"
+                />
+            </Form.Group>
+            <Button
+                type="submit"
+                onClick={handleRegister}>Register me!
+            </Button>
+        </Form >
     );
 }
 
