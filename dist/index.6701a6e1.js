@@ -25878,18 +25878,18 @@ var _movieViewScss = require("./movie-view.scss");
 class MovieView extends _reactDefault.default.Component {
     // below code block is FOR DEMONSTRATION PURPOSES ONLY - adding/removing a keypress listener via componentDidMount() and componentWillUnmount()
     /*
-    keypressCallback(event) {
-        console.log(event.key);
-    }
+  keypressCallback(event) {
+      console.log(event.key);
+  }
 
-    componentDidMount() {
-        document.addEventListener('keypress', this.keypressCallback);
-    }
+  componentDidMount() {
+      document.addEventListener('keypress', this.keypressCallback);
+  }
 
-    componentWillUnmount() {
-        document.removeEventListener('keypress', this.keypressCallback);
-    }
-   */ render() {
+  componentWillUnmount() {
+      document.removeEventListener('keypress', this.keypressCallback);
+  }
+ */ render() {
         const { movie , onBackClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
             className: "movie-view",
