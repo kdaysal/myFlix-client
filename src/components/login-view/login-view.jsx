@@ -3,8 +3,7 @@
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'LoginView' as a more readable function component
 import PropTypes from 'prop-types';
 import { RegistrationView } from '../registration-view/registration-view';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import './login-view.scss';
 
 //create/export LoginView function component (with hook)
@@ -35,32 +34,58 @@ export function LoginView(props) {
   //replaced JSX elements with 'Form'-related Boostrap components 
   //since I'm returning a 2nd 'Form' for the Register-New-User button, I enclosed both of the 'Forms' inside of <section> tags
   return (
-    <section>
-      <Form>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control type="text" onChange={e => setUsername(e.target.value)} />
-        </Form.Group>
+    <Container fluid="md">
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card className="bg-dark text-white">
+              <Card.Body>
+                <Card.Title>
+                  Please login to continue
+                </Card.Title>
+                <Form>
+                  <Form.Group controlId="formUsername">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={username}
+                      onChange={e => setUsername(e.target.value)}
+                      required
+                      placeholder="Enter your myFlix username"
+                    />
+                  </Form.Group>
+                  <br></br>
+                  <Form.Group controlId="formPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control type="password"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      required
+                      placeholder="Enter your password"
+                    />
+                  </Form.Group>
+                  <br></br>
+                  <Button variant="success" type="submit" onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                </Form>
+                <br></br>
+                <br></br>
+                <Form>
+                  <Form.Label>
+                    Don't have a myFlix account yet? Click here:
+                    <Button id="register-btn" variant="primary" type="submit" onClick={handleRegister}>
+                      Register!
+                    </Button>
+                  </Form.Label>
+                </Form>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
 
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </Form>
-      <br></br>
-      <br></br>
-      <Form>
-        <Form.Label>
-          Don't have a myFlix account yet? Click here:
-          <Button variant="primary" type="submit" onClick={handleRegister}>
-            Register!
-          </Button>
-        </Form.Label>
-      </Form>
-    </section>
+    </Container>
   );
 }
 
