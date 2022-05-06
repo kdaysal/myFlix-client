@@ -31,7 +31,7 @@ export function RegistrationView(props) {
       <Row>
         <Col>
           <CardGroup>
-            <Card>
+            <Card className="bg-dark text-white">
               <Card.Body>
                 <Card.Title>Please Register Below</Card.Title>
                 <Form>
@@ -80,7 +80,7 @@ export function RegistrationView(props) {
                       placeholder="Your birthday"
                     />
                   </Form.Group>
-                  <Button
+                  <Button variant="success"
                     type="submit"
                     onClick={handleRegister}>Register me!
                   </Button>
