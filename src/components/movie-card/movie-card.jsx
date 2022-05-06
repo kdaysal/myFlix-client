@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import './movie-card.scss';
 
 //creating/exporting a MovieCard component
@@ -16,14 +13,18 @@ export class MovieCard extends React.Component { //(just for sake of example...)
 
     //replaced JSX elements with 'Card'-related Boostrap components
     return (
-      <Card>
-        <Card.Img variant="top" src={movieData.ImagePath} />
-        <Card.Body>
-          <Card.Title>{movieData.Title}</Card.Title>
-          <Card.Text>{movieData.Description}</Card.Text>
-          <Button onClick={() => onMovieClick(movieData)} variant="link">Open</Button>
-        </Card.Body>
-      </Card>
+      <Container fluid="md">
+        <CardGroup>
+          <Card>
+            <Card.Img variant="top" src={movieData.ImagePath} />
+            <Card.Body>
+              <Card.Title>{movieData.Title}</Card.Title>
+              <Card.Text>{movieData.Description}</Card.Text>
+              <Button onClick={() => onMovieClick(movieData)} variant="link">Open</Button>
+            </Card.Body>
+          </Card>
+        </CardGroup>
+      </Container>
     );
   }
 }
