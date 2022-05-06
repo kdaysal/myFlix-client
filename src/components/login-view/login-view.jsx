@@ -34,7 +34,7 @@ export function LoginView(props) {
   //replaced JSX elements with 'Form'-related Boostrap components 
   //since I'm returning a 2nd 'Form' for the Register-New-User button, I enclosed both of the 'Forms' inside of <section> tags
   return (
-    <Container fluid="md">
+    <Container fluid="md" id="login-view-container">
       <Row>
         <Col>
           <CardGroup>

@@ -1,8 +1,21 @@
 .my-flix {
   color: orange;
 }
+#main-movie-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#movie-view-container {
+  margin-top: 15px;
+}
 
+#back-btn {
+  margin-top: 10px;
+}
 
+#login-view-container {
+  margin-top: 15px;
+}
 
 #register-btn {
   margin-left: 10px;

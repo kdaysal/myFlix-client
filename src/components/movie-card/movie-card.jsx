@@ -15,7 +15,7 @@ export class MovieCard extends React.Component { //(just for sake of example...)
     return (
       <Container fluid="md">
         <CardGroup>
-          <Card>
+          <Card className="bg-dark text-white" id="main-movie-card">
             <Card.Img variant="top" src={movieData.ImagePath} />
             <Card.Body>
               <Card.Title>{movieData.Title}</Card.Title>
