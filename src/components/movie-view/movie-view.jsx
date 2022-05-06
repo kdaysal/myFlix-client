@@ -44,6 +44,7 @@ export class MovieView extends React.Component {
               </Card>
             </CardGroup>
             <Button id="back-btn" onClick={() => { onBackClick(null); }}>Back</Button>
+            <Button variant="success" id="favorites-btn">Add to Favorites</Button>
           </Col>
         </Row>
       </Container>
