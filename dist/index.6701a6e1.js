@@ -22908,6 +22908,10 @@ var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _container = require("react-bootstrap/Container");
+var _containerDefault = parcelHelpers.interopDefault(_container);
 //import components
 var _loginView = require("../login-view/login-view");
 var _registrationView = require("../registration-view/registration-view");
@@ -22979,6 +22983,14 @@ class MainView extends _reactDefault.default.Component {
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token); //allows MainView to get the list of movies from my API - using the auth token
     }
+    //when a user logs out, clear out their token and user info from local storage, and reset the state of 'user' to null
+    onLoggedOut() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.setState({
+            user: null
+        });
+    }
     //display the desired visual output to the UI
     render() {
         const { movies , selectedMovie , user  } = this.state;
@@ -22989,7 +23001,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 95
+                lineNumber: 106
             },
             __self: this
         }));
@@ -22998,61 +23010,81 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 98
+                lineNumber: 109
             },
             __self: this
         }));
         //If the state of 'selectedMovie' is not null, return that selected movie. Otherwise, return ALL movies.
         //remember that the "main-view" div itself is actually enclosed within <Container> tags, even though you don't see them below (see index.jsx)
         //this ^ is what allows me to enclose "MovieView" within a <Row> Bootstrap component here
-        return(/*#__PURE__*/ _jsxRuntime.jsx(_rowDefault.default, {
-            className: "main-view justify-content-md-center",
+        return(/*#__PURE__*/ _jsxRuntime.jsxs(_containerDefault.default, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 104
+                lineNumber: 115
             },
             __self: this,
-            children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
-                md: 8,
-                __source: {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 107
-                },
-                __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
-                    movie: selectedMovie,
-                    onBackClick: (newSelectedMovie)=>{
-                        this.setSelectedMovie(newSelectedMovie);
-                    },
+            children: [
+                /*#__PURE__*/ _jsxRuntime.jsx(_rowDefault.default, {
+                    className: "main-view justify-content-md-center",
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 108
-                    },
-                    __self: this
-                })
-            }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
-                    md: 3,
-                    __source: {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 112
+                        lineNumber: 116
                     },
                     __self: this,
-                    children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                        movieData: movie,
-                        onMovieClick: (newSelectedMovie)=>{
-                            this.setSelectedMovie(newSelectedMovie);
-                        },
+                    children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                        md: 8,
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 113
+                            lineNumber: 119
                         },
-                        __self: this
-                    }, movie._id)
+                        __self: this,
+                        children: /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
+                            movie: selectedMovie,
+                            onBackClick: (newSelectedMovie)=>{
+                                this.setSelectedMovie(newSelectedMovie);
+                            },
+                            __source: {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 120
+                            },
+                            __self: this
+                        })
+                    }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                            md: 3,
+                            __source: {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 124
+                            },
+                            __self: this,
+                            children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
+                                movieData: movie,
+                                onMovieClick: (newSelectedMovie)=>{
+                                    this.setSelectedMovie(newSelectedMovie);
+                                },
+                                __source: {
+                                    fileName: "src/components/main-view/main-view.jsx",
+                                    lineNumber: 125
+                                },
+                                __self: this
+                            }, movie._id)
+                        })
+                    )
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                    variant: "primary",
+                    type: "submit",
+                    onClick: this.onLoggedOut,
+                    __source: {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 130
+                    },
+                    __self: this,
+                    children: "Log me out"
                 })
-            )
+            ]
         }));
     }
-} /* *************************************** */  //ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning
+} /* *************************************** */  //ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning. DELETE before final submission
  //   render() {
  //     const movies = this.state.movies;
  //     if (movies.length === 0) {
@@ -23077,7 +23109,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","axios":"iYoWk","../movie-card/movie-card":"6EiBJ","../movie-view/movie-view":"ikZdr","../login-view/login-view":"054li","react-bootstrap/Row":"c0x1x","react-bootstrap/Col":"fbam0","../registration-view/registration-view":"aP2YV","./main-view.scss":"jyMAr"}],"iYoWk":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","axios":"iYoWk","../movie-card/movie-card":"6EiBJ","../movie-view/movie-view":"ikZdr","../login-view/login-view":"054li","../registration-view/registration-view":"aP2YV","./main-view.scss":"jyMAr","react-bootstrap/Row":"c0x1x","react-bootstrap/Col":"fbam0","react-bootstrap/Button":"9CzHT","react-bootstrap/Container":"2PRIq"}],"iYoWk":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"3QmO2"}],"3QmO2":[function(require,module,exports) {

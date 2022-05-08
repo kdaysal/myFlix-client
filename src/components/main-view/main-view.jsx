@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios'; //this will allow me to perform ajax operations. Axios will fetch the movies, then I'll set the 'state' of movies using this.setState
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 //import components
 import { LoginView } from '../login-view/login-view';
@@ -85,6 +87,15 @@ export default class MainView extends React.Component { //by adding 'default', I
     this.getMovies(authData.token);//allows MainView to get the list of movies from my API - using the auth token
   }
 
+  //when a user logs out, clear out their token and user info from local storage, and reset the state of 'user' to null
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
+    });
+  }
+
   //display the desired visual output to the UI
   render() {
     const { movies, selectedMovie, user } = this.state;
@@ -101,26 +112,31 @@ export default class MainView extends React.Component { //by adding 'default', I
     //remember that the "main-view" div itself is actually enclosed within <Container> tags, even though you don't see them below (see index.jsx)
     //this ^ is what allows me to enclose "MovieView" within a <Row> Bootstrap component here
     return (
-      <Row className="main-view justify-content-md-center">
-        {selectedMovie
-          ? (
-            <Col md={8}>
-              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-            </Col>
-          )
-          : movies.map(movie => (
-            <Col md={3}>
-              <MovieCard key={movie._id} movieData={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-            </Col>
-          ))
-        }
-      </Row>
+      <Container>
+        <Row className="main-view justify-content-md-center">
+          {selectedMovie
+            ? (
+              <Col md={8}>
+                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              </Col>
+            )
+            : movies.map(movie => (
+              <Col md={3}>
+                <MovieCard key={movie._id} movieData={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              </Col>
+            ))
+          }
+        </Row>
+        <Button variant="primary" type="submit" onClick={this.onLoggedOut}>
+          Log me out
+        </Button>
+      </Container>
     );
   }
 }
 
 /* *************************************** */
-//ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning
+//ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning. DELETE before final submission
 
 //   render() {
 //     const movies = this.state.movies;
