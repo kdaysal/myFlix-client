@@ -37809,7 +37809,7 @@ function LoginView(props) {
     // this gives me variables ('username', 'password') and methods to update them ('setUsername', 'setPassword')
     const [username, setUsername] = _react.useState(''); //the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
     const [password, setPassword] = _react.useState('');
-    // declare a hook for each input
+    // declare a hook for each input (for form validation)
     const [usernameErr, setUsernameErr] = _react.useState('');
     const [passwordErr, setPasswordErr] = _react.useState('');
     // validate user inputs
@@ -37818,8 +37818,8 @@ function LoginView(props) {
         if (!username) {
             setUsernameErr('Username Required');
             isReq = false;
-        } else if (username.length < 2) {
-            setUsernameErr('Username must be at least 2 characters long');
+        } else if (username.length < 5) {
+            setUsernameErr('Username must be at least 5 characters long');
             isReq = false;
         }
         if (!password) {
@@ -38095,7 +38095,6 @@ $parcel$ReactRefreshHelpers$8dd4.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-//Note - will need to import axios later (when I'm actually connecting to my Heroku app)
 //create/export RegistrationView function component (with hook)
 parcelHelpers.export(exports, "RegistrationView", ()=>RegistrationView
 );
@@ -38106,64 +38105,112 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _registrationViewScss = require("./registration-view.scss");
 var _s = $RefreshSig$();
 function RegistrationView(props) {
     _s();
-    //call the useState() method (imported from React) with empty strings (initial values of registration variables)
-    //this gives me variables ('username', 'password') and methods to update them ('setUsername', 'setPassword')
-    const [username, setUsername] = _react.useState(''); //the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
+    // call the useState() method (imported from React) with empty strings (initial values of registration variables)
+    // this gives me variables ('username', 'password') and methods to update them ('setUsername', 'setPassword')
+    const [username, setUsername] = _react.useState(''); // the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
     const [password, setPassword] = _react.useState('');
     const [email, setEmail] = _react.useState('');
     const [birthdate, setBirthdate] = _react.useState('');
-    //current structure below is just a temporary solution for rendering my SPA views, until proper authentication logic is implemented later
+    // declare a hook for each input (for form validation)
+    const [usernameErr, setUsernameErr] = _react.useState('');
+    const [passwordErr, setPasswordErr] = _react.useState('');
+    const [emailErr, setEmailErr] = _react.useState('');
+    // validate user inputs
+    const validate = ()=>{
+        let isReq = true;
+        if (!username) {
+            setUsernameErr('Username is Required');
+            isReq = false;
+        } else if (username.length < 2) {
+            setUsernameErr('Username must be at least 5 characters long');
+            isReq = false;
+        }
+        if (!password) {
+            setPasswordErr('Password Required');
+            isReq = false;
+        } else if (password.length < 6) {
+            setPasswordErr('Password must be at least 6 characters long');
+            isReq = false;
+        }
+        if (!email) {
+            setEmailErr('Email is Required');
+            isReq = false;
+        } else if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+            setEmailErr('Email format is invalid');
+            isReq = false;
+        }
+        return isReq;
+    };
+    // current structure below is just a temporary solution for rendering my SPA views, until proper authentication logic is implemented later
     const handleRegister = (e)=>{
         e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
-        console.log(`username: ${username}, password: ${password}, email: ${email}, birthdate: ${birthdate}`);
-    /* Send a request to the server for authentication */ /* then call props.onLoggedIn(username) */ //props.onLoggedIn(username); //this may change to 'props.onRegistered(...) or something in the near future, but for now, I'm treating this as letting the newly registered user be automatically 'logged in'
+        const isReq = validate();
+        if (isReq) {
+            console.log(`username: ${username}, password: ${password}, email: ${email}, birthdate: ${birthdate}`);
+            /* Send a request to the server for authentication, then call props.onLoggedIn(username) */ _axiosDefault.default.post('https://kdaysal-my-flix.herokuapp.com/users', {
+                Username: username,
+                Password: password,
+                Email: email,
+                BirthDate: birthdate
+            }).then((response)=>{
+                const data = response.data;
+                console.log('Data: ' + data);
+                alert('Registration successful, please login now!');
+                window.open('/', '_self'); // note - the argument '_self' is needed so that the page will open in the current tab
+            }).catch((response)=>{
+                console.log(response);
+                alert('Something went wrong...unable to register :(');
+            });
+        } // end IF
     };
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 30
+            lineNumber: 78
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 31
+                lineNumber: 79
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 32
+                    lineNumber: 80
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.CardGroup, {
                     __source: {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 33
+                        lineNumber: 81
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card, {
                         className: "bg-dark text-white",
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 34
+                            lineNumber: 82
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card.Body, {
                             __source: {
                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                lineNumber: 35
+                                lineNumber: 83
                             },
                             __self: this,
                             children: [
                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Title, {
                                     __source: {
                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                        lineNumber: 36
+                                        lineNumber: 84
                                     },
                                     __self: this,
                                     children: "Please Register Below"
@@ -38171,21 +38218,21 @@ function RegistrationView(props) {
                                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form, {
                                     __source: {
                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                        lineNumber: 37
+                                        lineNumber: 85
                                     },
                                     __self: this,
                                     children: [
                                         /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 38
+                                                lineNumber: 86
                                             },
                                             __self: this,
                                             children: [
                                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 39
+                                                        lineNumber: 87
                                                     },
                                                     __self: this,
                                                     children: "Username:"
@@ -38199,23 +38246,38 @@ function RegistrationView(props) {
                                                     placeholder: "Create a username",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 40
+                                                        lineNumber: 88
                                                     },
                                                     __self: this
+                                                }),
+                                                usernameErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                                                    __source: {
+                                                        fileName: "src/components/registration-view/registration-view.jsx",
+                                                        lineNumber: 95
+                                                    },
+                                                    __self: this,
+                                                    children: usernameErr
                                                 })
                                             ]
+                                        }),
+                                        /*#__PURE__*/ _jsxRuntime.jsx("br", {
+                                            __source: {
+                                                fileName: "src/components/registration-view/registration-view.jsx",
+                                                lineNumber: 97
+                                            },
+                                            __self: this
                                         }),
                                         /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 50
+                                                lineNumber: 98
                                             },
                                             __self: this,
                                             children: [
                                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 51
+                                                        lineNumber: 99
                                                     },
                                                     __self: this,
                                                     children: "Password:"
@@ -38230,23 +38292,38 @@ function RegistrationView(props) {
                                                     minLength: "8",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 52
+                                                        lineNumber: 100
                                                     },
                                                     __self: this
+                                                }),
+                                                passwordErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                                                    __source: {
+                                                        fileName: "src/components/registration-view/registration-view.jsx",
+                                                        lineNumber: 108
+                                                    },
+                                                    __self: this,
+                                                    children: passwordErr
                                                 })
                                             ]
+                                        }),
+                                        /*#__PURE__*/ _jsxRuntime.jsx("br", {
+                                            __source: {
+                                                fileName: "src/components/registration-view/registration-view.jsx",
+                                                lineNumber: 110
+                                            },
+                                            __self: this
                                         }),
                                         /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 62
+                                                lineNumber: 111
                                             },
                                             __self: this,
                                             children: [
                                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 63
+                                                        lineNumber: 112
                                                     },
                                                     __self: this,
                                                     children: "Email:"
@@ -38260,23 +38337,38 @@ function RegistrationView(props) {
                                                     placeholder: "Your email address",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 64
+                                                        lineNumber: 113
                                                     },
                                                     __self: this
+                                                }),
+                                                emailErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                                                    __source: {
+                                                        fileName: "src/components/registration-view/registration-view.jsx",
+                                                        lineNumber: 120
+                                                    },
+                                                    __self: this,
+                                                    children: emailErr
                                                 })
                                             ]
+                                        }),
+                                        /*#__PURE__*/ _jsxRuntime.jsx("br", {
+                                            __source: {
+                                                fileName: "src/components/registration-view/registration-view.jsx",
+                                                lineNumber: 122
+                                            },
+                                            __self: this
                                         }),
                                         /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 73
+                                                lineNumber: 123
                                             },
                                             __self: this,
                                             children: [
                                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 74
+                                                        lineNumber: 124
                                                     },
                                                     __self: this,
                                                     children: "BirthDay:"
@@ -38290,11 +38382,18 @@ function RegistrationView(props) {
                                                     placeholder: "Your birthday",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 75
+                                                        lineNumber: 125
                                                     },
                                                     __self: this
                                                 })
                                             ]
+                                        }),
+                                        /*#__PURE__*/ _jsxRuntime.jsx("br", {
+                                            __source: {
+                                                fileName: "src/components/registration-view/registration-view.jsx",
+                                                lineNumber: 133
+                                            },
+                                            __self: this
                                         }),
                                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                             variant: "success",
@@ -38302,7 +38401,7 @@ function RegistrationView(props) {
                                             onClick: handleRegister,
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 83
+                                                lineNumber: 134
                                             },
                                             __self: this,
                                             children: "Register me!"
@@ -38317,16 +38416,16 @@ function RegistrationView(props) {
         })
     }));
 }
-_s(RegistrationView, "TD2fkD1Ab4Kck2JJHVZv+3f7f/8=");
+_s(RegistrationView, "CIP0mGjtjWaFhD1FjFD7ai+mkdE=");
 _c = RegistrationView;
-//using 'propTypes.exact' here (instead of 'propTypes.shape') because no other additional props should be accepted
+// using 'propTypes.exact' here (instead of 'propTypes.shape') because no other additional props should be accepted
 RegistrationView.propTypes = {
     user: _propTypesDefault.default.exact({
         username: _propTypesDefault.default.string.isRequired,
         password: _propTypesDefault.default.string.isRequired,
         email: _propTypesDefault.default.string.isRequired,
         birthdate: _propTypesDefault.default.string.isRequired
-    }) //.isRequired - commenting this out for now until I figure out how to handle error: Failed prop type: The prop `user` is marked as required in `RegistrationView`, but its value is `undefined` at RegistrationView
+    }) // .isRequired - commenting this out for now until I figure out how to handle error: Failed prop type: The prop `user` is marked as required in `RegistrationView`, but its value is `undefined` at RegistrationView
 };
 var _c;
 $RefreshReg$(_c, "RegistrationView");
@@ -38336,6 +38435,6 @@ $RefreshReg$(_c, "RegistrationView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","react-bootstrap":"h2YVd","./registration-view.scss":"fr9ZP","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu"}],"fr9ZP":[function() {},{}],"lS4BK":[function() {},{}],"jyMAr":[function() {},{}]},["jXUiU","8XzVN","dLPEP"], "dLPEP", "parcelRequireaec4")
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","react-bootstrap":"h2YVd","./registration-view.scss":"fr9ZP","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","axios":"iYoWk"}],"fr9ZP":[function() {},{}],"lS4BK":[function() {},{}],"jyMAr":[function() {},{}]},["jXUiU","8XzVN","dLPEP"], "dLPEP", "parcelRequireaec4")
 
 //# sourceMappingURL=index.6701a6e1.js.map
