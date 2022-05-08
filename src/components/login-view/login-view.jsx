@@ -1,4 +1,4 @@
-//The 'LoginView' is rendered as long as there's no user in the state (because the 'user' property will be null in the 'MainView' state)
+// The 'LoginView' is rendered as long as there's no user in the state (because the 'user' property will be null in the 'MainView' state)
 
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'LoginView' as a more readable function component
 import PropTypes from 'prop-types';
@@ -7,43 +7,70 @@ import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootst
 import './login-view.scss';
 import axios from 'axios';
 
-//create/export LoginView function component (with hook)
+// create/export LoginView function component (with hook)
 export function LoginView(props) {
-  //call the useState() method (imported from React) with empty strings (initial values of login variables)
-  //this gives me variables ('username', 'password') and methods to update them ('setUsername', 'setPassword')
+  // call the useState() method (imported from React) with empty strings (initial values of login variables)
+  // this gives me variables ('username', 'password') and methods to update them ('setUsername', 'setPassword')
   const [username, setUsername] = useState(''); //the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
   const [password, setPassword] = useState('');
 
-  //this is to handle existing users signing in with their credentials
+  // declare a hook for each input
+  const [usernameErr, setUsernameErr] = useState('');
+  const [passwordErr, setPasswordErr] = useState('');
+
+  // validate user inputs
+  const validate = () => {
+    let isReq = true;
+    if (!username) {
+      setUsernameErr('Username Required');
+      isReq = false;
+    } else if (username.length < 2) {
+      setUsernameErr('Username must be at least 2 characters long');
+      isReq = false;
+    }
+    if (!password) {
+      setPasswordErr('Password Required');
+      isReq = false;
+    } else if (password.length < 6) {
+      setPasswordErr('Password must be at least 6 characters long');
+      isReq = false;
+    }
+    return isReq;
+  }
+
+  // this is to handle existing users signing in with their credentials
   const handleSubmit = (e) => {
     e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
-    console.log(`username: ${username}, password: ${password}`);//FOR TESTING ONLY - delete later
-    console.log(`now sending login credentials to the api...`);//FOR TESTING ONLY - delete later
+    const isReq = validate();
+    if (isReq) { //only send a request to the server if the user input passes validation
+      console.log(`username: ${username}, password: ${password}`); //FOR TESTING ONLY - delete later
+      console.log(`now sending login credentials to the api...`); //FOR TESTING ONLY - delete later
 
-    /* Send a request to the server for authentication, then call props.onLoggedIn(username) */
-    axios.post('https://kdaysal-my-flix.herokuapp.com/login', {
-      Username: username,
-      Password: password
-    })
-      .then(response => {
-        const data = response.data;
-        props.onLoggedIn(data);
+      /* Send a request to the server for authentication, then call props.onLoggedIn(username) */
+      axios.post('https://kdaysal-my-flix.herokuapp.com/login', {
+        Username: username,
+        Password: password
       })
-      .catch(e => {
-        console.log('Error: No such user found')
-      });
+        .then(response => {
+          const data = response.data;
+          props.onLoggedIn(data);
+        })
+        .catch(e => {
+          console.log('Error: No such user found')
+        });
+    }
   };
 
-  //this is only here for now to test that the 'Register' button's event listener is working
+  // this is only here for now to test that the 'Register' button's event listener is working
   const handleRegister = (e) => {
     e.preventDefault();
     console.log('Redirecting to RegistrationView...');
-    //props.onRegistered - TBD
-    //return <RegistrationView />; //this does not yet work - clicking the 'Register Me!' button does not render the RegistrationView
+    // props.onRegistered - TBD
+    // return <RegistrationView />; //this does not yet work - clicking the 'Register Me!' button does not render the RegistrationView
   };
 
-  //replaced JSX elements with 'Form'-related Boostrap components (wrapped inside a CardGroup, and contained within a responsive grid) 
-  //since I'm returning a 2nd 'Form' for the Register-New-User button, I enclosed both of the 'Forms' inside of <section> tags
+  // replaced JSX elements with 'Form'-related Boostrap components (wrapped inside a CardGroup, and contained within a responsive grid) 
+  // since I'm returning a 2nd 'Form' for the Register-New-User button, I enclosed both of the 'Forms' inside of <section> tags
   return (
     <Container fluid="md" id="login-view-container">
       <Row>
@@ -64,6 +91,8 @@ export function LoginView(props) {
                       required
                       placeholder="Enter your myFlix username"
                     />
+                    {/* Code added here to display any validation errors if they exist */}
+                    {usernameErr && <p>{usernameErr}</p>}
                   </Form.Group>
                   <br></br>
                   <Form.Group controlId="formPassword">
@@ -74,6 +103,8 @@ export function LoginView(props) {
                       required
                       placeholder="Enter your password"
                     />
+                    {/* Code added here to display any validation errors if they exist */}
+                    {passwordErr && <p>{passwordErr}</p>}
                   </Form.Group>
                   <br></br>
                   <Button variant="success" type="submit" onClick={handleSubmit}>
@@ -100,10 +131,10 @@ export function LoginView(props) {
   );
 }
 
-//using 'propTypes.exact' here (instead of 'propTypes.shape') because no other additional props should be accepted
+// using 'propTypes.exact' here (instead of 'propTypes.shape') because no other additional props should be accepted
 LoginView.propTypes = {
   user: PropTypes.exact({
     username: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
-  }) //not chaining '.isRequired' here due to error: "The prop 'user' is marked as required in 'LoginView', but its value is 'undefined'."
+  }) // not chaining '.isRequired' here due to error: "The prop 'user' is marked as required in 'LoginView', but its value is 'undefined'."
 };
