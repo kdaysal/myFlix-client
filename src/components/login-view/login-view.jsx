@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { RegistrationView } from '../registration-view/registration-view';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import './login-view.scss';
+import axios from 'axios';
 
 //create/export LoginView function component (with hook)
 export function LoginView(props) {
@@ -13,14 +14,24 @@ export function LoginView(props) {
   const [username, setUsername] = useState(''); //the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
   const [password, setPassword] = useState('');
 
-  //current structure below is just a temporary solution for rendering my SPA views, until proper authentication logic is implemented later
   //this is to handle existing users signing in with their credentials
   const handleSubmit = (e) => {
     e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
-    console.log(`username: ${username}, password: ${password}`);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
+    console.log(`username: ${username}, password: ${password}`);//FOR TESTING ONLY - delete later
+    console.log(`now sending login credentials to the api...`);//FOR TESTING ONLY - delete later
+
+    /* Send a request to the server for authentication, then call props.onLoggedIn(username) */
+    axios.post('https://kdaysal-my-flix.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    })
+      .then(response => {
+        const data = response.data;
+        props.onLoggedIn(data);
+      })
+      .catch(e => {
+        console.log('Error: No such user found')
+      });
   };
 
   //this is only here for now to test that the 'Register' button's event listener is working
@@ -31,7 +42,7 @@ export function LoginView(props) {
     //return <RegistrationView />; //this does not yet work - clicking the 'Register Me!' button does not render the RegistrationView
   };
 
-  //replaced JSX elements with 'Form'-related Boostrap components 
+  //replaced JSX elements with 'Form'-related Boostrap components (wrapped inside a CardGroup, and contained within a responsive grid) 
   //since I'm returning a 2nd 'Form' for the Register-New-User button, I enclosed both of the 'Forms' inside of <section> tags
   return (
     <Container fluid="md" id="login-view-container">
