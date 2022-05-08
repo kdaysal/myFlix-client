@@ -14,7 +14,7 @@ export function LoginView(props) {
   const [username, setUsername] = useState(''); //the destructure syntax here = same as 'this.state.username' and 'this.setUsername' in class
   const [password, setPassword] = useState('');
 
-  // declare a hook for each input
+  // declare a hook for each input (for form validation)
   const [usernameErr, setUsernameErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
 
@@ -24,8 +24,8 @@ export function LoginView(props) {
     if (!username) {
       setUsernameErr('Username Required');
       isReq = false;
-    } else if (username.length < 2) {
-      setUsernameErr('Username must be at least 2 characters long');
+    } else if (username.length < 5) {
+      setUsernameErr('Username must be at least 5 characters long');
       isReq = false;
     }
     if (!password) {
