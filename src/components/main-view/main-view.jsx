@@ -16,11 +16,28 @@ export default class MainView extends React.Component { //by adding 'default', I
 
   constructor() { //React will use this method to create the component. Always initialize a state's values in the constructor, as it is called before render().
     super(); //call the constructor of the parent class ('React.Component'). This initializes the component's state, and is needed in order for 'this.state' (below) to work.
-    this.state = { //initialize states to empty/null
+    this.state = { //initialize all states to empty/null
       movies: [],
       selectedMovie: null, //this variable will represent whether a movie card is clicked (null if no)
       user: null //this variable will represent whether a user is logged in (null if no)
     }
+  }
+
+  //make an authenticated request to my API...
+  //this method uses Axios to make a GET request to the 'movies' endpoint of my Node.js API and passes a bearer authorization token in the header
+  getMovies(token) {
+    axios.get('https://kdaysal-my-flix.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        // Assign the result to MainView's 'movies' state
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   //this code will execute right after the component is mounted (i.e. right after it is has been fully rendered and added to the DOM)
@@ -36,18 +53,24 @@ export default class MainView extends React.Component { //by adding 'default', I
       });
   }
 
-  //custom component method 'setselectedMovie'. When a movie is clicked, this function is invoked and updates the state of the 'selectedMovie' property to that movie
+  //custom component method 'setselectedMovie'. When a movie is clicked, this function is invoked and updates the state of MainView's 'selectedMovie' property to that movie
   setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie
     });
   }
 
-  //When a user succesfully logs in, this method ('onLoggedIn') will update the user state of the 'MainView' component to that particular user
-  onLoggedIn(user) {
+  //When a user succesfully logs in, the 'onLoggedIn' method  will update the user state of the 'MainView' component to that particular user
+  onLoggedIn(authData) { //when a user logs in, the props 'onLoggedIn(data)' is passed to the LoginView and triggers THIS function
+    console.log(authData);//FOR TESTING ONLY - delete later
     this.setState({
-      user
+      user: authData.user.Username //save the username to the 'user' state in MainView
     });
+
+    //save the auth information received from the 'handleSubmit' method (the token and the user) to localStorage
+    localStorage.setItem('token', authData.token);//the 'setItem' method accepts 2 args: a kay and a value
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);//allows MainView to get the list of movies from my API - using the auth token
   }
 
   //display the desired visual output to the UI

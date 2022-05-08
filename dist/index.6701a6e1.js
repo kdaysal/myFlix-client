@@ -22923,6 +22923,22 @@ class MainView extends _reactDefault.default.Component {
             user: null //this variable will represent whether a user is logged in (null if no)
         };
     }
+    //make an authenticated request to my API...
+    //this method uses Axios to make a GET request to the 'movies' endpoint of my Node.js API and passes a bearer authorization token in the header
+    getMovies(token) {
+        _axiosDefault.default.get('https://kdaysal-my-flix.herokuapp.com/movies', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            // Assign the result to MainView's 'movies' state
+            this.setState({
+                movies: response.data
+            });
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
     //this code will execute right after the component is mounted (i.e. right after it is has been fully rendered and added to the DOM)
     componentDidMount() {
         _axiosDefault.default.get('https://kdaysal-my-flix.herokuapp.com/movies').then((response)=>{
@@ -22933,17 +22949,22 @@ class MainView extends _reactDefault.default.Component {
             console.log(error);
         });
     }
-    //custom component method 'setselectedMovie'. When a movie is clicked, this function is invoked and updates the state of the 'selectedMovie' property to that movie
+    //custom component method 'setselectedMovie'. When a movie is clicked, this function is invoked and updates the state of MainView's 'selectedMovie' property to that movie
     setSelectedMovie(newSelectedMovie) {
         this.setState({
             selectedMovie: newSelectedMovie
         });
     }
-    //When a user succesfully logs in, this method ('onLoggedIn') will update the user state of the 'MainView' component to that particular user
-    onLoggedIn(user) {
+    //When a user succesfully logs in, the 'onLoggedIn' method  will update the user state of the 'MainView' component to that particular user
+    onLoggedIn(authData) {
+        console.log(authData); //FOR TESTING ONLY - delete later
         this.setState({
-            user
+            user: authData.user.Username //save the username to the 'user' state in MainView
         });
+        //save the auth information received from the 'handleSubmit' method (the token and the user) to localStorage
+        localStorage.setItem('token', authData.token); //the 'setItem' method accepts 2 args: a kay and a value
+        localStorage.setItem('user', authData.user.Username);
+        this.getMovies(authData.token); //allows MainView to get the list of movies from my API - using the auth token
     }
     //display the desired visual output to the UI
     render() {
@@ -22955,7 +22976,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 60
+                lineNumber: 83
             },
             __self: this
         }));
@@ -22964,7 +22985,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 63
+                lineNumber: 86
             },
             __self: this
         }));
@@ -22975,14 +22996,14 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 69
+                lineNumber: 92
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                 md: 8,
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 72
+                    lineNumber: 95
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
@@ -22992,7 +23013,7 @@ class MainView extends _reactDefault.default.Component {
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 73
+                        lineNumber: 96
                     },
                     __self: this
                 })
@@ -23000,7 +23021,7 @@ class MainView extends _reactDefault.default.Component {
                     md: 3,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 77
+                        lineNumber: 100
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
@@ -23010,7 +23031,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 78
+                            lineNumber: 101
                         },
                         __self: this
                     }, movie._id)
