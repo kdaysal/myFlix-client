@@ -22137,19 +22137,6 @@ class MainView extends _reactDefault.default.Component {
             console.log(error);
         });
     }
-    //Once the user's login data is persisted (without error), DELETE the commented-out code block below. It is only here for reference in case the updated version blows up :)
-    //this code will execute right after the component is mounted (i.e. right after it is has been fully rendered and added to the DOM)
-    // componentDidMount() {
-    //   axios.get('https://kdaysal-my-flix.herokuapp.com/movies')
-    //     .then(response => {
-    //       this.setState({
-    //         movies: response.data
-    //       });
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // }
     //this code will execute right after the component is mounted (i.e. right after it is has been fully rendered and added to the DOM)
     componentDidMount() {
         let accessToken = localStorage.getItem('token'); //get the value of the token from localStorage. Note - the syntax is: localStorage.getItem('YOUR_KEY')
@@ -22195,7 +22182,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 107
+                lineNumber: 93
             },
             __self: this
         }));
@@ -22204,7 +22191,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 110
+                lineNumber: 96
             },
             __self: this
         }));
@@ -22214,7 +22201,7 @@ class MainView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_containerDefault.default, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 116
+                lineNumber: 102
             },
             __self: this,
             children: [
@@ -22222,14 +22209,14 @@ class MainView extends _reactDefault.default.Component {
                     className: "main-view justify-content-md-center",
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 117
+                        lineNumber: 103
                     },
                     __self: this,
                     children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                         md: 8,
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 120
+                            lineNumber: 106
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
@@ -22239,7 +22226,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 121
+                                lineNumber: 107
                             },
                             __self: this
                         })
@@ -22247,17 +22234,17 @@ class MainView extends _reactDefault.default.Component {
                             md: 3,
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 125
+                                lineNumber: 111
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                                movieData: movie,
+                                movie: movie,
                                 onMovieClick: (newSelectedMovie)=>{
                                     this.setSelectedMovie(newSelectedMovie);
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 126
+                                    lineNumber: 112
                                 },
                                 __self: this
                             }, movie._id)
@@ -22270,7 +22257,7 @@ class MainView extends _reactDefault.default.Component {
                     onClick: this.onLoggedOut,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 131
+                        lineNumber: 117
                     },
                     __self: this,
                     children: "Log me out"
@@ -24695,9 +24682,9 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _movieCardScss = require("./movie-card.scss");
 class MovieCard extends _reactDefault.default.Component {
-    //There are 2 props in the code below: one object ('movieData') and one function ('onMovieClick')
+    //There are 2 props in the code below: one object ('movie') and one function ('onMovieClick')
     render() {
-        const { movieData , onMovieClick  } = this.props; //accessing (extracting) the passed data via 'props' property ('movieData' is the name of the prop used in the return statement in MainView... <MovieCard ...movieData={movie}... />)
+        const { movie , onMovieClick  } = this.props; //accessing (extracting) the passed data via 'props' property ('movie' is the name of the prop used in the return statement in MainView... <MovieCard ...movie={movie}... />)
         //replaced JSX elements with 'Card'-related Boostrap components
         return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
             fluid: "md",
@@ -24723,7 +24710,7 @@ class MovieCard extends _reactDefault.default.Component {
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Img, {
                             variant: "top",
-                            src: movieData.ImagePath,
+                            src: movie.ImagePath,
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
                                 lineNumber: 19
@@ -24743,7 +24730,7 @@ class MovieCard extends _reactDefault.default.Component {
                                         lineNumber: 21
                                     },
                                     __self: this,
-                                    children: movieData.Title
+                                    children: movie.Title
                                 }),
                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Text, {
                                     __source: {
@@ -24751,10 +24738,10 @@ class MovieCard extends _reactDefault.default.Component {
                                         lineNumber: 22
                                     },
                                     __self: this,
-                                    children: movieData.Description
+                                    children: movie.Description
                                 }),
                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                    onClick: ()=>onMovieClick(movieData)
+                                    onClick: ()=>onMovieClick(movie)
                                     ,
                                     variant: "link",
                                     __source: {
@@ -24775,7 +24762,7 @@ class MovieCard extends _reactDefault.default.Component {
 //As props transmit data between comonents, 'propTypes' validate the data types based on the app's configuration
 //This sets the static 'propTypes' property on 'MovieCard' to an object containing special value provided as utilities by 'prop-types'
 MovieCard.propTypes = {
-    movieData: _propTypesDefault.default.shape({
+    movie: _propTypesDefault.default.shape({
         Title: _propTypesDefault.default.string.isRequired,
         Description: _propTypesDefault.default.string.isRequired,
         ImagePath: _propTypesDefault.default.string.isRequired,

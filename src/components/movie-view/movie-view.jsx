@@ -54,7 +54,7 @@ export class MovieView extends React.Component {
 
 MovieView.propTypes = {
   movie: PropTypes.shape({ //'shape({...})' means it is an object, and the '.isRequired' means this object IS required
-    Title: PropTypes.string.isRequired, //the 'movieData' object MAY contain a Title, and if it does, it MUST be of type 'string'
+    Title: PropTypes.string.isRequired, //the 'movie' object MAY contain a Title, and if it does, it MUST be of type 'string'
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
     Featured: PropTypes.bool,

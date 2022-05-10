@@ -43,20 +43,6 @@ export default class MainView extends React.Component { //by adding 'default', I
       });
   }
 
-  //Once the user's login data is persisted (without error), DELETE the commented-out code block below. It is only here for reference in case the updated version blows up :)
-  //this code will execute right after the component is mounted (i.e. right after it is has been fully rendered and added to the DOM)
-  // componentDidMount() {
-  //   axios.get('https://kdaysal-my-flix.herokuapp.com/movies')
-  //     .then(response => {
-  //       this.setState({
-  //         movies: response.data
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
-
   //this code will execute right after the component is mounted (i.e. right after it is has been fully rendered and added to the DOM)
   componentDidMount() {
     let accessToken = localStorage.getItem('token');//get the value of the token from localStorage. Note - the syntax is: localStorage.getItem('YOUR_KEY')
@@ -123,7 +109,7 @@ export default class MainView extends React.Component { //by adding 'default', I
             )
             : movies.map(movie => (
               <Col md={3}>
-                <MovieCard key={movie._id} movieData={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
               </Col>
             ))
           }
