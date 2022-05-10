@@ -4,13 +4,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 //import components
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { MenubarView } from '../navbar-view/navbar-view';
 
 import './main-view.scss';
 
@@ -94,8 +95,10 @@ export default class MainView extends React.Component { //by adding 'default', I
     </Row>
     if (movies.length === 0) return <div className="main-view" />;
 
+    //Starting with '/register' below, I'm mirroring the Mini Task-2 example for now - but I must go back later and align my endpoints with my actual API (per documentation.html file)
     return (
       <Router>
+        <MenubarView user={user} />
         <div className="main-view">
           <Route
             exact
@@ -136,8 +139,31 @@ export default class MainView extends React.Component { //by adding 'default', I
             return <Col md={8}>
               <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
             </Col>
-          }
-          } />
+          }} />
+          <Route path="/register" render={() => {
+            if (user) return <Redirect to="/" />
+            return <Col lg={8} md={8}>
+              <RegistrationView />
+            </Col>
+          }} />
+          <Route path={`/users/${user}`}
+            render={({ match, history }) => {
+              if (!user) return <Redirect to="/" />
+              return <Col>
+                <ProfileView movies={movies}
+                  user={user}
+                  onBackClick={() => history.goBack()} />
+              </Col>
+            }} />
+          <Route path={`/user-update/${user}`}
+            render={({ match, history }) => {
+              if (!user) return <Redirect to="/" />
+              return <Col>
+                <UserUpdate
+                  user={user}
+                  onBackClick={() => history.goBack()} />
+              </Col>
+            }} />
         </div>
       </Router>
     );
