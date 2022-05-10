@@ -2,29 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import './movie-card.scss';
+import { Link } from "react-router-dom";
 
 //creating/exporting a MovieCard component
 //having granular components like this makes it easier to reuse these smaller components in different parts of the UI
-export class MovieCard extends React.Component { //(just for sake of example...) here there is no 'default' after 'export', so I'll need to enclose 'MovieCard' in {curly braces} in any import statement.
-
-  //There are 2 props in the code below: one object ('movie') and one function ('onMovieClick')
+export class MovieCard extends React.Component {
   render() {
-    const { movie, onMovieClick } = this.props; //accessing (extracting) the passed data via 'props' property ('movie' is the name of the prop used in the return statement in MainView... <MovieCard ...movie={movie}... />)
+    const { movie } = this.props; //accessing (extracting) the passed data via 'props' property ('movie' is the name of the prop used in the return statement in MainView... <MovieCard ...movie={movie}... />)
 
-    //replaced JSX elements with 'Card'-related Boostrap components
+    //replaced JSX elements below with 'Card'-related Boostrap components
     return (
-      <Container fluid="md">
-        <CardGroup>
-          <Card className="bg-dark text-white" id="main-movie-card">
-            <Card.Img variant="top" src={movie.ImagePath} />
-            <Card.Body>
-              <Card.Title>{movie.Title}</Card.Title>
-              <Card.Text>{movie.Description}</Card.Text>
-              <Button onClick={() => onMovieClick(movie)} variant="link">Open</Button>
-            </Card.Body>
-          </Card>
-        </CardGroup>
-      </Container>
+      <Card>
+        <Card.Img variant="top" src={movie.ImagePath} />
+        <Card.Body>
+          <Card.Title>{movie.Title}</Card.Title>
+          <Card.Text>{movie.Description}</Card.Text>
+          <Link to={`/movies/${movie._id}`}>
+            <Button variant="link">Open</Button>
+          </Link>
+        </Card.Body>
+      </Card>
     );
   }
 }
