@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import { Container, Row, Col, Button, Card, CardGroup } from 'react-bootstrap';
 import './movie-view.scss';
+import { Link } from "react-router-dom";
 //import axios from 'axios'; //reminder to import axios (when we get to that in exercise 3.6)
 
 //creating/exporting the MovieView component
@@ -35,8 +36,14 @@ export class MovieView extends React.Component {
                   <Card.Title className="movie-title">Title: {movie.Title}</Card.Title>
                   <Card.Text className="movie-description">Description: {movie.Description}</Card.Text>
                   <Card.Text className="movie-genre-name">Genre: {movie.Genre.Name}</Card.Text>
+                  <Link to={`/genres/${movie.Genre.Name}`}>
+                    <Button variant="link">Genre</Button>
+                  </Link>
                   <Card.Text className="movie-genre-description">Genre Info: {movie.Genre.Description}</Card.Text>
                   <Card.Text className="movie-director-name">Director: {movie.Director.Name}</Card.Text>
+                  <Link to={`/directors/${movie.Director.Name}`}>
+                    <Button variant="link">Director</Button>
+                  </Link>
                   <Card.Text className="movie-director-bio">Bio: {movie.Director.Bio}</Card.Text>
                   <Card.Text className="movie-director-birth">Birth: {movie.Director.Birth}</Card.Text>
                   <Card.Text className="movie-director-death">Death: {movie.Director.Death}</Card.Text>
