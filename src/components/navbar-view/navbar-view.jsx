@@ -2,7 +2,7 @@ import React from 'react';
 import './navbar-view.scss';
 import { Navbar, Container, Nav, Button, NavbarBrand } from 'react-bootstrap';
 
-export function Menubar({ user }) {
+export function MenubarView({ user }) {
 
     //Sign Out method
     const onLoggedOut = () => {
@@ -46,6 +46,6 @@ export function Menubar({ user }) {
             </Container>
         </Navbar>
     )//end return
-} // end Menubar
+} // end MenubarView
 
 
