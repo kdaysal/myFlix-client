@@ -22248,7 +22248,8 @@ class MainView extends _reactDefault.default.Component {
                                         md: 6,
                                         sm: 12,
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                                            movie: m
+                                            movie: m,
+                                            onBackClick: ()=>history.goBack()
                                         })
                                     }, m._id)
                                 );
@@ -24894,8 +24895,7 @@ MovieCard.propTypes = {
             Birth: _propTypesDefault.default.string.isRequired,
             Death: _propTypesDefault.default.string
         })
-    }).isRequired,
-    onMovieClick: _propTypesDefault.default.func.isRequired //'onMovieClick' MUST be a function and IS required
+    }).isRequired
 };
 
   $parcel$ReactRefreshHelpers$4249.postlude(module);

@@ -108,7 +108,7 @@ export default class MainView extends React.Component { //by adding 'default', I
             if (movies.length === 0) return <div className="main-view" />;
             return movies.map(m => (
               <Col xl={3} lg={4} md={6} sm={12} key={m._id}>
-                <MovieCard movie={m} />
+                <MovieCard movie={m} onBackClick={() => history.goBack()} />
               </Col>
             ))
           }} />
