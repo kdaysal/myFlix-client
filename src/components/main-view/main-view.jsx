@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios'; //this will allow me to perform ajax operations. Axios will fetch the movies, then I'll set the 'state' of movies using this.setState
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 //import components
@@ -12,7 +10,8 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { MenubarView } from '../navbar-view/navbar-view';
-
+//import { DirectorView } from '../director-view/director-view' // uncomment after this view is created
+//import { GenreView } from '../genre-view/genre-view' // uncomment after this view is created
 import './main-view.scss';
 
 //creating/exporting the MainView component
@@ -115,6 +114,7 @@ export default class MainView extends React.Component { //by adding 'default', I
             ))
           }} />
           <Route path="/register" render={() => {
+            if (user) return <Redirect to="/" />
             return <Col>
               <RegistrationView />
             </Col>
