@@ -45,5 +45,5 @@ MovieCard.propTypes = {
       Death: PropTypes.string
     })
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired //'onMovieClick' MUST be a function and IS required
+  //onMovieClick: PropTypes.func.isRequired //'onMovieClick' MUST be a function and IS required
 };
