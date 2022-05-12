@@ -48,7 +48,6 @@ export function RegistrationView(props) {
     return isReq;
   }
 
-  // current structure below is just a temporary solution for rendering my SPA views, until proper authentication logic is implemented later
   const handleRegister = (e) => {
     e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
     const isReq = validate();
@@ -67,7 +66,7 @@ export function RegistrationView(props) {
           alert('Registration successful, please login now!');
           window.open('/', '_self'); // note - the argument '_self' is needed so that the page will open in the current tab
         })
-        .catch(response => {
+        .catch(response => { //if there was an error...
           console.log(response);
           alert('Something went wrong...unable to register :(')
         });
