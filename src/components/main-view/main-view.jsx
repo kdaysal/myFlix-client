@@ -98,17 +98,16 @@ export default class MainView extends React.Component { //by adding 'default', I
     return (
       <Router>
         <MenubarView user={user} />
-        <div className="main-view">
+        <Row className="main-view justify-content-md-center">
           <Route exact path="/" render={() => {
-            if (!user) return <Row>
-              <Col>
-                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-              </Col>
-            </Row>
+            if (!user) return
+            <Col>
+              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
             {/* before the movies have been loaded... */ }
             if (movies.length === 0) return <div className="main-view" />;
             return movies.map(m => (
-              <Col md={3} key={m._id}>
+              <Col xl={3} lg={4} md={6} sm={12} key={m._id}>
                 <MovieCard movie={m} />
               </Col>
             ))
@@ -157,7 +156,7 @@ export default class MainView extends React.Component { //by adding 'default', I
                   onBackClick={() => history.goBack()} />
               </Col>
             }} />
-        </div>
+        </Row>
       </Router>
     );
   }
