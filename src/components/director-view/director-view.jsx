@@ -8,6 +8,7 @@ export class DirectorView extends React.Component {
 
     render() {
         const { movies, director, onBackClick } = this.props; //not using 'movies' yet, but will be used to show related-movies from the same director (wip)
+        console.log(movies);
         return (
             <Container id="director-view-container">
                 <Row>
@@ -20,11 +21,34 @@ export class DirectorView extends React.Component {
                                     <Card.Text className="director-birth">Birth: {director.Birth}</Card.Text>
                                     <Card.Text className="director-death">Death: {director.Death}</Card.Text>
                                     <Button id="back-btn" onClick={() => { onBackClick(null); }}>Go Back</Button>
+                                    <Button variant="success" id="favorites-btn">Add to Favorites</Button>
                                 </Card.Body>
                             </Card>
                         </CardGroup>
-                        <Button id="director-back-btn" onClick={() => { onBackClick(null); }}>Back</Button>
-                        <Button variant="success" id="favorites-btn">Add to Favorites</Button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <CardGroup>
+                            <Card>
+                                <Card.Body>
+                                    <Card.Text>
+                                        Related-movies:
+                                    </Card.Text>
+                                    {movies.filter((movie) => movie.Director.Name === director.Name).map((movie) => (
+                                        <Card>
+                                            <Card.Img variant="top" src={movie.ImagePath} />
+                                            <Card.Body>
+                                                <Card.Title>{movie.Title}</Card.Title>
+                                                <Link to={`/movies/${movie._id}`}>
+                                                    <Button variant="link">Open</Button>
+                                                </Link>
+                                            </Card.Body>
+                                        </Card>
+                                    ))}
+                                </Card.Body>
+                            </Card>
+                        </CardGroup>
                     </Col>
                 </Row>
             </Container>
