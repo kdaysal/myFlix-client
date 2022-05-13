@@ -7,7 +7,7 @@ import "./director-view.scss";
 export class DirectorView extends React.Component {
 
     render() {
-        const { movie, director, onBackClick } = this.props;
+        const { movies, director, onBackClick } = this.props; //not using 'movies' yet, but will be used to show related-movies from the same director (wip)
         return (
             <Container id="director-view-container">
                 <Row>
