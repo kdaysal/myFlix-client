@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Container, Row, Col, Button, Card, CardGroup } from 'react-bootstrap';
 import './movie-view.scss';
 import { Link } from "react-router-dom";
-//import axios from 'axios'; //reminder to import axios (when we get to that in exercise 3.6)
+import axios from 'axios';
 
 //creating/exporting the MovieView component
 export class MovieView extends React.Component {
