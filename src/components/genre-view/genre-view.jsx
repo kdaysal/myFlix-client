@@ -23,6 +23,30 @@ export class GenreView extends React.Component {
                         </CardGroup>
                     </Col>
                 </Row>
+                <Row>
+                    <Col>
+                        <CardGroup>
+                            <Card>
+                                <Card.Body>
+                                    <Card.Text>
+                                        Related-movies:
+                                    </Card.Text>
+                                    {movies.filter((movie) => movie.Genre.Name === genre.Name).map((movie) => (
+                                        <Card>
+                                            <Card.Img variant="top" src={movie.ImagePath} />
+                                            <Card.Body>
+                                                <Card.Title>{movie.Title}</Card.Title>
+                                                <Link to={`/movies/${movie._id}`}>
+                                                    <Button variant="link">Open</Button>
+                                                </Link>
+                                            </Card.Body>
+                                        </Card>
+                                    ))}
+                                </Card.Body>
+                            </Card>
+                        </CardGroup>
+                    </Col>
+                </Row>
             </Container>
         );
     }
