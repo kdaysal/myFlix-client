@@ -12,7 +12,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view'
-//import { ProfileView } from "../profile-view/profile-view";
+import { ProfileView } from "../profile-view/profile-view";
 import './main-view.scss';
 
 //creating/exporting the MainView component
@@ -87,6 +87,8 @@ export default class MainView extends React.Component { //by adding 'default', I
   //display the desired visual output to the UI
   render() {
     const { movies, user } = this.state;
+
+    //return <ProfileView /> /* FOR TESTING ONLY */
 
     if (!user) return <Row>
       <Col>
