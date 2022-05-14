@@ -2,7 +2,7 @@ import React from 'react';
 import './navbar-view.scss';
 import { Navbar, Container, Nav, Button, NavbarBrand } from 'react-bootstrap';
 
-export function MenubarView({ user }) {
+export function NavbarView({ user }) {
 
     //Sign Out method
     const onLoggedOut = () => {
@@ -35,7 +35,7 @@ export function MenubarView({ user }) {
                             <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>
                         )}
                         {isAuth() && (
-                            <Button variant="primary" onClick={() => { this.onLoggedOut() }}>Logout</Button>
+                            <Button variant="primary" onClick={() => { onLoggedOut() }}>Logout</Button>
                         )}
                         {!isAuth() && (
                             <Nav.Link href="/register">Sign-up</Nav.Link>
@@ -45,6 +45,6 @@ export function MenubarView({ user }) {
             </Container>
         </Navbar>
     )//end return
-} // end MenubarView
+} // end NavbarView
 
 

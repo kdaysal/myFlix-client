@@ -9,7 +9,7 @@ import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import { MenubarView } from '../navbar-view/navbar-view';
+import { NavbarView } from '../navbar-view/navbar-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view'
 //import { ProfileView } from "../profile-view/profile-view";
@@ -98,7 +98,7 @@ export default class MainView extends React.Component { //by adding 'default', I
     //Starting with '/register' below, I'm mirroring the Mini Task-2 example for now - but I must go back later and align my endpoints with my actual API (per documentation.html file)
     return (
       <Router>
-        <MenubarView user={user} />
+        <NavbarView user={user} />
         <Row className="main-view justify-content-md-center">
           <Route exact path="/" render={() => {
             if (!user) return

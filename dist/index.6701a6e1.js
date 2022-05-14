@@ -22214,7 +22214,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this,
             children: [
-                /*#__PURE__*/ _jsxRuntime.jsx(_navbarView.MenubarView, {
+                /*#__PURE__*/ _jsxRuntime.jsx(_navbarView.NavbarView, {
                     user: user,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
@@ -40833,15 +40833,15 @@ $parcel$ReactRefreshHelpers$469c.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MenubarView", ()=>MenubarView
-) // end MenubarView
+parcelHelpers.export(exports, "NavbarView", ()=>NavbarView
+) // end NavbarView
 ;
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _navbarViewScss = require("./navbar-view.scss");
 var _reactBootstrap = require("react-bootstrap");
-function MenubarView({ user  }) {
+function NavbarView({ user  }) {
     //Sign Out method
     const onLoggedOut = ()=>{
         localStorage.clear();
@@ -40918,7 +40918,7 @@ function MenubarView({ user  }) {
                             isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                 variant: "primary",
                                 onClick: ()=>{
-                                    this.onLoggedOut();
+                                    onLoggedOut();
                                 },
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
@@ -40943,9 +40943,9 @@ function MenubarView({ user  }) {
         })
     })); //end return
 }
-_c = MenubarView;
+_c = NavbarView;
 var _c;
-$RefreshReg$(_c, "MenubarView");
+$RefreshReg$(_c, "NavbarView");
 
   $parcel$ReactRefreshHelpers$469c.postlude(module);
 } finally {
