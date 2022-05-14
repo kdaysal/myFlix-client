@@ -12,7 +12,7 @@ export class MovieCard extends React.Component {
 
     //replaced JSX elements below with 'Card'-related Boostrap components
     return (
-      <Card>
+      <Card className="movie-card bg-dark text-white">
         <Card.Img variant="top" src={movie.ImagePath} />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
