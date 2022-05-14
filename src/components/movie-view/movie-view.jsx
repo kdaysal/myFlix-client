@@ -35,23 +35,21 @@ export class MovieView extends React.Component {
                   <Card.Img className="movie-poster" src={movie.ImagePath} />
                   <Card.Title className="movie-title">Title: {movie.Title}</Card.Title>
                   <Card.Text className="movie-description">Description: {movie.Description}</Card.Text>
-                  <Card.Text className="movie-genre-name">Genre: {movie.Genre.Name}</Card.Text>
-                  <Link to={`/genres/${movie.Genre.Name}`}>
-                    <Button variant="link">Genre</Button>
-                  </Link>
-                  <Card.Text className="movie-genre-description">Genre Info: {movie.Genre.Description}</Card.Text>
-                  <Card.Text className="movie-director-name">Director: {movie.Director.Name}</Card.Text>
-                  <Link to={`/directors/${movie.Director.Name}`}>
-                    <Button variant="link">Director</Button>
-                  </Link>
-                  <Card.Text className="movie-director-bio">Bio: {movie.Director.Bio}</Card.Text>
-                  <Card.Text className="movie-director-birth">Birth: {movie.Director.Birth}</Card.Text>
-                  <Card.Text className="movie-director-death">Death: {movie.Director.Death}</Card.Text>
+                  <Card.Text className="movie-genre-name">Genre:
+                    <Link to={`/genres/${movie.Genre.Name}`}>
+                      <Button variant="link">{movie.Genre.Name}</Button>
+                    </Link>
+                  </Card.Text>
+                  <Card.Text className="movie-director-name">Director:
+                    <Link to={`/directors/${movie.Director.Name}`}>
+                      <Button variant="link">{movie.Director.Name}</Button>
+                    </Link>
+                  </Card.Text>
+                  <Button id="back-btn" onClick={() => { onBackClick(null); }}>Back</Button>
+                  <Button variant="success" id="favorites-btn">Add to Favorites</Button>
                 </Card.Body>
               </Card>
             </CardGroup>
-            <Button id="back-btn" onClick={() => { onBackClick(null); }}>Back</Button>
-            <Button variant="success" id="favorites-btn">Add to Favorites</Button>
           </Col>
         </Row>
       </Container>
