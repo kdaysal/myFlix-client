@@ -22,10 +22,9 @@ export function MenubarView({ user }) {
         }
     }//end isAuth
 
-    //create unordered list
+    //create a navigation bar that will be displayed across the top of all views
     return (
-
-        <Navbar className="main-nav" sticky="top" bg="dark" expand="lg" variant="dark">
+        <Navbar className="main-nav" sticky="top" bg="secondary" expand="lg" variant="dark">
             <Container>
                 <Navbar.Brand className="navbar-logo" href="/">myFlix</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -36,7 +35,7 @@ export function MenubarView({ user }) {
                             <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>
                         )}
                         {isAuth() && (
-                            <Button variant="link" onClick={() => { this.onLoggedOut() }}>Logout</Button>
+                            <Button variant="primary" onClick={() => { this.onLoggedOut() }}>Logout</Button>
                         )}
                         {!isAuth() && (
                             <Nav.Link href="/register">Sign-up</Nav.Link>
