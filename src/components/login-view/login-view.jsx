@@ -65,12 +65,9 @@ export function LoginView(props) {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log('Redirecting to RegistrationView...');
-    // props.onRegistered - TBD
-    // return <RegistrationView />; //this does not yet work - clicking the 'Register Me!' button does not render the RegistrationView
   };
 
   // replaced JSX elements with 'Form'-related Boostrap components (wrapped inside a CardGroup, and contained within a responsive grid) 
-  // since I'm returning a 2nd 'Form' for the Register-New-User button, I enclosed both of the 'Forms' inside of <section> tags
   return (
     <Container fluid="md" id="login-view-container">
       <Row>
