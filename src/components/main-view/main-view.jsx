@@ -88,6 +88,7 @@ export default class MainView extends React.Component { //by adding 'default', I
   render() {
     const { movies, user } = this.state;
 
+    // return <RegistrationView /> /* UNCOMMENT FOR TESTING ONLY */
     // return <ProfileView /> /* UNCOMMENT FOR TESTING ONLY */
 
     if (!user) return <Row>
