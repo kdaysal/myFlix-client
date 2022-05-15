@@ -134,41 +134,61 @@ export class ProfileView extends React.Component {
               </Row>
                 <br></br>
               <Row>
-                  <Col>
+                <Col>
                   <CardGroup>
-                      <Card className="update-profile-card bg-dark text-white">
-            <Card.Body>
-                <Card.Title className="update-account-title">Need to update your account info?</Card.Title>
-                <Form>
-                  <Form.Group controlId="formUsername">
-                    <Form.Label>Username:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      onChange={this.setUsername}
-                      required
-                      placeholder="Create a NEW username"
-                    />
-                  </Form.Group>
+                    <Card>
+                      <Card.Body>
+                      {FavoriteMovies.length === 0 && (
+                        <div className="favorite-movies-card text-center">
+                         <h3>You haven't favorited any movies</h3>
+                           <Link to={`/`}>
+                            <Button type="submit">
+                             Browse some flix!
+                          </Button>
+                          </Link>
+                        </div>
+                      )}
+                      </Card.Body>
+                   </Card>
+                  </CardGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <CardGroup>
+                    <Card className="update-profile-card bg-dark text-white">
+                      <Card.Body>
+                        <Card.Title className="update-account-title">Need to update your account info?</Card.Title>
+                          <Form>
+                            <Form.Group controlId="formUsername">
+                              <Form.Label>Username:</Form.Label>
+                                <Form.Control
+                                type="text"
+                                onChange={this.setUsername}
+                                required
+                                placeholder="Create a NEW username"
+                                />
+                            </Form.Group>
                   <br></br>
-                  <Form.Group controlId="formPassword">
-                    <Form.Label>Password:</Form.Label>
-                    <Form.Control 
-                    type="password"
-                      onChange={this.setPassword}
-                      required
-                      placeholder="Enter a NEW password"
-                    />
-                  </Form.Group>
+                            <Form.Group controlId="formPassword">
+                              <Form.Label>Password:</Form.Label>
+                                <Form.Control 
+                                type="password"
+                                onChange={this.setPassword}
+                                required
+                                placeholder="Enter a NEW password"
+                                />
+                            </Form.Group>
                   <br></br>
-                  <Form.Group controlId="formEmail">
-                    <Form.Label>Email:</Form.Label>
-                    <Form.Control 
-                    type="email"
-                      onChange={this.setEmail}
-                      required
-                      placeholder="Enter your NEW email"
-                    />
-                  </Form.Group>
+                            <Form.Group controlId="formEmail">
+                              <Form.Label>Email:</Form.Label>
+                                <Form.Control 
+                                type="email"
+                                onChange={this.setEmail}
+                                required
+                                placeholder="Enter your NEW email"
+                                />
+                            </Form.Group>
                   <br></br>
                   <Button variant="success" type="submit" onClick={this.updateProfile}>
                     Submit

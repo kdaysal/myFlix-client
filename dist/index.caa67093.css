@@ -17,7 +17,6 @@
   margin-top: 10px;
   margin-left: 20px;
 }
-
 :root {
   --background-color: hsl(224, 27%, 92%);
 }
@@ -42,6 +41,7 @@ html {
 
 
 
+
 .profile-card {
   margin-top: 15px;
 }
@@ -54,5 +54,9 @@ html {
 .update-account-title {
   text-align: center;
   justify-content: center;
+}
+
+.update-profile-card {
+  margin-top: 15px;
 }
 /*# sourceMappingURL=index.caa67093.css.map */
