@@ -40422,34 +40422,27 @@ function LoginView(props) {
                                     },
                                     __self: this
                                 }),
-                                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form, {
+                                /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form, {
                                     __source: {
                                         fileName: "src/components/login-view/login-view.jsx",
                                         lineNumber: 115
                                     },
                                     __self: this,
-                                    children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Label, {
-                                        __source: {
-                                            fileName: "src/components/login-view/login-view.jsx",
-                                            lineNumber: 116
-                                        },
-                                        __self: this,
-                                        children: [
-                                            "Don't have a myFlix account yet? Click here:",
-                                            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                                id: "register-btn",
-                                                variant: "primary",
-                                                type: "submit",
-                                                onClick: handleRegister,
-                                                __source: {
-                                                    fileName: "src/components/login-view/login-view.jsx",
-                                                    lineNumber: 118
-                                                },
-                                                __self: this,
-                                                children: "Register!"
-                                            })
-                                        ]
-                                    })
+                                    children: [
+                                        "Don't have a myFlix account yet? Click here:",
+                                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                            id: "register-btn",
+                                            variant: "primary",
+                                            type: "submit",
+                                            onClick: handleRegister,
+                                            __source: {
+                                                fileName: "src/components/login-view/login-view.jsx",
+                                                lineNumber: 117
+                                            },
+                                            __self: this,
+                                            children: "Register!"
+                                        })
+                                    ]
                                 })
                             ]
                         })
