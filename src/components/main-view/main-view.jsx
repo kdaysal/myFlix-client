@@ -98,7 +98,6 @@ export default class MainView extends React.Component { //by adding 'default', I
     </Row>
     if (movies.length === 0) return <div className="main-view" />;
 
-    //Starting with '/register' below, I'm mirroring the Mini Task-2 example for now - but I must go back later and align my endpoints with my actual API (per documentation.html file)
     return (
       <Router>
         <NavbarView user={user} />
