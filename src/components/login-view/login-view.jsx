@@ -1,8 +1,9 @@
 // The 'LoginView' is rendered as long as there's no user in the state (because the 'user' property will be null in the 'MainView' state)
 
 import React, { useState } from 'react'; //the 'useState' hook provides a way to rewrite 'LoginView' as a more readable function component
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"; //I shouldn't need to import this here as it is already imported in main-view.jsx, but just trying to troubleshoot the issue with <Link> not working in this view
 import PropTypes from 'prop-types';
-import { RegistrationView } from '../registration-view/registration-view';
+//import { RegistrationView } from '../registration-view/registration-view';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import './login-view.scss';
 import axios from 'axios';
@@ -57,7 +58,7 @@ export function LoginView(props) {
           props.onLoggedIn(data);
         })
         .catch(e => {
-          console.log('Error: No such user found')
+          console.log('Error: No such user/password combo found')
         });
     }
   };
@@ -124,7 +125,6 @@ export function LoginView(props) {
           </CardGroup>
         </Col>
       </Row>
-
     </Container>
   );
 }
