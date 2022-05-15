@@ -65,7 +65,7 @@ export default class MainView extends React.Component { //by adding 'default', I
 
   //When a user succesfully logs in, the 'onLoggedIn' method  will update the user state of the 'MainView' component to that particular user
   onLoggedIn(authData) { //when a user logs in, the props 'onLoggedIn(data)' is passed to the LoginView and triggers THIS function
-    console.log(authData);//FOR TESTING ONLY - delete later
+    console.log(`authData: ${authData}`);//FOR TESTING ONLY - delete later
     this.setState({
       user: authData.user.Username //save the username to the 'user' state in MainView
     });
@@ -83,6 +83,7 @@ export default class MainView extends React.Component { //by adding 'default', I
     this.setState({
       user: null
     });
+    console.log(`user is now: ${user}`)
   }
 
   //display the desired visual output to the UI
