@@ -6,6 +6,7 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import './login-view.scss';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 // create/export LoginView function component (with hook)
 export function LoginView(props) {
