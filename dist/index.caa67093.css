@@ -42,5 +42,17 @@ html {
 
 
 
+.profile-card {
+  margin-top: 15px;
+}
 
+.profile-title {
+  text-align: center;
+  justify-content: center;
+}
+
+.update-account-title {
+  text-align: center;
+  justify-content: center;
+}
 /*# sourceMappingURL=index.caa67093.css.map */
