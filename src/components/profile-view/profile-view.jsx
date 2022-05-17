@@ -115,7 +115,7 @@ removeFavorite(movieId){
   console.log(`removing this movie from user's favorites`) //WIP
   const user = localStorage.getItem("user");
   const token = localStorage.getItem("token");
-  //const currentFavorites = this.state.FavoriteMovies;
+  const currentFavorites = localStorage.getItem("favorites");
   console.log(`movieID to remove ${movieId}`);
   //remember to remove the movieId from local storage too - will need a variable to hold that here...TODO
 
@@ -131,7 +131,12 @@ removeFavorite(movieId){
         console.log(response);
         alert("Movie deleted from favorites!");
         window.open(`/movies/${movieId}`, "_self");
-        //remember to remove the movieId from local storage too - TODO
+        //using regex to find/replace (i.e. remove) all instances of this MovieId from local storage 'favorites'
+        let find = movieId;
+        let re = new RegExp(find, 'g'); //regex to find the movieId (g=global)
+        let newCurrentFavorites = currentFavorites.replace(re, ''); //replace all instances of this MovieId with ''
+        console.log(`newCurrentFavorites: ${newCurrentFavorites}`) //FOR TESTING ONLY - delete later
+        localStorage.setItem('favorites', newCurrentFavorites); //update 'favorites' in local storage
       })
       .catch((err) => console.log(err));
 
