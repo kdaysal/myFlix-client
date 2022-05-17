@@ -93,6 +93,7 @@ export default class MainView extends React.Component { //by adding 'default', I
   render() {
     const { movies, user } = this.state;
 
+    /* Last MAJOR todo - fix routing / redirecting between LoginView and RegistrationView. For time being, I am uncommenting the lines below to immediately render those views so I can build out the basic functionality in the meantime */
     // return <RegistrationView /> /* UNCOMMENT FOR TESTING ONLY */
     // return <ProfileView /> /* UNCOMMENT FOR TESTING ONLY */
 
