@@ -142,6 +142,36 @@ removeFavorite(movieId){
 
   } //end removeFavorite()
 
+  // deregister the user's account completely
+  onDeleteProfile(){
+    const deleteMe = window.confirm(
+      "Are you absolutely certain you want to completely delete your profile forever?"
+    );
+    if (deleteMe) {
+      console.log('now deleting profile :(')
+      const user = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+      const favorites = localStorage.getItem("favorites");
+
+      axios
+        .delete(`https://kdaysal-my-flix.herokuapp.com/users/${user}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          console.log(response);
+          alert("Profile successfully deleted - but you can always re-register ;)");
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+          localStorage.removeItem("favorites");
+          window.open("/", "_self"); //bring the user back to the root dir
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
+  } //end onDeleteProfile
+  
+
     render() {
         const { Username, Password, Email, BirthDate, FavoriteMovies } = this.state;
         console.log(`password: ${Password}`) //FOR TESTING ONLY - delete later
@@ -258,9 +288,18 @@ removeFavorite(movieId){
                                 />
                             </Form.Group>
                   <br></br>
-                  <Button variant="success" type="submit" onClick={this.updateProfile}>
-                    Submit
-                  </Button>
+                    <Button variant="success" type="submit" onClick={this.updateProfile}>
+                      Submit
+                    </Button>
+                  <br></br>
+                  <br></br>
+                  <Button
+                      className="delete-btn"
+                      variant="danger"
+                      onClick={() => this.onDeleteProfile()}
+                    >
+                      Delete myFlix User Profile
+                    </Button>
                 </Form>
             </Card.Body>
                       </Card>
