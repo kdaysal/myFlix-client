@@ -27,10 +27,12 @@ export class MovieView extends React.Component {
   addFavoriteMovie() {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
-    const currentFavorites = localStorage.getItem("favorites")
+    let currentFavorites = localStorage.getItem("favorites") //note: typeof(currentFavorites) === string, and 'let' because this assignment will mutate
     const movieId = this.props.movie._id
     console.log(`currentFavorites: ${currentFavorites}`);
     console.log(`this movieId: ${movieId}`);
+
+    console.log(typeof (currentFavorites));
 
     if (currentFavorites.includes(this.props.movie._id)) {
       console.log(`movie is already favorited`);
@@ -52,11 +54,14 @@ export class MovieView extends React.Component {
       .then((response) => {
         console.log(response);
         alert(`Move has been added to your favorites.`);
+        //update local storage to include the newly added movie id
+        currentFavorites += ',' + movieId; //append the newly added movie to the currentFavorites string 
+        localStorage.setItem('favorites', currentFavorites); //update local storiage
       })
       .catch(function (error) {
         console.log(error);
       });
-    //TODO - update local storage to include the newly added movie id
+
   } //end addFavoriteMovie
 
   render() {
