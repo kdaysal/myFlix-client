@@ -8,7 +8,6 @@ export class DirectorView extends React.Component {
 
     render() {
         const { movies, director, onBackClick } = this.props; //not using 'movies' yet, but will be used to show related-movies from the same director (wip)
-        console.log(movies);
         return (
             <Container id="director-view-container">
                 <Row>
@@ -21,7 +20,6 @@ export class DirectorView extends React.Component {
                                     <Card.Text className="director-birth">Birth: {director.Birth}</Card.Text>
                                     <Card.Text className="director-death">Death: {director.Death}</Card.Text>
                                     <Button id="back-btn" onClick={() => { onBackClick(null); }}>Go Back</Button>
-                                    <Button variant="success" id="favorites-btn">Add to Favorites</Button>
                                 </Card.Body>
                             </Card>
                         </CardGroup>
