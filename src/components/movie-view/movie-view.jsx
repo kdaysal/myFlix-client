@@ -56,7 +56,7 @@ export class MovieView extends React.Component {
         alert(`Move has been added to your favorites.`);
         //update local storage to include the newly added movie id
         currentFavorites += ',' + movieId; //append the newly added movie to the currentFavorites string 
-        localStorage.setItem('favorites', currentFavorites); //update local storiage
+        localStorage.setItem('favorites', currentFavorites); //update local storage
       })
       .catch(function (error) {
         console.log(error);
