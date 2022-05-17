@@ -24,7 +24,8 @@ export default class MainView extends React.Component { //by adding 'default', I
     this.state = { //initialize all states to empty/null
       movies: [],
       selectedMovie: null, //this variable will represent whether a movie card is clicked (null if no)
-      user: null //this variable will represent whether a user is logged in (null if no)
+      user: null, //this variable will represent whether a user is logged in (null if no)
+      favorites: [] //empty array to hold a user's favorite movies
     }
   }
 
@@ -67,12 +68,14 @@ export default class MainView extends React.Component { //by adding 'default', I
   onLoggedIn(authData) { //when a user logs in, the props 'onLoggedIn(data)' is passed to the LoginView and triggers THIS function
     console.log(`authData: ${authData}`);//FOR TESTING ONLY - delete later
     this.setState({
-      user: authData.user.Username //save the username to the 'user' state in MainView
+      user: authData.user.Username, //save the username to the 'user' state in MainView
+      favorites: authData.user.FavoriteMovies
     });
 
     //save the auth information received from the 'handleSubmit' method (the token and the user) to localStorage
     localStorage.setItem('token', authData.token);//the 'setItem' method accepts 2 args: a kay and a value
     localStorage.setItem('user', authData.user.Username);
+    localStorage.setItem('favorites', authData.user.FavoriteMovies)
     this.getMovies(authData.token);//allows MainView to get the list of movies from my API - using the auth token
   }
 
