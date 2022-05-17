@@ -111,9 +111,31 @@ export class ProfileView extends React.Component {
       console.log(`New Email: ${email.target.value}`)
     }
 
-removeFavorite(){
+removeFavorite(movieId){
   console.log(`removing this movie from user's favorites`) //WIP
-}
+  const user = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
+  //const currentFavorites = this.state.FavoriteMovies;
+  console.log(`movieID to remove ${movieId}`);
+  //remember to remove the movieId from local storage too - will need a variable to hold that here...TODO
+
+  //delete movieId from FavoriteMovies array
+  axios
+      .delete(
+        `https://kdaysal-my-flix.herokuapp.com/users/${user}/movies/${movieId}`,
+
+        { headers: { Authorization: `Bearer ${token}` } },
+        {}
+      )
+      .then((response) => {
+        console.log(response);
+        alert("Movie deleted from favorites!");
+        window.open(`/movies/${movieId}`, "_self");
+        //remember to remove the movieId from local storage too - TODO
+      })
+      .catch((err) => console.log(err));
+
+  } //end removeFavorite()
 
     render() {
         const { Username, Password, Email, BirthDate, FavoriteMovies } = this.state;
@@ -176,8 +198,9 @@ removeFavorite(){
                             {movie.Title}
                           </Card.Title>
                           <Button
-                            variant="warning" id="remove-btn"
-                            onClick={this.removeFavorite}
+                            variant="warning" 
+                            id="remove-btn"
+                            onClick={() => this.removeFavorite(movie._id)}
                             size="sm"
                           >
                             Unfavorite
