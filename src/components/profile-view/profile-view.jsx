@@ -18,9 +18,10 @@ export class ProfileView extends React.Component {
             BirthDate: null,
             FavoriteMovies: []
         };
-        this.setUsername = this.setUsername.bind(this); //needed in Constructor
+        this.setUsername = this.setUsername.bind(this); //bind statement is needed in Constructor or else it won't work
         this.setPassword = this.setPassword.bind(this);
         this.setEmail = this.setEmail.bind(this);
+        this.removeFavorite = this.removeFavorite.bind(this);
     }
 
     //if user logs out, clear out local storage - this is akin to writing 'localStorage.clear();' in the console
@@ -28,6 +29,7 @@ export class ProfileView extends React.Component {
         console.log(`Now removing ${user} and ${token} from local storage`)
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        localStorage.removeItem('favorites');
         this.setState({
             user: null
         });
@@ -109,7 +111,9 @@ export class ProfileView extends React.Component {
       console.log(`New Email: ${email.target.value}`)
     }
 
-
+removeFavorite(){
+  console.log(`removing this movie from user's favorites`) //WIP
+}
 
     render() {
         const { Username, Password, Email, BirthDate, FavoriteMovies } = this.state;
@@ -153,6 +157,42 @@ export class ProfileView extends React.Component {
                   </CardGroup>
                 </Col>
               </Row>
+              
+              {/* if favorite movies > 0 */}
+              <Row>
+                <Col>
+                  <CardGroup>
+                  {FavoriteMovies.length > 0 &&
+                  movies.map((movie) => {
+                  if (
+                    movie._id ===
+                    FavoriteMovies.find((favorite) => favorite === movie._id)
+                  ) {
+                    return (
+                      <Card className="favorite-movies bg-dark text-white" key={movie._id}>
+                        <Card.Img src={movie.ImagePath} />
+                        <Card.Body>
+                          <Card.Title className="favorites-title">
+                            {movie.Title}
+                          </Card.Title>
+                          <Button
+                            variant="warning" id="remove-btn"
+                            onClick={this.removeFavorite}
+                            size="sm"
+                          >
+                            Unfavorite
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    );
+                    }
+                  })
+                  }
+                  </CardGroup>
+                </Col>
+              </Row>
+
+              {/* Update user-info form */}
               <Row>
                 <Col>
                   <CardGroup>

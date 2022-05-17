@@ -45,9 +45,14 @@ html {
   margin-top: 15px;
 }
 
-.profile-title {
+.profile-title,
+.favorite-movies {
   text-align: center;
   justify-content: center;
+}
+
+.favorite-movies {
+  margin: 5px;
 }
 
 .update-account-title {
