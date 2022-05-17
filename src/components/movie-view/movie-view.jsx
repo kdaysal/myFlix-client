@@ -23,6 +23,42 @@ export class MovieView extends React.Component {
   }
  */
 
+  //add movie to user's list of favorites
+  addFavoriteMovie() {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    const currentFavorites = localStorage.getItem("favorites")
+    const movieId = this.props.movie._id
+    console.log(`currentFavorites: ${currentFavorites}`);
+    console.log(`this movieId: ${movieId}`);
+
+    if (currentFavorites.includes(this.props.movie._id)) {
+      console.log(`movie is already favorited`);
+      return alert('This movie is already in your favorites list'); //end the function (will not reach the axio statement below)
+    }
+    else {
+      console.log(`Adding ${movieId} to favorites list`);
+    }
+
+    axios
+      .post(
+        `https://kdaysal-my-flix.herokuapp.com/users/${user}/movies/${this.props.movie._id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          method: "POST",
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        alert(`Move has been added to your favorites.`);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    //TODO - update local storage to include the newly added movie id
+  } //end addFavoriteMovie
+
   render() {
     const { movie, onBackClick } = this.props;
     return (
@@ -45,7 +81,7 @@ export class MovieView extends React.Component {
                       <Button variant="link">{movie.Director.Name}</Button>
                     </Link>
                   </Card.Text>
-                  <Button variant="success" id="favorites-btn">Add to Favorites</Button>
+                  <Button variant="success" id="favorites-btn" onClick={() => this.addFavoriteMovie(movie)}>Add to Favorites</Button>
                   <br></br>
                   <Button id="back-btn" onClick={() => { onBackClick(null); }}>Back</Button>
                 </Card.Body>
