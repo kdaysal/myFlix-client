@@ -88,7 +88,15 @@ export class MovieView extends React.Component {
                   </Card.Text>
                   <Button variant="success" id="favorites-btn" onClick={() => this.addFavoriteMovie(movie)}>Add to Favorites</Button>
                   <br></br>
-                  <Button id="back-btn" onClick={() => { onBackClick(null); }}>Back</Button>
+                  <br></br>
+                  <Link to={`/`}>
+                    <Button type="submit">
+                      Browse more flix!
+                    </Button>
+                  </Link>
+                  <br></br>
+                  <br></br>
+                  <Button id="back-btn" onClick={() => { onBackClick(null); }}>Go Back</Button>
                 </Card.Body>
               </Card>
             </CardGroup>
