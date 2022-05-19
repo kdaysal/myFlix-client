@@ -93,16 +93,21 @@ export default class MainView extends React.Component { //by adding 'default', I
   render() {
     const { movies, user } = this.state;
 
-    /* Last MAJOR todo - fix routing / redirecting between LoginView and RegistrationView. For time being, I am uncommenting the lines below to immediately render those views so I can build out the basic functionality in the meantime */
+    /* Last MAJOR todo - fix routing / redirecting between LoginView and RegistrationView. For time being, I am commenting/uncommenting the lines below to immediately render those views so I can build out the basic functionality in the meantime */
     // return <RegistrationView /> /* UNCOMMENT FOR TESTING ONLY */
     // return <ProfileView /> /* UNCOMMENT FOR TESTING ONLY */
 
-    if (!user) return <Row>
-      <Col>
-        <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-      </Col>
-    </Row>
-    if (movies.length === 0) return <div className="main-view" />;
+    /* This block below is what caused all the errors I was having using <Link> in RegistrationView and LoginView...and was preventing my '/registration' endpoint from ever rendering. Uncommenting for now - TODO - fix it! */
+    // if (!user)
+    //   return (
+    //     <Row>
+    //       <Col>
+    //         <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+    //       </Col>
+    //     </Row >
+    //   )
+    // if (movies.length === 0) return <div className="main-view" />;
+
 
     return (
       <Router>
@@ -110,10 +115,12 @@ export default class MainView extends React.Component { //by adding 'default', I
         <Container>
           <Row className="main-view justify-content-md-center">
             <Route exact path="/" render={() => {
-              if (!user) return
-              <Col>
-                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-              </Col>
+              if (!user)
+                return (
+                  <Col>
+                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                  </Col>
+                )
               {/* before the movies have been loaded... */ }
               if (movies.length === 0) return <div className="main-view" />;
               return movies.map(m => (
