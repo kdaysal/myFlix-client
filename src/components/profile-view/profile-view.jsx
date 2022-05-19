@@ -250,6 +250,9 @@ removeFavorite(movieId){
                           >
                             Unfavorite
                           </Button>
+                          <Link to={`/movies/${movie._id}`}>
+                      <Button variant="link">Movie Details</Button>
+                    </Link>
                         </Card.Body>
                       </Card>
                     );
