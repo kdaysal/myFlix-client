@@ -117,7 +117,6 @@ removeFavorite(movieId){
   const token = localStorage.getItem("token");
   const currentFavorites = localStorage.getItem("favorites");
   console.log(`movieID to remove ${movieId}`);
-  //remember to remove the movieId from local storage too - will need a variable to hold that here...TODO
 
   //delete movieId from FavoriteMovies array
   axios
@@ -137,6 +136,7 @@ removeFavorite(movieId){
         let newCurrentFavorites = currentFavorites.replace(re, ''); //replace all instances of this MovieId with ''
         console.log(`newCurrentFavorites: ${newCurrentFavorites}`) //FOR TESTING ONLY - delete later
         localStorage.setItem('favorites', newCurrentFavorites); //update 'favorites' in local storage
+        window.open(`/users/${user}`, "_self"); //reopen (refresh) the profile view - if I don't do this, and if the user hits the 'back' button on the movie card after removing the movie, that movie will still show up in their favorites list
       })
       .catch((err) => console.log(err));
 
