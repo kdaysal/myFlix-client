@@ -114,9 +114,9 @@ export function LoginView(props) {
                 <br></br>
                 <Form>
                   Don't have a myFlix account yet? Click here:
-                  <Button id="register-btn" variant="primary" type="submit" onClick={handleRegister}>
-                    Register!
-                  </Button>
+                  <Link to={'/register'}>
+                    <Button variant="link">Register</Button>
+                  </Link>
                 </Form>
               </Card.Body>
             </Card>
