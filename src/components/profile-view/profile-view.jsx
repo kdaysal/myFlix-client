@@ -198,7 +198,17 @@ removeFavorite(movieId){
                 <Col>
                   <CardGroup>
                     <Card>
-                      <Card.Body>
+                      <Card.Body className='card-body-favorites'>
+                      {FavoriteMovies.length > 0 && (
+                        <div className="browse-more-flix text-center">
+                         <h3 className='more-flix-header'>Browse more Flix!</h3>
+                           <Link to={`/`}>
+                            <Button type="submit">
+                             Browse more flix!
+                          </Button>
+                          </Link>
+                        </div>
+                      )}
                       {FavoriteMovies.length === 0 && (
                         <div className="favorite-movies-card text-center">
                          <h3>You haven't favorited any movies</h3>
@@ -214,7 +224,7 @@ removeFavorite(movieId){
                   </CardGroup>
                 </Col>
               </Row>
-              
+              <br></br>
               {/* if favorite movies > 0 */}
               <Row>
                 <Col>
