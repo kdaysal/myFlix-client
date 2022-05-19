@@ -38,7 +38,10 @@ export function NavbarView({ user }) {
                             <Button variant="primary" onClick={() => { onLoggedOut() }}>Logout</Button>
                         )}
                         {!isAuth() && (
-                            <Nav.Link href="/register">Sign-up</Nav.Link>
+                            <Nav.Link href="/register">I'm new, sign me up!</Nav.Link>
+                        )}
+                        {!isAuth() && (
+                            <Nav.Link href="/">Sign-in</Nav.Link>
                         )}
                     </Nav>
                 </Navbar.Collapse>

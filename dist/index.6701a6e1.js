@@ -40952,7 +40952,16 @@ function NavbarView({ user  }) {
                                     lineNumber: 41
                                 },
                                 __self: this,
-                                children: "Sign-up"
+                                children: "I'm new, sign me up!"
+                            }),
+                            !isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                                href: "/",
+                                __source: {
+                                    fileName: "src/components/navbar-view/navbar-view.jsx",
+                                    lineNumber: 44
+                                },
+                                __self: this,
+                                children: "Sign-in"
                             })
                         ]
                     })
@@ -41596,7 +41605,6 @@ class ProfileView extends _reactDefault.default.Component {
         const token = localStorage.getItem("token");
         const currentFavorites = localStorage.getItem("favorites");
         console.log(`movieID to remove ${movieId}`);
-        //remember to remove the movieId from local storage too - will need a variable to hold that here...TODO
         //delete movieId from FavoriteMovies array
         _axiosDefault.default.delete(`https://kdaysal-my-flix.herokuapp.com/users/${user}/movies/${movieId}`, {
             headers: {
@@ -41614,6 +41622,7 @@ class ProfileView extends _reactDefault.default.Component {
             console.log(`newCurrentFavorites: ${newCurrentFavorites}`) //FOR TESTING ONLY - delete later
             ;
             localStorage.setItem('favorites', newCurrentFavorites); //update 'favorites' in local storage
+            window.open(`/users/${user}`, "_self"); //reopen (refresh) the profile view - if I don't do this, and if the user hits the 'back' button on the movie card after removing the movie, that movie will still show up in their favorites list
         }).catch((err)=>console.log(err)
         );
     }
