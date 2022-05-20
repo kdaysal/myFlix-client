@@ -1,14 +1,21 @@
 import React from 'react';
 import axios from 'axios'; //this will allow me to perform ajax operations. Axios will fetch the movies, then I'll set the 'state' of movies using this.setState
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
+import { setMovies } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from "react-bootstrap/Container";
 
+
+
 //import components
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { MovieCard } from '../movie-card/movie-card';
+//import { MovieCard } from '../movie-card/movie-card'; //this will be imported and used in the MoviesList component rather than here
 import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view';
 import { DirectorView } from '../director-view/director-view';
@@ -17,15 +24,26 @@ import { ProfileView } from "../profile-view/profile-view";
 import './main-view.scss';
 
 //creating/exporting the MainView component
-export default class MainView extends React.Component { //by adding 'default', I won't need to enclose 'MainView' in {curly braces} in any import statements
+class MainView extends React.Component { //by adding 'default', I won't need to enclose 'MainView' in {curly braces} in any import statements
 
   constructor() { //React will use this method to create the component. Always initialize a state's values in the constructor, as it is called before render().
     super(); //call the constructor of the parent class ('React.Component'). This initializes the component's state, and is needed in order for 'this.state' (below) to work.
     this.state = { //initialize all states to empty/null
-      movies: [],
+      //movies: [], //removing movies state per task 3.8
       selectedMovie: null, //this variable will represent whether a movie card is clicked (null if no)
       user: null, //this variable will represent whether a user is logged in (null if no)
       favorites: [] //empty array to hold a user's favorite movies
+    }
+  }
+
+  //this code will execute right after the component is mounted (i.e. right after it is has been fully rendered and added to the DOM)
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');//get the value of the token from localStorage. Note - the syntax is: localStorage.getItem('YOUR_KEY')
+    if (accessToken !== null) {//if the access token is present, then the user is already logged in and I can set the state accordingly and call getMovies()
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
     }
   }
 
@@ -44,17 +62,6 @@ export default class MainView extends React.Component { //by adding 'default', I
       .catch(function (error) {
         console.log(error);
       });
-  }
-
-  //this code will execute right after the component is mounted (i.e. right after it is has been fully rendered and added to the DOM)
-  componentDidMount() {
-    let accessToken = localStorage.getItem('token');//get the value of the token from localStorage. Note - the syntax is: localStorage.getItem('YOUR_KEY')
-    if (accessToken !== null) {//if the access token is present, then the user is already logged in and I can set the state accordingly and call getMovies()
-      this.setState({
-        user: localStorage.getItem('user')
-      });
-      this.getMovies(accessToken);
-    }
   }
 
   //custom component method 'setselectedMovie'. When a movie is clicked, this function is invoked and updates the state of MainView's 'selectedMovie' property to that movie
@@ -91,7 +98,9 @@ export default class MainView extends React.Component { //by adding 'default', I
 
   //display the desired visual output to the UI
   render() {
-    const { movies, user } = this.state;
+    //movies is extracted from this.props rather than from this.state
+    let { movies } = this.props;
+    let { user } = this.state;
 
     /* Last MAJOR todo - fix routing / redirecting between LoginView and RegistrationView. For time being, I am commenting/uncommenting the lines below to immediately render those views so I can build out the basic functionality in the meantime */
     // return <RegistrationView /> /* UNCOMMENT FOR TESTING ONLY */
@@ -123,11 +132,7 @@ export default class MainView extends React.Component { //by adding 'default', I
                 )
               {/* before the movies have been loaded... */ }
               if (movies.length === 0) return <div className="main-view" />;
-              return movies.map(m => (
-                <Col xl={3} lg={4} md={6} sm={12} key={m._id}>
-                  <MovieCard movie={m} onBackClick={() => history.goBack()} />
-                </Col>
-              ))
+              return <MoviesList movies={movies} />;
             }} />
             <Route path="/register" render={() => {
               if (user) return <Redirect to="/" />
@@ -186,6 +191,12 @@ export default class MainView extends React.Component { //by adding 'default', I
     );
   }
 }
+
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+
+export default connect(mapStateToProps, { setMovies })(MainView);
 
 /* *************************************** */
 //ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning. DELETE before final submission

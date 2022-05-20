@@ -1,10 +1,6 @@
 .my-flix {
   color: orange;
 }
-.movie-card {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 #movie-view-container {
   margin-top: 15px;
 }
@@ -66,5 +62,9 @@ html {
 
 .card-body-favorites {
   background-color: lightgoldenrodyellow;
+}
+.movie-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 /*# sourceMappingURL=index.caa67093.css.map */
