@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import { setMovies } from '../../actions/actions';
-//import MoviesList from '../movies-list/movies-list'; //haven't written this one yet
+import MoviesList from '../movies-list/movies-list'; //haven't written this one yet
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
