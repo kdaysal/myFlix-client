@@ -1,6 +1,11 @@
 import React from 'react';
 import axios from 'axios'; //this will allow me to perform ajax operations. Axios will fetch the movies, then I'll set the 'state' of movies using this.setState
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
+import { setMovies } from '../../actions/actions';
+//import MoviesList from '../movies-list/movies-list'; //haven't written this one yet
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from "react-bootstrap/Container";
@@ -8,7 +13,7 @@ import Container from "react-bootstrap/Container";
 //import components
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { MovieCard } from '../movie-card/movie-card';
+//import { MovieCard } from '../movie-card/movie-card'; //MovieCard will be imported and used in the MoviesList component rather than here. Once it works, DELETE this line
 import { MovieView } from '../movie-view/movie-view';
 import { NavbarView } from '../navbar-view/navbar-view';
 import { DirectorView } from '../director-view/director-view';
@@ -17,33 +22,16 @@ import { ProfileView } from "../profile-view/profile-view";
 import './main-view.scss';
 
 //creating/exporting the MainView component
-export class MainView extends React.Component { //by adding 'default', I won't need to enclose 'MainView' in {curly braces} in any import statements
+class MainView extends React.Component { //by adding 'default', I won't need to enclose 'MainView' in {curly braces} in any import statements
 
   constructor() { //React will use this method to create the component. Always initialize a state's values in the constructor, as it is called before render().
     super(); //call the constructor of the parent class ('React.Component'). This initializes the component's state, and is needed in order for 'this.state' (below) to work.
     this.state = { //initialize all states to empty/null
-      movies: [],
+      //  movies: [], //removing movies state per task 3.8 - redux
       selectedMovie: null, //this variable will represent whether a movie card is clicked (null if no)
       user: null, //this variable will represent whether a user is logged in (null if no)
       favorites: [] //empty array to hold a user's favorite movies
     }
-  }
-
-  //make an authenticated request to my API...
-  //this method uses Axios to make a GET request to the 'movies' endpoint of my Node.js API and passes a bearer authorization token in the header
-  getMovies(token) {
-    axios.get('https://kdaysal-my-flix.herokuapp.com/movies', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(response => {
-        // Assign the result to MainView's 'movies' state
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   //this code will execute right after the component is mounted (i.e. right after it is has been fully rendered and added to the DOM)
@@ -55,6 +43,21 @@ export class MainView extends React.Component { //by adding 'default', I won't n
       });
       this.getMovies(accessToken);
     }
+  }
+
+  //make an authenticated request to my API...
+  //this method uses Axios to make a GET request to the 'movies' endpoint of my Node.js API and passes a bearer authorization token in the header
+  getMovies(token) {
+    axios.get('https://kdaysal-my-flix.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        // Assign the result to MainView's 'movies' state
+        this.props.setMovies(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   //custom component method 'setselectedMovie'. When a movie is clicked, this function is invoked and updates the state of MainView's 'selectedMovie' property to that movie
@@ -91,7 +94,9 @@ export class MainView extends React.Component { //by adding 'default', I won't n
 
   //display the desired visual output to the UI
   render() {
-    const { movies, user } = this.state;
+    //const { movies, user } = this.state; //this will no longer be needed - we'll use this.props intead. Once that works, DELETE this line
+    let { movies } = this.props;
+    let { user } = this.state;
 
     /* Last MAJOR todo - fix routing / redirecting between LoginView and RegistrationView. For time being, I am commenting/uncommenting the lines below to immediately render those views so I can build out the basic functionality in the meantime */
     // return <RegistrationView /> /* UNCOMMENT FOR TESTING ONLY */
@@ -123,11 +128,7 @@ export class MainView extends React.Component { //by adding 'default', I won't n
                 )
               {/* before the movies have been loaded... */ }
               if (movies.length === 0) return <div className="main-view" />;
-              return movies.map(m => (
-                <Col xl={3} lg={4} md={6} sm={12} key={m._id}>
-                  <MovieCard movie={m} onBackClick={() => history.goBack()} />
-                </Col>
-              ))
+              return <MoviesList movies={movies} />;
             }} />
             <Route path="/register" render={() => {
               if (user) return <Redirect to="/" />
@@ -184,11 +185,18 @@ export class MainView extends React.Component { //by adding 'default', I won't n
         </Container>
       </Router>
     );
-  }
+  } //end render()
+} //end class MainView
+
+let mapStateToProps = state => {
+  return { movies: state.movies }
 }
 
+export default connect(mapStateToProps, { setMovies })(MainView);
+
+//Nothing below this line should be uncommented or included in production code
 /* *************************************** */
-//ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning. DELETE before final submission
+//ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning.
 
 //   render() {
 //     const movies = this.state.movies;
