@@ -1,3 +1,5 @@
+// This function component will add a 'filter' to my MainView so the user can filter the MovieCards that display (by typing a movie title)
+
 /* Notes on separation of component concerns */
 // Maintaining a solid separation of component concerns and making my Redux structure abide by the rules
 // means that I'll be able to refactor my app as much as I need without having to touch unrelated pieces of the codebase
@@ -11,7 +13,8 @@ import Form from 'react-bootstrap/Form';
 import { setFilter } from '../../actions/actions';
 
 // No need for a 'class' component here because it has no state and doesn't need lifecycle Hooks
-// Creating a new function component...
+// Creating a new function component VisibilityFilterInput - it will accept a string from the user which is just a text input wired to the store
+// through actions that changes the visibilityFilter value 
 function VisibilityFilterInput(props) {
     return <Form.Control
         onChange={e => props.setFilter(e.target.value)}
