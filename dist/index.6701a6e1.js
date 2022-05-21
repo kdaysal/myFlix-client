@@ -22160,7 +22160,7 @@ class MainView extends _reactDefault.default.Component {
             }
         }).then((response)=>{
             // Assign the result to MainView's 'movies' state
-            this.props.setMovies(response.data);
+            this.props.setMovies(response.data); //we can use 'setMovies' (which is an action creator) here because we passed it as a prop in our 'export default connect...' statement at the bottom of this file
         }).catch(function(error) {
             console.log(error);
         });
@@ -22400,14 +22400,18 @@ class MainView extends _reactDefault.default.Component {
         }));
     }
 } //end class MainView
+//this gets the state from the store, and passes it as a prop to the component that is connected to the store - instead of the component accessing the state directly
+//i.e. we are mapping the state to the props of the MainView component
 let mapStateToProps = (state)=>{
     return {
         movies: state.movies
-    };
+    } //we are passing whatever is in 'state.movies' TO the prop called 'movies' in MainView 
+    ;
 };
 exports.default = _reactRedux.connect(mapStateToProps, {
     setMovies: _actions.setMovies
-})(MainView); //Nothing below this line should be uncommented or included in production code
+})(MainView); //this connects the MainView component to the store
+ //Nothing below this line should be uncommented or included in production code
  /* *************************************** */  //ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning.
  //   render() {
  //     const movies = this.state.movies;
@@ -43665,12 +43669,14 @@ parcelHelpers.export(exports, "setFilter", ()=>setFilter
 const SET_MOVIES = 'SET_MOVIES'; //SET_MOVIES initializes teh movies list with movies
 const SET_FILTER = 'SET_FILTER'; //SET_FILTER sets the filter to filter the movies list
 function setMovies(value) {
+    console.log('SET_MOVIES action triggered');
     return {
         type: SET_MOVIES,
         value
     };
 }
 function setFilter(value) {
+    console.log('SET_FILTER action triggered');
     return {
         type: SET_FILTER,
         value
@@ -43685,6 +43691,7 @@ var _actions = require("../actions/actions");
 function visibilityFilter(state = '', action) {
     switch(action.type){
         case _actions.SET_FILTER:
+            console.log('SET_FILTER reducer reached');
             return action.value;
         default:
             return state;
@@ -43693,6 +43700,7 @@ function visibilityFilter(state = '', action) {
 function movies(state = [], action) {
     switch(action.type){
         case _actions.SET_MOVIES:
+            console.log('SET_MOVIES reducer reached');
             return action.value;
         default:
             return state;

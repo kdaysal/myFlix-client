@@ -53,7 +53,7 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
     })
       .then(response => {
         // Assign the result to MainView's 'movies' state
-        this.props.setMovies(response.data);
+        this.props.setMovies(response.data); //we can use 'setMovies' (which is an action creator) here because we passed it as a prop in our 'export default connect...' statement at the bottom of this file
       })
       .catch(function (error) {
         console.log(error);
@@ -188,11 +188,14 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
   } //end render()
 } //end class MainView
 
+//this gets the state from the store, and passes it as a prop to the component that is connected to the store - instead of the component accessing the state directly
+//i.e. we are mapping the state to the props of the MainView component
 let mapStateToProps = state => {
-  return { movies: state.movies }
+  return { movies: state.movies } //we are passing whatever is in 'state.movies' TO the prop called 'movies' in MainView 
 }
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+//setMovies is the action creator which contains the 'type' (string) and 'value'
+export default connect(mapStateToProps, { setMovies })(MainView); //this connects the MainView component to the store
 
 //Nothing below this line should be uncommented or included in production code
 /* *************************************** */
