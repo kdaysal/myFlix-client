@@ -1,7 +1,7 @@
 import React from 'react';
-import './navbar-view.scss';
 import { Navbar, Container, Nav, Button, } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import './navbar-view.scss';
 
 function NavbarView({ user }) {
 
@@ -27,7 +27,7 @@ function NavbarView({ user }) {
     return (
         <Navbar className="main-nav" sticky="top" bg="secondary" expand="lg" variant="dark">
             <Container>
-                <Navbar.Brand className="navbar-logo" href="/">myFlix</Navbar.Brand>
+                <Navbar.Brand className="navbar-logo" id='my-flix-title' href="/">myFlix</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
