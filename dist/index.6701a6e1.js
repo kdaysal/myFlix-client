@@ -22206,19 +22206,10 @@ class MainView extends _reactDefault.default.Component {
         //const { movies, user } = this.state; //this will no longer be needed - we'll use this.props intead. Once that works, DELETE this line
         let { movies , user  } = this.props;
         let localStorageUser = localStorage.getItem('user'); //temp solution for checking if (user) exists in local storage, because user could be null in the few moments prior to SET_USER running and updating the state. TODO - find a way to wait and only check for (user) AFTER 'SET_USER' action has been dispatched and the state is updated
-        /* This block below is what caused all the errors I was having using <Link> in RegistrationView and LoginView...and was preventing my '/registration' endpoint from ever rendering. Commenting out for now - TODO - fix it! */ // if (!user)
-        //   return (
-        //     <Row>
-        //       <Col>
-        //         <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-        //       </Col>
-        //     </Row >
-        //   )
-        // if (movies.length === 0) return <div className="main-view" />;
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 122
+                lineNumber: 110
             },
             __self: this,
             children: [
@@ -22226,21 +22217,21 @@ class MainView extends _reactDefault.default.Component {
                     user: user,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 123
+                        lineNumber: 111
                     },
                     __self: this
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_containerDefault.default, {
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 124
+                        lineNumber: 112
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
                         className: "main-view justify-content-md-center",
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 125
+                            lineNumber: 113
                         },
                         __self: this,
                         children: [
@@ -22262,7 +22253,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 126
+                                    lineNumber: 114
                                 },
                                 __self: this
                             }),
@@ -22279,7 +22270,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 137
+                                    lineNumber: 125
                                 },
                                 __self: this
                             }),
@@ -22305,7 +22296,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 146
+                                    lineNumber: 134
                                 },
                                 __self: this
                             }),
@@ -22333,7 +22324,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 155
+                                    lineNumber: 143
                                 },
                                 __self: this
                             }),
@@ -22356,7 +22347,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 164
+                                    lineNumber: 152
                                 },
                                 __self: this
                             }),
@@ -22379,7 +22370,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 170
+                                    lineNumber: 158
                                 },
                                 __self: this
                             }),
@@ -22398,7 +22389,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 182
+                                    lineNumber: 170
                                 },
                                 __self: this
                             })
@@ -40819,10 +40810,10 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _navbarViewScss = require("./navbar-view.scss");
 var _reactBootstrap = require("react-bootstrap");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _navbarViewScss = require("./navbar-view.scss");
 function NavbarView({ user  }) {
     //Sign Out method
     const onLoggedOut = ()=>{
@@ -40857,6 +40848,7 @@ function NavbarView({ user  }) {
             children: [
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Brand, {
                     className: "navbar-logo",
+                    id: "my-flix-title",
                     href: "/",
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",

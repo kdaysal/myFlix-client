@@ -106,18 +106,6 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
     let { movies, user } = this.props;
     let localStorageUser = localStorage.getItem('user'); //temp solution for checking if (user) exists in local storage, because user could be null in the few moments prior to SET_USER running and updating the state. TODO - find a way to wait and only check for (user) AFTER 'SET_USER' action has been dispatched and the state is updated
 
-    /* This block below is what caused all the errors I was having using <Link> in RegistrationView and LoginView...and was preventing my '/registration' endpoint from ever rendering. Commenting out for now - TODO - fix it! */
-    // if (!user)
-    //   return (
-    //     <Row>
-    //       <Col>
-    //         <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-    //       </Col>
-    //     </Row >
-    //   )
-    // if (movies.length === 0) return <div className="main-view" />;
-
-
     return (
       <Router>
         <NavbarView user={user} />

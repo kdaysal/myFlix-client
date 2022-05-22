@@ -34,7 +34,11 @@ html {
 }
 
 
-
+#my-flix-title {
+  font-size: 200%;
+  font-style: italic;
+  color: hsla(57deg, 81%, 54%, 0.9);
+}
 
 
 .profile-card {
