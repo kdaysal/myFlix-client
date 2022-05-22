@@ -3,7 +3,7 @@ import axios from 'axios'; //this will allow me to perform ajax operations. Axio
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list'; //haven't written this one yet
 
 import Row from 'react-bootstrap/Row';
@@ -38,9 +38,9 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
   componentDidMount() {
     let accessToken = localStorage.getItem('token');//get the value of the token from localStorage. Note - the syntax is: localStorage.getItem('YOUR_KEY')
     if (accessToken !== null) {//if the access token is present, then the user is already logged in and I can set the state accordingly and call getMovies()
-      this.setState({
-        user: localStorage.getItem('user')
-      });
+      const { setUser } = this.props;
+      setUser(localStorage.getItem('user'));
+
       this.getMovies(accessToken);
     }
   }
@@ -70,10 +70,14 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
   //When a user succesfully logs in, the 'onLoggedIn' method  will update the user state of the 'MainView' component to that particular user
   onLoggedIn(authData) { //when a user logs in, the props 'onLoggedIn(data)' is passed to the LoginView and triggers THIS function
     console.log(`authData: ${authData}`);//FOR TESTING ONLY - delete later
-    this.setState({
-      user: authData.user.Username, //save the username to the 'user' state in MainView
-      favorites: authData.user.FavoriteMovies
-    });
+    const { setUser } = this.props;
+    setUser(authData.user.Username);
+
+    /* BELOW section for this.setState can be deleted once the props work*/
+    // this.setState({
+    //   user: authData.user.Username, //save the username to the 'user' state in MainView
+    //   favorites: authData.user.FavoriteMovies
+    // });
 
     //save the auth information received from the 'handleSubmit' method (the token and the user) to localStorage
     localStorage.setItem('token', authData.token);//the 'setItem' method accepts 2 args: a kay and a value
@@ -95,8 +99,8 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
   //display the desired visual output to the UI
   render() {
     //const { movies, user } = this.state; //this will no longer be needed - we'll use this.props intead. Once that works, DELETE this line
-    let { movies } = this.props;
-    let { user } = this.state;
+    let { movies, user } = this.props;
+    //let { user } = this.state; //DELETE this line once the above line works (as this.props instead of this.state)
 
     /* Last MAJOR todo - fix routing / redirecting between LoginView and RegistrationView. For time being, I am commenting/uncommenting the lines below to immediately render those views so I can build out the basic functionality in the meantime */
     // return <RegistrationView /> /* UNCOMMENT FOR TESTING ONLY */
@@ -167,7 +171,9 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
               render={({ match, history }) => {
                 if (!user) return <Redirect to="/" />
                 return <Col>
-                  <ProfileView movies={movies}
+                  <ProfileView
+                    history={history}
+                    movies={movies}
                     user={user}
                     onBackClick={() => history.goBack()} />
                 </Col>
@@ -188,14 +194,25 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
   } //end render()
 } //end class MainView
 
+//TODO here - define MainView.propTypes
+
 //this gets the state from the store, and passes it as a prop to the component that is connected to the store - instead of the component accessing the state directly
 //i.e. we are mapping the state to the props of the MainView component
 let mapStateToProps = state => {
-  return { movies: state.movies } //we are passing whatever is in 'state.movies' TO the prop called 'movies' in MainView 
+  return {
+    movies: state.movies,
+    user: state.user
+  } //we are passing whatever is in 'state.movies' TO the prop called 'movies' in MainView 
 }
 
 //setMovies is the action creator which contains the 'type' (string) and 'value'
-export default connect(mapStateToProps, { setMovies })(MainView); //this connects the MainView component to the store
+export default connect(mapStateToProps, {
+  setMovies,
+  setUser
+})(MainView); //this connects the MainView component to the store
+
+
+
 
 //Nothing below this line should be uncommented or included in production code
 /* *************************************** */

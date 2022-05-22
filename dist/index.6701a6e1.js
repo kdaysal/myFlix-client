@@ -22147,9 +22147,8 @@ class MainView extends _reactDefault.default.Component {
     componentDidMount() {
         let accessToken = localStorage.getItem('token'); //get the value of the token from localStorage. Note - the syntax is: localStorage.getItem('YOUR_KEY')
         if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')
-            });
+            const { setUser  } = this.props;
+            setUser(localStorage.getItem('user'));
             this.getMovies(accessToken);
         }
     }
@@ -22176,10 +22175,12 @@ class MainView extends _reactDefault.default.Component {
     //When a user succesfully logs in, the 'onLoggedIn' method  will update the user state of the 'MainView' component to that particular user
     onLoggedIn(authData) {
         console.log(`authData: ${authData}`); //FOR TESTING ONLY - delete later
-        this.setState({
-            user: authData.user.Username,
-            favorites: authData.user.FavoriteMovies
-        });
+        const { setUser  } = this.props;
+        setUser(authData.user.Username);
+        /* BELOW section for this.setState can be deleted once the props work*/ // this.setState({
+        //   user: authData.user.Username, //save the username to the 'user' state in MainView
+        //   favorites: authData.user.FavoriteMovies
+        // });
         //save the auth information received from the 'handleSubmit' method (the token and the user) to localStorage
         localStorage.setItem('token', authData.token); //the 'setItem' method accepts 2 args: a kay and a value
         localStorage.setItem('user', authData.user.Username);
@@ -22198,8 +22199,8 @@ class MainView extends _reactDefault.default.Component {
     //display the desired visual output to the UI
     render() {
         //const { movies, user } = this.state; //this will no longer be needed - we'll use this.props intead. Once that works, DELETE this line
-        let { movies  } = this.props;
-        let { user  } = this.state;
+        let { movies , user  } = this.props;
+        //let { user } = this.state; //DELETE this line once the above line works (as this.props instead of this.state)
         /* Last MAJOR todo - fix routing / redirecting between LoginView and RegistrationView. For time being, I am commenting/uncommenting the lines below to immediately render those views so I can build out the basic functionality in the meantime */ // return <RegistrationView /> /* UNCOMMENT FOR TESTING ONLY */
         // return <ProfileView /> /* UNCOMMENT FOR TESTING ONLY */
         /* This block below is what caused all the errors I was having using <Link> in RegistrationView and LoginView...and was preventing my '/registration' endpoint from ever rendering. Uncommenting for now - TODO - fix it! */ // if (!user)
@@ -22214,7 +22215,7 @@ class MainView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 118
+                lineNumber: 122
             },
             __self: this,
             children: [
@@ -22222,21 +22223,21 @@ class MainView extends _reactDefault.default.Component {
                     user: user,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 119
+                        lineNumber: 123
                     },
                     __self: this
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_containerDefault.default, {
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 120
+                        lineNumber: 124
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
                         className: "main-view justify-content-md-center",
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 121
+                            lineNumber: 125
                         },
                         __self: this,
                         children: [
@@ -22258,7 +22259,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 122
+                                    lineNumber: 126
                                 },
                                 __self: this
                             }),
@@ -22275,7 +22276,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 133
+                                    lineNumber: 137
                                 },
                                 __self: this
                             }),
@@ -22301,7 +22302,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 142
+                                    lineNumber: 146
                                 },
                                 __self: this
                             }),
@@ -22329,7 +22330,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 151
+                                    lineNumber: 155
                                 },
                                 __self: this
                             }),
@@ -22352,7 +22353,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 160
+                                    lineNumber: 164
                                 },
                                 __self: this
                             }),
@@ -22364,6 +22365,7 @@ class MainView extends _reactDefault.default.Component {
                                     }));
                                     return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_profileView.ProfileView, {
+                                            history: history,
                                             movies: movies,
                                             user: user,
                                             onBackClick: ()=>history.goBack()
@@ -22372,7 +22374,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 166
+                                    lineNumber: 170
                                 },
                                 __self: this
                             }),
@@ -22391,7 +22393,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 175
+                                    lineNumber: 181
                                 },
                                 __self: this
                             })
@@ -22402,16 +22404,19 @@ class MainView extends _reactDefault.default.Component {
         }));
     }
 } //end class MainView
+//TODO here - define MainView.propTypes
 //this gets the state from the store, and passes it as a prop to the component that is connected to the store - instead of the component accessing the state directly
 //i.e. we are mapping the state to the props of the MainView component
 let mapStateToProps = (state)=>{
     return {
-        movies: state.movies
+        movies: state.movies,
+        user: state.user
     } //we are passing whatever is in 'state.movies' TO the prop called 'movies' in MainView 
     ;
 };
 exports.default = _reactRedux.connect(mapStateToProps, {
-    setMovies: _actions.setMovies
+    setMovies: _actions.setMovies,
+    setUser: _actions.setUser
 })(MainView); //this connects the MainView component to the store
  //Nothing below this line should be uncommented or included in production code
  /* *************************************** */  //ORIGINAL CODE BLOCK for render() function - Only purpose of keeping this is for my studying/learning.
@@ -43663,13 +43668,18 @@ parcelHelpers.export(exports, "SET_MOVIES", ()=>SET_MOVIES
 );
 parcelHelpers.export(exports, "SET_FILTER", ()=>SET_FILTER
 );
+parcelHelpers.export(exports, "SET_USER", ()=>SET_USER
+);
 //exporting functions is similar to using event constructors - I will call them from a view to formally express the change that I want to perform on the app's state
 parcelHelpers.export(exports, "setMovies", ()=>setMovies
 );
 parcelHelpers.export(exports, "setFilter", ()=>setFilter
 );
+parcelHelpers.export(exports, "setUser", ()=>setUser
+);
 const SET_MOVIES = 'SET_MOVIES'; //SET_MOVIES initializes teh movies list with movies
 const SET_FILTER = 'SET_FILTER'; //SET_FILTER sets the filter to filter the movies list
+const SET_USER = "SET_USER";
 function setMovies(value) {
     //  console.log('SET_MOVIES action triggered');
     return {
@@ -43681,6 +43691,12 @@ function setFilter(value) {
     //   console.log('SET_FILTER action triggered');
     return {
         type: SET_FILTER,
+        value
+    };
+}
+function setUser(value) {
+    return {
+        type: SET_USER,
         value
     };
 }
@@ -43780,7 +43796,57 @@ $RefreshReg$(_c, "MoviesList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap/Col":"fbam0","react-redux":"2L0if","../movie-card/movie-card":"6EiBJ","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","../visibility-filter-input/visibility-filter-input":"7ZxGS"}],"6EiBJ":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap/Col":"fbam0","react-redux":"2L0if","../visibility-filter-input/visibility-filter-input":"7ZxGS","../movie-card/movie-card":"6EiBJ","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu"}],"7ZxGS":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9bc3 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9bc3.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxRuntime = require("react/jsx-runtime");
+// This function component will add a 'filter' to my MainView so the user can filter the MovieCards that display (by typing a movie title)
+/* Notes on separation of component concerns */ // Maintaining a solid separation of component concerns and making my Redux structure abide by the rules
+// means that I'll be able to refactor my app as much as I need without having to touch unrelated pieces of the codebase
+// just because they happen to be nearby
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRedux = require("react-redux");
+var _form = require("react-bootstrap/Form");
+var _formDefault = parcelHelpers.interopDefault(_form);
+var _actions = require("../../actions/actions");
+// No need for a 'class' component here because it has no state and doesn't need lifecycle Hooks
+// Creating a new function component VisibilityFilterInput - it will accept a string from the user which is just a text input wired to the store
+// through actions that changes the visibilityFilter value 
+function VisibilityFilterInput(props) {
+    return(/*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
+        onChange: (e)=>props.setFilter(e.target.value)
+        ,
+        value: props.visibilityFilter,
+        placeholder: "filter",
+        __source: {
+            fileName: "src/components/visibility-filter-input/visibility-filter-input.jsx",
+            lineNumber: 19
+        },
+        __self: this
+    }));
+}
+_c = VisibilityFilterInput;
+exports.default = _reactRedux.connect(null, {
+    setFilter: _actions.setFilter
+})(VisibilityFilterInput); /* More notes for learning */  // The VisibilityFilterInput function component is basically a wrapper around a React Bootstrap text input (i.e., 'FormControl')
+ // and is connected to the store via the 'connect()' function.
+ // Notice that it already has 'visibilityFilter' in its props, because I will be passing the same visibilityFilter prop that I had in the MoviesList component
+var _c;
+$RefreshReg$(_c, "VisibilityFilterInput");
+
+  $parcel$ReactRefreshHelpers$9bc3.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap/Form":"5ykgY","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu"}],"6EiBJ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4249 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43886,57 +43952,7 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","react-bootstrap":"h2YVd","./movie-card.scss":"cF5gT","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu"}],"cF5gT":[function() {},{}],"7ZxGS":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$9bc3 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$9bc3.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxRuntime = require("react/jsx-runtime");
-// This function component will add a 'filter' to my MainView so the user can filter the MovieCards that display (by typing a movie title)
-/* Notes on separation of component concerns */ // Maintaining a solid separation of component concerns and making my Redux structure abide by the rules
-// means that I'll be able to refactor my app as much as I need without having to touch unrelated pieces of the codebase
-// just because they happen to be nearby
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRedux = require("react-redux");
-var _form = require("react-bootstrap/Form");
-var _formDefault = parcelHelpers.interopDefault(_form);
-var _actions = require("../../actions/actions");
-// No need for a 'class' component here because it has no state and doesn't need lifecycle Hooks
-// Creating a new function component VisibilityFilterInput - it will accept a string from the user which is just a text input wired to the store
-// through actions that changes the visibilityFilter value 
-function VisibilityFilterInput(props) {
-    return(/*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
-        onChange: (e)=>props.setFilter(e.target.value)
-        ,
-        value: props.visibilityFilter,
-        placeholder: "filter",
-        __source: {
-            fileName: "src/components/visibility-filter-input/visibility-filter-input.jsx",
-            lineNumber: 19
-        },
-        __self: this
-    }));
-}
-_c = VisibilityFilterInput;
-exports.default = _reactRedux.connect(null, {
-    setFilter: _actions.setFilter
-})(VisibilityFilterInput); /* More notes for learning */  // The VisibilityFilterInput function component is basically a wrapper around a React Bootstrap text input (i.e., 'FormControl')
- // and is connected to the store via the 'connect()' function.
- // Notice that it already has 'visibilityFilter' in its props, because I will be passing the same visibilityFilter prop that I had in the MoviesList component
-var _c;
-$RefreshReg$(_c, "VisibilityFilterInput");
-
-  $parcel$ReactRefreshHelpers$9bc3.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap/Form":"5ykgY","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu"}],"btgQW":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","react-bootstrap":"h2YVd","./movie-card.scss":"cF5gT","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu"}],"cF5gT":[function() {},{}],"btgQW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _redux = require("redux");
@@ -43959,10 +43975,20 @@ function movies(state = [], action) {
             return state;
     }
 }
+function user(state = '', action) {
+    switch(action.type){
+        case _actions.SET_USER:
+            console.log('SET_USER reducer reached');
+            return action.value;
+        default:
+            return state;
+    }
+}
 //moviesApp is a combined reducer (a reducer made out of other reducers). To keep the code clean, it splits into two smaller reducers.
 const moviesApp = _redux.combineReducers({
     visibilityFilter,
-    movies
+    movies,
+    user
 });
 exports.default = moviesApp; //note - we only need to export the combined reducer (which exports both of the individual reducers)
 
