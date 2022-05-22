@@ -41855,6 +41855,10 @@ class ProfileView extends _reactDefault.default.Component {
                             children: FavoriteMovies.length > 0 && movies.map((movie)=>{
                                 if (movie._id === FavoriteMovies.find((favorite)=>favorite === movie._id
                                 )) return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
+                                    style: {
+                                        minWidth: '18rem',
+                                        margin: '1rem'
+                                    },
                                     className: "favorite-movies bg-dark text-white",
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",

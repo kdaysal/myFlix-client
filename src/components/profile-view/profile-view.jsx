@@ -236,7 +236,7 @@ removeFavorite(movieId){
                     FavoriteMovies.find((favorite) => favorite === movie._id)
                   ) {
                     return (
-                      <Card className="favorite-movies bg-dark text-white" key={movie._id}>
+                      <Card style={{ minWidth: '18rem', margin:'1rem'}} className="favorite-movies bg-dark text-white" key={movie._id}>
                         <Card.Img src={movie.ImagePath} />
                         <Card.Body>
                           <Card.Title className="favorites-title">
