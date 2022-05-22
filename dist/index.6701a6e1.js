@@ -22128,6 +22128,7 @@ var _registrationView = require("../registration-view/registration-view");
 //import { MovieCard } from '../movie-card/movie-card'; //MovieCard will be imported and used in the MoviesList component rather than here. Once it works, DELETE this line
 var _movieView = require("../movie-view/movie-view");
 var _navbarView = require("../navbar-view/navbar-view");
+var _navbarViewDefault = parcelHelpers.interopDefault(_navbarView);
 var _directorView = require("../director-view/director-view");
 var _genreView = require("../genre-view/genre-view");
 var _profileView = require("../profile-view/profile-view");
@@ -22191,19 +22192,21 @@ class MainView extends _reactDefault.default.Component {
     onLoggedOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        this.setState({
-            user: null
-        });
+        localStorage.removeItem('favorites');
+        // this.setState({
+        //   user: null
+        // });
+        this.props.setUser(null);
+        this.props.setMovies(null);
         console.log(`user is now: ${user}`);
+        console.log(`movies is now: ${movies}`);
     }
     //display the desired visual output to the UI
     render() {
         //const { movies, user } = this.state; //this will no longer be needed - we'll use this.props intead. Once that works, DELETE this line
         let { movies , user  } = this.props;
-        //let { user } = this.state; //DELETE this line once the above line works (as this.props instead of this.state)
-        /* Last MAJOR todo - fix routing / redirecting between LoginView and RegistrationView. For time being, I am commenting/uncommenting the lines below to immediately render those views so I can build out the basic functionality in the meantime */ // return <RegistrationView /> /* UNCOMMENT FOR TESTING ONLY */
-        // return <ProfileView /> /* UNCOMMENT FOR TESTING ONLY */
-        /* This block below is what caused all the errors I was having using <Link> in RegistrationView and LoginView...and was preventing my '/registration' endpoint from ever rendering. Uncommenting for now - TODO - fix it! */ // if (!user)
+        let localStorageUser = localStorage.getItem('user'); //temp solution for checking if (user) exists in local storage, because user could be null in the few moments prior to SET_USER running and updating the state. TODO - find a way to wait and only check for (user) AFTER 'SET_USER' action has been dispatched and the state is updated
+        /* This block below is what caused all the errors I was having using <Link> in RegistrationView and LoginView...and was preventing my '/registration' endpoint from ever rendering. Commenting out for now - TODO - fix it! */ // if (!user)
         //   return (
         //     <Row>
         //       <Col>
@@ -22219,7 +22222,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this,
             children: [
-                /*#__PURE__*/ _jsxRuntime.jsx(_navbarView.NavbarView, {
+                /*#__PURE__*/ _jsxRuntime.jsx(_navbarViewDefault.default, {
                     user: user,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
@@ -22361,7 +22364,10 @@ class MainView extends _reactDefault.default.Component {
                                 path: `/users/${user}`,
                                 render: ({ history  })=>{
                                     console.log(`user is currently: ${user}`);
-                                    //  if (!user) return <Redirect to="/" /> //TODO - figure out why when clicking on the Navbar link (user's name) to get to the profile, user = null (and I am redirected to '/'). Once that is resolved, uncomment this line and delete the comment
+                                    if (!user && !localStorageUser) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Redirect, {
+                                        to: "/"
+                                    }) //TODO - figure out why when clicking on the Navbar link (user's name) to get to the profile, user = null (and I am redirected to '/'). Once that is resolved, uncomment this line and delete the comment
+                                    );
                                     return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_profileView.ProfileView, {
                                             user: user,
@@ -40810,14 +40816,13 @@ $parcel$ReactRefreshHelpers$469c.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "NavbarView", ()=>NavbarView
-) // end NavbarView
-;
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _navbarViewScss = require("./navbar-view.scss");
 var _reactBootstrap = require("react-bootstrap");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 function NavbarView({ user  }) {
     //Sign Out method
     const onLoggedOut = ()=>{
@@ -40840,13 +40845,13 @@ function NavbarView({ user  }) {
         variant: "dark",
         __source: {
             fileName: "src/components/navbar-view/navbar-view.jsx",
-            lineNumber: 27
+            lineNumber: 28
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/navbar-view/navbar-view.jsx",
-                lineNumber: 28
+                lineNumber: 29
             },
             __self: this,
             children: [
@@ -40855,7 +40860,7 @@ function NavbarView({ user  }) {
                     href: "/",
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                        lineNumber: 29
+                        lineNumber: 30
                     },
                     __self: this,
                     children: "myFlix"
@@ -40864,7 +40869,7 @@ function NavbarView({ user  }) {
                     "aria-controls": "responsive-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                        lineNumber: 30
+                        lineNumber: 31
                     },
                     __self: this
                 }),
@@ -40872,14 +40877,14 @@ function NavbarView({ user  }) {
                     id: "responsive-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                        lineNumber: 31
+                        lineNumber: 32
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
                         className: "ml-auto",
                         __source: {
                             fileName: "src/components/navbar-view/navbar-view.jsx",
-                            lineNumber: 32
+                            lineNumber: 33
                         },
                         __self: this,
                         children: [
@@ -40887,7 +40892,7 @@ function NavbarView({ user  }) {
                                 href: `/users/${user}`,
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 35
+                                    lineNumber: 36
                                 },
                                 __self: this,
                                 children: user
@@ -40899,7 +40904,7 @@ function NavbarView({ user  }) {
                                 },
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 38
+                                    lineNumber: 39
                                 },
                                 __self: this,
                                 children: "Logout"
@@ -40908,7 +40913,7 @@ function NavbarView({ user  }) {
                                 href: "/register",
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 41
+                                    lineNumber: 42
                                 },
                                 __self: this,
                                 children: "I'm new, sign me up!"
@@ -40917,7 +40922,7 @@ function NavbarView({ user  }) {
                                 href: "/",
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 44
+                                    lineNumber: 45
                                 },
                                 __self: this,
                                 children: "Sign-in"
@@ -40928,8 +40933,12 @@ function NavbarView({ user  }) {
             ]
         })
     })); //end return
-}
+} // end NavbarView
 _c = NavbarView;
+NavbarView.propTypes = {
+    user: _propTypesDefault.default.string
+};
+exports.default = NavbarView;
 var _c;
 $RefreshReg$(_c, "NavbarView");
 
@@ -40938,7 +40947,7 @@ $RefreshReg$(_c, "NavbarView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","./navbar-view.scss":"eDP1C","react-bootstrap":"h2YVd","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu"}],"eDP1C":[function() {},{}],"ck15y":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","./navbar-view.scss":"eDP1C","react-bootstrap":"h2YVd","@parcel/transformer-js/src/esmodule-helpers.js":"953P9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"iEXdu","prop-types":"1tgq3"}],"eDP1C":[function() {},{}],"ck15y":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$f8cc = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

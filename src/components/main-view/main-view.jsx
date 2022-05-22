@@ -15,7 +15,7 @@ import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 //import { MovieCard } from '../movie-card/movie-card'; //MovieCard will be imported and used in the MoviesList component rather than here. Once it works, DELETE this line
 import { MovieView } from '../movie-view/movie-view';
-import { NavbarView } from '../navbar-view/navbar-view';
+import NavbarView from '../navbar-view/navbar-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view'
 import { ProfileView } from "../profile-view/profile-view";
@@ -90,23 +90,23 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
   onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.setState({
-      user: null
-    });
+    localStorage.removeItem('favorites');
+    // this.setState({
+    //   user: null
+    // });
+    this.props.setUser(null);
+    this.props.setMovies(null);
     console.log(`user is now: ${user}`)
+    console.log(`movies is now: ${movies}`);
   }
 
   //display the desired visual output to the UI
   render() {
     //const { movies, user } = this.state; //this will no longer be needed - we'll use this.props intead. Once that works, DELETE this line
     let { movies, user } = this.props;
-    //let { user } = this.state; //DELETE this line once the above line works (as this.props instead of this.state)
+    let localStorageUser = localStorage.getItem('user'); //temp solution for checking if (user) exists in local storage, because user could be null in the few moments prior to SET_USER running and updating the state. TODO - find a way to wait and only check for (user) AFTER 'SET_USER' action has been dispatched and the state is updated
 
-    /* Last MAJOR todo - fix routing / redirecting between LoginView and RegistrationView. For time being, I am commenting/uncommenting the lines below to immediately render those views so I can build out the basic functionality in the meantime */
-    // return <RegistrationView /> /* UNCOMMENT FOR TESTING ONLY */
-    // return <ProfileView /> /* UNCOMMENT FOR TESTING ONLY */
-
-    /* This block below is what caused all the errors I was having using <Link> in RegistrationView and LoginView...and was preventing my '/registration' endpoint from ever rendering. Uncommenting for now - TODO - fix it! */
+    /* This block below is what caused all the errors I was having using <Link> in RegistrationView and LoginView...and was preventing my '/registration' endpoint from ever rendering. Commenting out for now - TODO - fix it! */
     // if (!user)
     //   return (
     //     <Row>
@@ -170,7 +170,7 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
             <Route path={`/users/${user}`}
               render={({ history }) => {
                 console.log(`user is currently: ${user}`);
-                //  if (!user) return <Redirect to="/" /> //TODO - figure out why when clicking on the Navbar link (user's name) to get to the profile, user = null (and I am redirected to '/'). Once that is resolved, uncomment this line and delete the comment
+                if ((!user) && (!localStorageUser)) return <Redirect to="/" /> //TODO - figure out why when clicking on the Navbar link (user's name) to get to the profile, user = null (and I am redirected to '/'). Once that is resolved, uncomment this line and delete the comment
                 return <Col>
                   <ProfileView
                     user={user}
