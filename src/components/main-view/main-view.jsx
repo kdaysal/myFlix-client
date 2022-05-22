@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios'; //this will allow me to perform ajax operations. Axios will fetch the movies, then I'll set the 'state' of movies using this.setState
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
@@ -184,6 +185,10 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
 } //end class MainView
 
 //TODO here - define MainView.propTypes
+MainView.propTypes = {
+  movies: PropTypes.array.isRequired,
+  user: PropTypes.string.isRequired
+};
 
 //this gets the state from the store, and passes it as a prop to the component that is connected to the store - instead of the component accessing the state directly
 //i.e. we are mapping the state to the props of the MainView component

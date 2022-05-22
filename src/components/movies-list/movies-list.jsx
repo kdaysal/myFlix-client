@@ -3,6 +3,7 @@ import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 import { MovieCard } from '../movie-card/movie-card';
+import PropTypes from 'prop-types';
 
 const mapStateToProps = state => {
     const { visibilityFilter } = state;
@@ -30,6 +31,11 @@ function MoviesList(props) {
         ))}
     </>;
 }
+
+MoviesList.propTypes = {
+    movies: PropTypes.array.isRequired,
+    visibilityFilter: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps)(MoviesList); //this connects the MoviesList component to the store, but it only receives the first argument (mapStateToProps).
 
