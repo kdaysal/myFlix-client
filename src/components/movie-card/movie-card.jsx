@@ -1,36 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
+import './movie-card.scss';
+import { Link } from "react-router-dom";
 
 //creating/exporting a MovieCard component
 //having granular components like this makes it easier to reuse these smaller components in different parts of the UI
-export class MovieCard extends React.Component { //(just for sake of example...) here there is no 'default' after 'export', so I'll need to enclose 'MovieCard' in {curly braces} in any import statement.
+export class MovieCard extends React.Component {
+  render() {
+    const { movie } = this.props; //accessing (extracting) the passed data via 'props' property ('movie' is the name of the prop used in the return statement in MainView... <MovieCard ...movie={movie}... />)
 
-    //There are 2 props in the code below: one object ('movieData') and one function ('onMovieClick')
-    render() {
-        const { movieData, onMovieClick } = this.props; //accessing (extracting) the passed data via 'props' property ('movieData' is the name of the prop used in the return statement in MainView... <MovieCard ...movieData={movie}... />)
-
-        return <div className="movie-card" onClick={() => { onMovieClick(movieData); }}>{movieData.Title}</div>;
-    }
+    //replaced JSX elements below with 'Card'-related Boostrap components
+    return (
+      <Card className="movie-card bg-dark text-white">
+        <Card.Img variant="top" src={movie.ImagePath} />
+        <Card.Body>
+          <Card.Title>{movie.Title}</Card.Title>
+          <Link to={`/movies/${movie._id}`}>
+            <Button variant="link">Open</Button>
+          </Link>
+        </Card.Body>
+      </Card>
+    );
+  }
 }
 
 //As props transmit data between comonents, 'propTypes' validate the data types based on the app's configuration
 //This sets the static 'propTypes' property on 'MovieCard' to an object containing special value provided as utilities by 'prop-types'
 MovieCard.propTypes = {
-    movieData: PropTypes.shape({ //'shape({...})' means it is an object, and the '.isRequired' means this object IS required
-        Title: PropTypes.string.isRequired, //the 'movieData' object MAY contain a Title, and if it does, it MUST be of type 'string'
-        Description: PropTypes.string.isRequired,
-        ImagePath: PropTypes.string.isRequired,
-        Featured: PropTypes.bool,
-        Genre: PropTypes.shape({
-            Name: PropTypes.string.isRequired,
-            Description: PropTypes.string.isRequired
-        }),
-        Director: PropTypes.shape({
-            Name: PropTypes.string.isRequired,
-            Bio: PropTypes.string.isRequired,
-            Birth: PropTypes.string.isRequired,
-            Death: PropTypes.string
-        })
-    }).isRequired,
-    onMovieClick: PropTypes.func.isRequired //'onMovieClick' MUST be a function and IS required
+  movie: PropTypes.shape({ //'shape({...})' means it is an object, and the '.isRequired' means this object IS required
+    Title: PropTypes.string.isRequired, //the 'movie' object MAY contain a Title, and if it does, it MUST be of type 'string'
+    Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+    Featured: PropTypes.bool,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired
+    }),
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+      Birth: PropTypes.string.isRequired,
+      Death: PropTypes.string
+    })
+  }).isRequired,
+  //onMovieClick: PropTypes.func.isRequired //'onMovieClick' MUST be a function and IS required
 };
