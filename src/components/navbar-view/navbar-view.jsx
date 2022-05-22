@@ -30,8 +30,11 @@ function NavbarView({ user }) {
                 <Navbar.Brand className="navbar-logo" id='my-flix-title' href="/">myFlix</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="ml-auto">
+                    <Nav className="ml-auto" id="nav-links">
                         { /* Hide Sign Up if token exists */}
+                        {isAuth() && (
+                            <Nav.Link href={`/`}>All Movies</Nav.Link>
+                        )}
                         {isAuth() && (
                             <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>
                         )}

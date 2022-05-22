@@ -40,6 +40,10 @@ html {
   color: hsla(57deg, 81%, 54%, 0.9);
 }
 
+#nav-links {
+  font-size: 150%;
+}
+
 
 .profile-card {
   margin-top: 15px;

@@ -40880,6 +40880,7 @@ function NavbarView({ user  }) {
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
                         className: "ml-auto",
+                        id: "nav-links",
                         __source: {
                             fileName: "src/components/navbar-view/navbar-view.jsx",
                             lineNumber: 33
@@ -40887,10 +40888,19 @@ function NavbarView({ user  }) {
                         __self: this,
                         children: [
                             isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                                href: `/users/${user}`,
+                                href: `/`,
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
                                     lineNumber: 36
+                                },
+                                __self: this,
+                                children: "All Movies"
+                            }),
+                            isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                                href: `/users/${user}`,
+                                __source: {
+                                    fileName: "src/components/navbar-view/navbar-view.jsx",
+                                    lineNumber: 39
                                 },
                                 __self: this,
                                 children: user
@@ -40902,7 +40912,7 @@ function NavbarView({ user  }) {
                                 },
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 39
+                                    lineNumber: 42
                                 },
                                 __self: this,
                                 children: "Logout"
@@ -40911,7 +40921,7 @@ function NavbarView({ user  }) {
                                 href: "/register",
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 42
+                                    lineNumber: 45
                                 },
                                 __self: this,
                                 children: "I'm new, sign me up!"
@@ -40920,7 +40930,7 @@ function NavbarView({ user  }) {
                                 href: "/",
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 45
+                                    lineNumber: 48
                                 },
                                 __self: this,
                                 children: "Sign-in"
