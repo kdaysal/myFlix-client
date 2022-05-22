@@ -21,6 +21,7 @@ export class ProfileView extends React.Component {
         this.setUsername = this.setUsername.bind(this); //bind statement is needed in Constructor or else it won't work
         this.setPassword = this.setPassword.bind(this);
         this.setEmail = this.setEmail.bind(this);
+        this.setBirthDate = this.setBirthDate.bind(this);
         this.removeFavorite = this.removeFavorite.bind(this);
     }
 
@@ -72,7 +73,8 @@ export class ProfileView extends React.Component {
             {
               Username: this.state.Username,
               Password: this.state.Password,
-              Email: this.state.Email
+              Email: this.state.Email,
+              BirthDate: this.state.BirthDate
             },
             { headers: { Authorization: `Bearer ${token}` } }
           )
@@ -80,7 +82,8 @@ export class ProfileView extends React.Component {
             this.setState({
               Username: response.data.Username,
               Password: response.data.Password,
-              Email: response.data.Email
+              Email: response.data.Email,
+              BirthDate: response.data.BirthDate
             });
             localStorage.setItem("user", this.state.Username);
             alert("profile updated successfully!");
@@ -110,6 +113,14 @@ export class ProfileView extends React.Component {
           });
       console.log(`New Email: ${email.target.value}`)
     }
+
+    setBirthDate(date){
+      //WIP
+      this.setState({
+          BirthDate: date.target.value
+        });
+    console.log(`New BirthDate: ${date.target.value}`)
+  }
 
 removeFavorite(movieId){
   console.log(`removing this movie from user's favorites`) //WIP
@@ -276,7 +287,6 @@ removeFavorite(movieId){
                                 <Form.Control
                                 type="text"
                                 onChange={this.setUsername}
-                                required
                                 placeholder="Create a NEW username"
                                 />
                             </Form.Group>
@@ -286,7 +296,6 @@ removeFavorite(movieId){
                                 <Form.Control 
                                 type="password"
                                 onChange={this.setPassword}
-                                required
                                 placeholder="Enter a NEW password"
                                 />
                             </Form.Group>
@@ -296,8 +305,15 @@ removeFavorite(movieId){
                                 <Form.Control 
                                 type="email"
                                 onChange={this.setEmail}
-                                required
                                 placeholder="Enter your NEW email"
+                                />
+                            </Form.Group>
+                  <br></br>
+                            <Form.Group controlId="formEmail">
+                              <Form.Label>Birthday:</Form.Label>
+                                <Form.Control 
+                                type="date"
+                                onChange={this.setBirthDate}
                                 />
                             </Form.Group>
                   <br></br>
