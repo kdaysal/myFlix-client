@@ -1,8 +1,9 @@
 import React from 'react';
 import './navbar-view.scss';
-import { Navbar, Container, Nav, Button, NavbarBrand } from 'react-bootstrap';
+import { Navbar, Container, Nav, Button, } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
-export function NavbarView({ user }) {
+function NavbarView({ user }) {
 
     //Sign Out method
     const onLoggedOut = () => {
@@ -50,4 +51,9 @@ export function NavbarView({ user }) {
     )//end return
 } // end NavbarView
 
+NavbarView.propTypes = {
+    user: PropTypes.string,
+};
+
+export default NavbarView;
 
