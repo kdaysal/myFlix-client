@@ -22359,15 +22359,14 @@ class MainView extends _reactDefault.default.Component {
                             }),
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
                                 path: `/users/${user}`,
-                                render: ({ match , history  })=>{
-                                    if (!user) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Redirect, {
-                                        to: "/"
-                                    }));
+                                render: ({ history  })=>{
+                                    console.log(`user is currently: ${user}`);
+                                    //  if (!user) return <Redirect to="/" /> //TODO - figure out why when clicking on the Navbar link (user's name) to get to the profile, user = null (and I am redirected to '/'). Once that is resolved, uncomment this line and delete the comment
                                     return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_profileView.ProfileView, {
+                                            user: user,
                                             history: history,
                                             movies: movies,
-                                            user: user,
                                             onBackClick: ()=>history.goBack()
                                         })
                                     }));
@@ -22393,7 +22392,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 181
+                                    lineNumber: 182
                                 },
                                 __self: this
                             })

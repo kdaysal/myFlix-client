@@ -168,13 +168,14 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
               </Col>
             }} />
             <Route path={`/users/${user}`}
-              render={({ match, history }) => {
-                if (!user) return <Redirect to="/" />
+              render={({ history }) => {
+                console.log(`user is currently: ${user}`);
+                //  if (!user) return <Redirect to="/" /> //TODO - figure out why when clicking on the Navbar link (user's name) to get to the profile, user = null (and I am redirected to '/'). Once that is resolved, uncomment this line and delete the comment
                 return <Col>
                   <ProfileView
+                    user={user}
                     history={history}
                     movies={movies}
-                    user={user}
                     onBackClick={() => history.goBack()} />
                 </Col>
               }} />
