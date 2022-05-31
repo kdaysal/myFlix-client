@@ -58849,7 +58849,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onChange: this.setEmail,
         placeholder: "Enter your NEW email"
       })), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formEmail"
+        controlId: "formBirthDate"
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
         type: "date",
         onChange: this.setBirthDate
@@ -59396,7 +59396,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51703" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52834" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

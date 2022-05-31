@@ -309,7 +309,7 @@ removeFavorite(movieId){
                                 />
                             </Form.Group>
                   <br></br>
-                            <Form.Group controlId="formEmail">
+                            <Form.Group controlId="formBirthDate">
                               <Form.Label>Birthday:</Form.Label>
                                 <Form.Control 
                                 type="date"
