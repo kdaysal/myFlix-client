@@ -1,4 +1,5 @@
 # myFlix-Client
+Hosted on Netlify at: https://kdaysal-myflixapp.netlify.app
 
 # Description
 This repo will house the client-side code of a Single Page Application called 'myFlix', which builds upon pre-existing server-side code written as a REST API and hosted online as a MongoAtlas database.
