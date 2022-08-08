@@ -2,12 +2,19 @@
 Hosted on Netlify at: https://kdaysal-myflixapp.netlify.app
 
 ## Description
-This repo will house the client-side code of a Single Page Application called 'myFlix', which builds upon pre-existing server-side code written as a REST API and hosted online as a MongoAtlas database.
+This repo will house the client-side code of a Single Page Application called 'myFlix', which builds upon pre-existing server-side code written as a REST API and hosted online using MongoAtlas.
 
 ## Purpose
-* Provide users with a way to easily access basic information about popular movies, genres, and directors so they can learn a little more about movies that they might want to see.
+* Using react, build the client-side for the myFlix application to provide users with a way to easily access basic information about popular movies, genres, and directors so they can learn more about movies that they might want to see later.
 
-* Allow users to create a profile for the purpose of 'favoriting' (saving) movies that they are interested in, and persist this data between session logins so they don't lose the movies that they've marked as favorites.
+* Allow users to create a profile for the purpose of 'favoriting' (saving) movies that they are interested in, and persist this data between different sessions so users won't lose the movies that they had previously marked as favorites.
+
+## User Stories
+
+* As a user, I want to be able to access information on movies, directors, and genres so that I
+can learn more about movies I’ve watched or am interested in
+
+* As a user, I want to be able to create a profile so I can save data about my favorite movies.
 
 ## Features / Views
 ### Main-View
@@ -91,21 +98,32 @@ This repo will house the client-side code of a Single Page Application called 'm
 
 * Provide users with a button to unregister / completely delete their myflix user profile
 
-## Technologies utilized in this build
+## Technologies / strategies used in this project
 
-* React (framework)
+* React 17.0.2 - framework
+    * react-dom
+    * react-router-dom
+    * react-bootstrap - used as a library for styling
 
-* React-Bootstrap (library/styling)
+* Axios - JS package used to perform ajax operations (i.e. hooking up my API to render the correct data)
 
-* Redux (pattern/library for managing and updating application state)
+* MVC architecture - was used during initial design considerations
 
-* React-Bootstrap (library/styling)
+* Flux - final design pattern used following implementation of Redux
 
-* Parcel (web application bundler)
+* NPM - chosen tool for managing packages / dependencies
 
-* Axios (js library for making HTTP requests)
+* [Parcel](https://parceljs.org/) - web application bundler
 
-* Scss (for styling)
+* [Babel-parser](https://github.com/babel/babel/tree/master/packages/babel-parser) - for transpiling
+
+* Authentication tools
+    * HTTP authentication - for logging in users
+    * JWT - token-based authentication for subsequent requests against my API endpoints 
+
+* [React-Redux](https://react-redux.js.org/) - final design pattern utilized in this application for managing and updating application state
+
+* Scss - for styling
 
 * Javascript / ES6
 
