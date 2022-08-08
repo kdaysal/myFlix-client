@@ -10,7 +10,7 @@ This repo will house the client-side code of a Single Page Application called 'm
 * Allow users to create a profile for the purpose of 'favoriting' (saving) movies that they are interested in, and persist this data between session logins so they don't lose the movies that they've marked as favorites.
 
 ## Features / Views
-Main-View
+### Main-View
 <p float="center">
   <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/Portfolio-POSTER-myFlixApp.png" width="400" />
 </p>
@@ -22,7 +22,7 @@ Main-View
 * Users can click on the 'open' link, which is provided on every movie card, to see more details about a particular movie.
 
 
-Movie-View
+### Movie-View
 <p float="center">
   <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/3-movie-view.png" width="400" />
 </p>
@@ -38,7 +38,7 @@ Movie-View
 * Provide a 'Go Back' button to take users back to the previous page they came from
 
 
-Login-View
+### Login-View
 <p float="center">
   <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/6-login-view.png" width="400" />
 </p>
@@ -50,7 +50,7 @@ Login-View
 * Allows new users to register (username, password, email, birthday)
 
 
-Genre-View
+### Genre-View
 <p float="center">
   <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/4-genre-view.png" width="400" />
 </p>
@@ -62,7 +62,7 @@ Genre-View
 * Provide a 'Go Back' button to take users back to the previous page they came from
 
 
-Director-View
+### Director-View
 <p float="center">
   <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/5-director-view.png" width="400" />
 </p>
@@ -74,7 +74,7 @@ Director-View
 * Provide a 'Go Back' button to take users back to the previous page they came from
 
 
-Profile-View
+### Profile-View
 <p float="center">
   <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/2-myflix.png" width="400" />
 </p>
