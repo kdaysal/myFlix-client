@@ -1,22 +1,24 @@
 # myFlix-Client
 Hosted on Netlify at: https://kdaysal-myflixapp.netlify.app
 
-# Description
+## Description
 This repo will house the client-side code of a Single Page Application called 'myFlix', which builds upon pre-existing server-side code written as a REST API and hosted online as a MongoAtlas database.
 
-# Purpose
-<ul>
-  <li>Provide users with a way to easily access basic information about popular movies, genres, and directors so they can learn a little more about movies that they might want to see.</li>
-  <li>Allow users to create a profile for the purpose of 'favoriting' (saving) movies that they are interested in, and persist this data between session logins so they don't lose the movies that they've marked as favorites.</li>
-</ul>
+## Purpose
+* Provide users with a way to easily access basic information about popular movies, genres, and directors so they can learn a little more about movies that they might want to see.
 
-# Features / Views
+* Allow users to create a profile for the purpose of 'favoriting' (saving) movies that they are interested in, and persist this data between session logins so they don't lose the movies that they've marked as favorites.
+
+
+## Features / Views
 Main-View
-<ul>
-<li>After successful user login, return a list of ALL movies to the user which includes a movie poster (image), the movie title, and a clickable 'open' link to learn more about the movie.</li>
-<li>Give users the ability to filter the display of movies on the home page by searching for a particular movie title (via a 'filter' text box).</li>
-<li>Users can click on the 'open' link, which is provided on every movie card, to see more details about a particular movie.</li>
-</ul>
+
+* After successful user login, return a list of ALL movies to the user which includes a movie poster (image), the movie title, and a clickable 'open' link to learn more about the movie.
+
+* Give users the ability to filter the display of movies on the home page by searching for a particular movie title (via a 'filter' text box).
+
+* Users can click on the 'open' link, which is provided on every movie card, to see more details about a particular movie.
+
 Movie-View
 <ul>
 <li>Display more granular details about a user-selected movie, including the poster image, title, description, genre, and director</li>
