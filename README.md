@@ -9,7 +9,6 @@ This repo will house the client-side code of a Single Page Application called 'm
 
 * Allow users to create a profile for the purpose of 'favoriting' (saving) movies that they are interested in, and persist this data between session logins so they don't lose the movies that they've marked as favorites.
 
-
 ## Features / Views
 Main-View
 
@@ -19,59 +18,83 @@ Main-View
 
 * Users can click on the 'open' link, which is provided on every movie card, to see more details about a particular movie.
 
+
 Movie-View
-<ul>
-<li>Display more granular details about a user-selected movie, including the poster image, title, description, genre, and director</li>
-<li>Provide a 'Add to Favorites' button that users can click to instantly add this movie to their list of favorites</li>
-<li>Provide a link that users can click on to learn more about the genre of this movie</li>
-<li>Provide a link that users can click on go back to the home page and browse more movies</li>
-<li>Provide a 'Go Back' button to take users back to the previous page they came from</li>
-</ul>
+
+* Display more granular details about a user-selected movie, including the poster image, title, description, genre, and director
+
+* Provide a 'Add to Favorites' button that users can click to instantly add this movie to their list of favorites
+
+* Provide a link that users can click on to learn more about the genre of this movie
+
+* Provide a link that users can click on go back to the home page and browse more movies
+
+* Provide a 'Go Back' button to take users back to the previous page they came from
+
+
 Login-View
-<ul>
-<li>Allows users to log in with a username and password</li>
-<li>Access registration view</li>
-<li>Allows new users to register (username, password, email, birthday)</li>
-</ul>
+
+* Allows users to log in with a username and password
+
+* Access registration view
+
+* Allows new users to register (username, password, email, birthday)
+
+
 Genre-View
-<ul>
-<li>Display more granular details about the genre of a user-selected movie, including Genre Description</li>
-<li>Display 'Related-movies', which are all movies in the database that have this same user-selected genre</li>
-<li>Provide a 'Go Back' button to take users back to the previous page they came from</li>
-</ul>
-</ul>
+
+* Display more granular details about the genre of a user-selected movie, including Genre Description
+
+* Display 'Related-movies', which are all movies in the database that have this same user-selected genre
+
+* Provide a 'Go Back' button to take users back to the previous page they came from
+
+
 Director-View
-<ul>
-<li>Display more granular details about the director of a user-selected movie, including Director Name, Bio, Birth Date, and Death Date (if applicable)</li>
-<li>Display 'Related-movies', which are all movies in the database that have this same user-selected Director</li>
-<li>Provide a 'Go Back' button to take users back to the previous page they came from</li>
-</ul>
+
+* Display more granular details about the director of a user-selected movie, including Director Name, Bio, Birth Date, and Death Date (if applicable)
+
+* Display 'Related-movies', which are all movies in the database that have this same user-selected Director
+
+* Provide a 'Go Back' button to take users back to the previous page they came from
+
+
 Profile-View
-<ul>
-<li>Display current user info as returned from the database, including Username, Email, and Birthday</li>
-<li>If the user does not have any movies in their favorites list, provide them a link to 'Browse more flix!'</li>
-<li>If the user does have movies in their favorites list, display Movie Cards of their favorite movies (movie poster, title, and a link to see more 'Movie Details'</li>
-<li>Provide users with a button to 'Unfavorite' movies that are in their favorites list</li>
-<li>Provide users with a form to update any of their existing user-info (Username, Password, Email, Birthday)</li>
-<li>Provide users with a button to unregister / completely delete their myflix user profile</li>
-</ul>
+
+* Display current user info as returned from the database, including Username, Email, and Birthday
+
+* If the user does not have any movies in their favorites list, provide them a link to 'Browse more flix!'
+
+* If the user does have movies in their favorites list, display Movie Cards of their favorite movies (movie poster, title, and a link to see more 'Movie Details'
+
+* Provide users with a button to 'Unfavorite' movies that are in their favorites list
+
+* Provide users with a form to update any of their existing user-info (Username, Password, Email, Birthday)
+
+* Provide users with a button to unregister / completely delete their myflix user profile
 
 ## Technologies utilized in this build
-<ul>
-<li>React (framework)</li>
-<li>React-Bootstrap (library/styling)</li>
-<li>Redux (pattern/library for managing and updating application state)</li>
-<li>React-Bootstrap (library/styling)</li>
-<li>Parcel (web application bundler)</li>
-<li>Axios (js library for making HTTP requests)</li>
-<li>Scss (for styling)</li>
-<li>Javascript / ES6</li>
-</ul>
+
+* React (framework)
+
+* React-Bootstrap (library/styling)
+
+* Redux (pattern/library for managing and updating application state)
+
+* React-Bootstrap (library/styling)
+
+* Parcel (web application bundler)
+
+* Axios (js library for making HTTP requests)
+
+* Scss (for styling)
+
+* Javascript / ES6
 
 ## Steps to run this application locally
 ```
-Install Parcel v2.0+
-Clone this repository
-Navigate to the root folder of where you saved the files, then in Powershell/Terminal type: parcel src/index.html
-Open a web browser to the localhost output from parcel (localhost:1234)
+* Install Parcel v2.0+
+* Clone this repository
+* Navigate to the root folder of where you saved the files, then in Powershell/Terminal type: parcel src/index.html
+* Open a web browser to the localhost output from parcel (localhost:1234)
 ```
