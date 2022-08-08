@@ -11,6 +11,9 @@ This repo will house the client-side code of a Single Page Application called 'm
 
 ## Features / Views
 Main-View
+<p float="center">
+  <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/Portfolio-POSTER-myFlixApp.png" width="400" />
+</p>
 
 * After successful user login, return a list of ALL movies to the user which includes a movie poster (image), the movie title, and a clickable 'open' link to learn more about the movie.
 
@@ -20,6 +23,9 @@ Main-View
 
 
 Movie-View
+<p float="center">
+  <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/3-movie-view.png" width="400" />
+</p>
 
 * Display more granular details about a user-selected movie, including the poster image, title, description, genre, and director
 
@@ -33,6 +39,9 @@ Movie-View
 
 
 Login-View
+<p float="center">
+  <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/6-login-view.png" width="400" />
+</p>
 
 * Allows users to log in with a username and password
 
@@ -42,6 +51,9 @@ Login-View
 
 
 Genre-View
+<p float="center">
+  <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/4-genre-view.png" width="400" />
+</p>
 
 * Display more granular details about the genre of a user-selected movie, including Genre Description
 
@@ -51,6 +63,9 @@ Genre-View
 
 
 Director-View
+<p float="center">
+  <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/5-director-view.png" width="400" />
+</p>
 
 * Display more granular details about the director of a user-selected movie, including Director Name, Bio, Birth Date, and Death Date (if applicable)
 
@@ -60,6 +75,9 @@ Director-View
 
 
 Profile-View
+<p float="center">
+  <img src="https://github.com/kdaysal/myFlix-client/blob/task-3.8-v1/img/2-myflix.png" width="400" />
+</p>
 
 * Display current user info as returned from the database, including Username, Email, and Birthday
 
