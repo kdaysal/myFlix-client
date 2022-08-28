@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Container, Nav, Button, } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './navbar-view.scss';
+import { Link } from "react-router-dom";
 
 function NavbarView({ user }) {
 
@@ -30,22 +31,22 @@ function NavbarView({ user }) {
                 <Navbar.Brand className="navbar-logo" id='my-flix-title' href="/">myFlix</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="ml-auto" id="nav-links">
+                    <Nav className="ml-auto nav-links">
                         { /* Hide Sign Up if token exists */}
                         {isAuth() && (
-                            <Nav.Link href={`/`}>All Movies</Nav.Link>
+                            <Link className="nav-link-item" to={`/`}>All Movies</Link>
                         )}
                         {isAuth() && (
-                            <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>
+                            <Link className="nav-link-item" to={`/users/${user}`}>{user}</Link>
                         )}
                         {isAuth() && (
-                            <Button variant="primary" onClick={() => { onLoggedOut() }}>Logout</Button>
+                            <Button id="logout-btn" variant="primary" onClick={() => { onLoggedOut() }}>Logout</Button>
                         )}
                         {!isAuth() && (
-                            <Nav.Link href="/register">I'm new, sign me up!</Nav.Link>
+                            <Link className="nav-link-item" to="/register">I'm new, sign me up!</Link>
                         )}
                         {!isAuth() && (
-                            <Nav.Link href="/">Sign-in</Nav.Link>
+                            <Link className="nav-link-item" to="/">Sign-in</Link>
                         )}
                     </Nav>
                 </Navbar.Collapse>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"; //useState and useEffect were for when I was trying to build this as a function component...may end up removing this, as that was not working out well :)
 import axios from "axios";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import PropTypes from "prop-types";
+//import { HashRouter as Router, Route, Redirect } from "react-router-dom";
+//import PropTypes from "prop-types";
 import { Link } from "react-router-dom"; //WIP (not used yet)
 import { Container, Row, Col, Card, CardGroup, Form, FormGroup, FormControl, Button } from "react-bootstrap"; //might not end up using all of these - remove later for any not used
-import { LoginView } from "../login-view/login-view";
+//import { LoginView } from "../login-view/login-view";
 import './profile-view.scss';
 
 export class ProfileView extends React.Component {

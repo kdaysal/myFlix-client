@@ -4,6 +4,17 @@
     color: hsla(57, 81%, 54%, 0.9);
 }
 
-#nav-links {
+.nav-links {
     font-size: 150%;
+}
+
+.nav-link-item {
+    color: white;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 15px;
+}
+
+#logout-btn {
+    max-width: 100px;
 }

@@ -32373,7 +32373,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _extends;
 
 function _extends() {
-  exports.default = _extends = Object.assign || function (target) {
+  exports.default = _extends = Object.assign ? Object.assign.bind() : function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
 
@@ -32386,7 +32386,6 @@ function _extends() {
 
     return target;
   };
-
   return _extends.apply(this, arguments);
 }
 },{}],"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
@@ -37356,11 +37355,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _setPrototypeOf;
 
 function _setPrototypeOf(o, p) {
-  exports.default = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+  exports.default = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
-
   return _setPrototypeOf(o, p);
 }
 },{}],"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":[function(require,module,exports) {
@@ -58215,6 +58213,8 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 require("./navbar-view.scss");
 
+var _reactRouterDom = require("react-router-dom");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function NavbarView(_ref) {
@@ -58256,21 +58256,25 @@ function NavbarView(_ref) {
   }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar.Collapse, {
     id: "responsive-navbar-nav"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav, {
-    className: "ml-auto",
-    id: "nav-links"
-  }, isAuth() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
-    href: "/"
-  }, "All Movies"), isAuth() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
-    href: "/users/".concat(user)
+    className: "ml-auto nav-links"
+  }, isAuth() && /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "nav-link-item",
+    to: "/"
+  }, "All Movies"), isAuth() && /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "nav-link-item",
+    to: "/users/".concat(user)
   }, user), isAuth() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+    id: "logout-btn",
     variant: "primary",
     onClick: function onClick() {
       onLoggedOut();
     }
-  }, "Logout"), !isAuth() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
-    href: "/register"
-  }, "I'm new, sign me up!"), !isAuth() && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
-    href: "/"
+  }, "Logout"), !isAuth() && /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "nav-link-item",
+    to: "/register"
+  }, "I'm new, sign me up!"), !isAuth() && /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "nav-link-item",
+    to: "/"
   }, "Sign-in"))))); //end return
 } // end NavbarView
 
@@ -58280,7 +58284,7 @@ NavbarView.propTypes = {
 };
 var _default = NavbarView;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","prop-types":"../node_modules/prop-types/index.js","./navbar-view.scss":"components/navbar-view/navbar-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","prop-types":"../node_modules/prop-types/index.js","./navbar-view.scss":"components/navbar-view/navbar-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -58516,11 +58520,7 @@ var _axios = _interopRequireDefault(require("axios"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
 var _reactBootstrap = require("react-bootstrap");
-
-var _loginView = require("../login-view/login-view");
 
 require("./profile-view.scss");
 
@@ -58911,7 +58911,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
 
 exports.ProfileView = ProfileView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../login-view/login-view":"components/login-view/login-view.jsx","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -59103,7 +59103,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           user = _this$props.user;
       var localStorageUser = localStorage.getItem('user'); //temp solution for checking if (user) exists in local storage, because user could be null in the few moments prior to SET_USER running and updating the state. TODO - find a way to wait and only check for (user) AFTER 'SET_USER' action has been dispatched and the state is updated
 
-      return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_navbarView.default, {
+      return /*#__PURE__*/_react.default.createElement(_reactRouterDom.HashRouter, {
+        hashType: "hashbang"
+      }, /*#__PURE__*/_react.default.createElement(_navbarView.default, {
         user: user
       }), /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "main-view justify-content-md-center"
@@ -59111,6 +59113,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/",
         render: function render() {
+          console.log("main-view reached at path=\"/\"");
           if (!user) return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
               return _this3.onLoggedIn(user);
@@ -59206,7 +59209,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/users/".concat(user),
         render: function render(_ref4) {
-          var history = _ref4.history;
+          var match = _ref4.match,
+              history = _ref4.history;
+          console.log("route \"/users/".concat(user, "\" reached"));
           console.log("user is currently: ".concat(user));
           if (!user && !localStorageUser) return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
             to: "/"
@@ -59396,7 +59401,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55489" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60074" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

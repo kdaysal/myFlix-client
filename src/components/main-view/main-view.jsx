@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios'; //this will allow me to perform ajax operations. Axios will fetch the movies, then I'll set the 'state' of movies using this.setState
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { HashRouter as Router, Route, Redirect, HashRouter } from "react-router-dom";
 
 import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list'; //haven't written this one yet
@@ -108,11 +108,12 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
     let localStorageUser = localStorage.getItem('user'); //temp solution for checking if (user) exists in local storage, because user could be null in the few moments prior to SET_USER running and updating the state. TODO - find a way to wait and only check for (user) AFTER 'SET_USER' action has been dispatched and the state is updated
 
     return (
-      <Router>
+      <HashRouter hashType="hashbang">
         <NavbarView user={user} />
         <Container>
           <Row className="main-view justify-content-md-center">
             <Route exact path="/" render={() => {
+              console.log(`main-view reached at path="/"`);
               if (!user)
                 return (
                   <Col>
@@ -157,7 +158,8 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
               </Col>
             }} />
             <Route path={`/users/${user}`}
-              render={({ history }) => {
+              render={({ match, history }) => {
+                console.log(`route "/users/${user}" reached`);
                 console.log(`user is currently: ${user}`);
                 if ((!user) && (!localStorageUser)) return <Redirect to="/" /> //TODO - figure out why when clicking on the Navbar link (user's name) to get to the profile, user = null (and I am redirected to '/'). Once that is resolved, uncomment this line and delete the comment
                 return <Col>
@@ -179,7 +181,7 @@ class MainView extends React.Component { //by adding 'default', I won't need to 
               }} />
           </Row>
         </Container>
-      </Router>
+      </HashRouter>
     );
   } //end render()
 } //end class MainView
