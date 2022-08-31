@@ -57528,7 +57528,10 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
       //replaced JSX elements below with 'Card'-related Boostrap components
 
       return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, {
-        className: "movie-card bg-dark text-white"
+        className: "movie-card bg-dark text-white mt-5 ml-auto mr-auto",
+        style: {
+          width: '15rem'
+        }
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Img, {
         variant: "top",
         src: movie.ImagePath
@@ -57611,15 +57614,21 @@ function MoviesList(props) {
     className: "main-view"
   });
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Col.default, {
-    md: 12,
+    lg: 12,
     style: {
-      margin: '1em'
+      margin: '1em',
+      justifyContent: 'center',
+      textAlign: 'center',
+      alignItems: 'center'
     }
   }, /*#__PURE__*/_react.default.createElement(_visibilityFilterInput.default, {
     visibilityFilter: visibilityFilter
   })), filteredMovies.map(function (m) {
     return /*#__PURE__*/_react.default.createElement(_Col.default, {
-      md: 3,
+      xl: 3,
+      lg: 4,
+      md: 5,
+      sm: 12,
       key: m._id
     }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
       movie: m
@@ -59402,7 +59411,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63625" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53705" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
