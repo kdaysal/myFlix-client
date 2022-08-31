@@ -57616,10 +57616,7 @@ function MoviesList(props) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Col.default, {
     lg: 12,
     style: {
-      margin: '1em',
-      justifyContent: 'center',
-      textAlign: 'center',
-      alignItems: 'center'
+      margin: '1em'
     }
   }, /*#__PURE__*/_react.default.createElement(_visibilityFilterInput.default, {
     visibilityFilter: visibilityFilter
