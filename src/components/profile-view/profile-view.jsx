@@ -52,7 +52,7 @@ export class ProfileView extends React.Component {
                     Username: response.data.Username,
                     Password: response.data.Password,
                     Email: response.data.Email,
-                    BirthDate: response.data.BirthDate,
+                    BirthDate: response.data.BirthDate.substring(0,10), //using substring() to cut off the excess zeros from the date format so it is YYYY-MM-DD
                     FavoriteMovies: response.data.FavoriteMovies
                 });
             })

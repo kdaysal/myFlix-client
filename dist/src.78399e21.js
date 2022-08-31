@@ -58647,7 +58647,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Username: response.data.Username,
           Password: response.data.Password,
           Email: response.data.Email,
-          BirthDate: response.data.BirthDate,
+          BirthDate: response.data.BirthDate.substring(0, 10),
+          //using substring() to cut off the excess zeros from the date format so it is YYYY-MM-DD
           FavoriteMovies: response.data.FavoriteMovies
         });
       }).catch(function (error) {
@@ -59401,7 +59402,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60074" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63625" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
