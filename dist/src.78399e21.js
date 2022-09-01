@@ -58672,7 +58672,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "setPassword",
     value: function setPassword(password) {
-      //WIP
       console.log("New Password: ".concat(password.target.value));
       this.setState({
         Password: password.target.value
@@ -58681,7 +58680,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "setEmail",
     value: function setEmail(email) {
-      //WIP
       this.setState({
         Email: email.target.value
       });
@@ -58690,7 +58688,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "setBirthDate",
     value: function setBirthDate(date) {
-      //WIP
       this.setState({
         BirthDate: date.target.value
       });
@@ -58711,9 +58708,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         }
       }, {}).then(function (response) {
-        console.log(response);
-        alert("Movie deleted from favorites!");
-        window.open("/movies/".concat(movieId), "_self"); //using regex to find/replace (i.e. remove) all instances of this MovieId from local storage 'favorites'
+        console.log(response); //using regex to find/replace (i.e. remove) all instances of this MovieId from local storage 'favorites'
 
         var find = movieId;
         var re = new RegExp(find, 'g'); //regex to find the movieId (g=global)
@@ -58724,7 +58719,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
         localStorage.setItem('favorites', newCurrentFavorites); //update 'favorites' in local storage
 
-        window.open("/users/".concat(user), "_self"); //reopen (refresh) the profile view - if I don't do this, and if the user hits the 'back' button on the movie card after removing the movie, that movie will still show up in their favorites list
+        if (!alert('Movie deleted from your favorites!')) {
+          window.location.reload();
+        } //This allows for the prompt to be seen first (and OK button to be clicked) BEFORE reloading the page (to show that the unfavorited movie is now removed)
+
       }).catch(function (err) {
         return console.log(err);
       });
@@ -59408,7 +59406,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53705" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54464" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -99,7 +99,6 @@ export class ProfileView extends React.Component {
       }
 
       setPassword(password){
-          //WIP
         console.log(`New Password: ${password.target.value}`)
         this.setState({
             Password: password.target.value
@@ -107,7 +106,6 @@ export class ProfileView extends React.Component {
       }
 
       setEmail(email){
-        //WIP
         this.setState({
             Email: email.target.value
           });
@@ -115,7 +113,6 @@ export class ProfileView extends React.Component {
     }
 
     setBirthDate(date){
-      //WIP
       this.setState({
           BirthDate: date.target.value
         });
@@ -139,15 +136,14 @@ removeFavorite(movieId){
       )
       .then((response) => {
         console.log(response);
-        alert("Movie deleted from favorites!");
-        window.open(`/movies/${movieId}`, "_self");
+        
         //using regex to find/replace (i.e. remove) all instances of this MovieId from local storage 'favorites'
         let find = movieId;
         let re = new RegExp(find, 'g'); //regex to find the movieId (g=global)
         let newCurrentFavorites = currentFavorites.replace(re, ''); //replace all instances of this MovieId with ''
         console.log(`newCurrentFavorites: ${newCurrentFavorites}`) //FOR TESTING ONLY - delete later
         localStorage.setItem('favorites', newCurrentFavorites); //update 'favorites' in local storage
-        window.open(`/users/${user}`, "_self"); //reopen (refresh) the profile view - if I don't do this, and if the user hits the 'back' button on the movie card after removing the movie, that movie will still show up in their favorites list
+        if(!alert('Movie deleted from your favorites!')){window.location.reload();}//This allows for the prompt to be seen first (and OK button to be clicked) BEFORE reloading the page (to show that the unfavorited movie is now removed)
       })
       .catch((err) => console.log(err));
 
