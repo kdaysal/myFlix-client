@@ -57900,7 +57900,12 @@ function RegistrationView(props) {
   var _useState13 = (0, _react.useState)(''),
       _useState14 = _slicedToArray(_useState13, 2),
       emailErr = _useState14[0],
-      setEmailErr = _useState14[1]; // validate user inputs
+      setEmailErr = _useState14[1];
+
+  var _useState15 = (0, _react.useState)(''),
+      _useState16 = _slicedToArray(_useState15, 2),
+      birthdateErr = _useState16[0],
+      setBirthdateErr = _useState16[1]; // validate user inputs
 
 
   var validate = function validate() {
@@ -57909,17 +57914,23 @@ function RegistrationView(props) {
     if (!username) {
       setUsernameErr('Username is Required');
       isReq = false;
-    } else if (username.length < 2) {
-      setUsernameErr('Username must be at least 5 characters long');
+    } else if (username.length < 5) {
+      setUsernameErr('Username must be at least 5 characters');
       isReq = false;
+    } else {
+      setUsernameErr('');
+      isReq = true;
     }
 
     if (!password) {
-      setPasswordErr('Password Required');
+      setPasswordErr('Password is Required');
       isReq = false;
-    } else if (password.length < 6) {
-      setPasswordErr('Password must be at least 6 characters long');
+    } else if (password.length < 6 || password.length > 32) {
+      setPasswordErr('Password must be between 8 and 32 characters');
       isReq = false;
+    } else {
+      setPasswordErr('');
+      isReq = true;
     }
 
     if (!email) {
@@ -57928,6 +57939,17 @@ function RegistrationView(props) {
     } else if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
       setEmailErr('Email format is invalid');
       isReq = false;
+    } else {
+      setEmailErr('');
+      isReq = true;
+    }
+
+    if (!birthdate) {
+      setBirthdateErr('BirthDay is Required');
+      isReq = false;
+    } else {
+      setBirthdateErr('');
+      isReq = true;
     }
 
     return isReq;
@@ -57963,24 +57985,24 @@ function RegistrationView(props) {
 
   return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, {
     className: "bg-dark text-white"
-  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Title, null, "Please Register Below"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Title, null, "Please Register Below"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Label, null, "*Username:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
     value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     },
     required: true,
-    placeholder: "Create a username"
-  }), usernameErr && /*#__PURE__*/_react.default.createElement("p", null, usernameErr)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
+    placeholder: "Create a username (at least 5 characters)"
+  }), usernameErr && /*#__PURE__*/_react.default.createElement("p", null, usernameErr)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Label, null, "*Password:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
     type: "password",
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     },
     required: true,
-    placeholder: "Create a Password (8 or more characters)",
+    placeholder: "Create a Password (8 to 32 characters)",
     minLength: "8"
-  }), passwordErr && /*#__PURE__*/_react.default.createElement("p", null, passwordErr)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Label, null, "Email:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
+  }), passwordErr && /*#__PURE__*/_react.default.createElement("p", null, passwordErr)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Label, null, "*Email:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
     type: "email",
     value: email,
     onChange: function onChange(e) {
@@ -57988,7 +58010,7 @@ function RegistrationView(props) {
     },
     required: true,
     placeholder: "Your email address"
-  }), emailErr && /*#__PURE__*/_react.default.createElement("p", null, emailErr)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Label, null, "BirthDay:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
+  }), emailErr && /*#__PURE__*/_react.default.createElement("p", null, emailErr)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Label, null, "*BirthDay:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
     type: "date",
     value: birthdate,
     onChange: function onChange(e) {
@@ -57996,7 +58018,7 @@ function RegistrationView(props) {
     },
     required: true,
     placeholder: "Your birthday"
-  })), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+  }), birthdateErr && /*#__PURE__*/_react.default.createElement("p", null, birthdateErr)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
     variant: "success",
     type: "submit",
     onClick: handleRegister
@@ -59406,7 +59428,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54464" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55178" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

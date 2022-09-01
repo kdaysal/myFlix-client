@@ -19,6 +19,7 @@ export function RegistrationView(props) {
   const [usernameErr, setUsernameErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
   const [emailErr, setEmailErr] = useState('');
+  const [birthdateErr, setBirthdateErr] = useState('');
 
   // validate user inputs
   const validate = () => {
@@ -26,16 +27,24 @@ export function RegistrationView(props) {
     if (!username) {
       setUsernameErr('Username is Required');
       isReq = false;
-    } else if (username.length < 2) {
-      setUsernameErr('Username must be at least 5 characters long');
+    } else if (username.length < 5) {
+      setUsernameErr('Username must be at least 5 characters');
       isReq = false;
     }
+    else {
+      setUsernameErr('');
+      isReq = true;
+    }
     if (!password) {
-      setPasswordErr('Password Required');
+      setPasswordErr('Password is Required');
       isReq = false;
-    } else if (password.length < 6) {
-      setPasswordErr('Password must be at least 6 characters long');
+    } else if ((password.length < 6) || (password.length > 32)) {
+      setPasswordErr('Password must be between 8 and 32 characters');
       isReq = false;
+    }
+    else {
+      setPasswordErr('');
+      isReq = true;
     }
     if (!email) {
       setEmailErr('Email is Required');
@@ -45,6 +54,20 @@ export function RegistrationView(props) {
       setEmailErr('Email format is invalid');
       isReq = false;
     }
+    else {
+      setEmailErr('');
+      isReq = true;
+    }
+    if (!birthdate) {
+      setBirthdateErr('BirthDay is Required');
+      isReq = false;
+    }
+    else {
+      setBirthdateErr('');
+      isReq = true;
+    }
+
+
     return isReq;
   }
 
@@ -83,32 +106,32 @@ export function RegistrationView(props) {
                 <Card.Title>Please Register Below</Card.Title>
                 <Form>
                   <Form.Group>
-                    <Form.Label>Username:</Form.Label>
+                    <Form.Label>*Username:</Form.Label>
                     <Form.Control
                       type="text"
                       value={username}
                       onChange={e => setUsername(e.target.value)}
                       required
-                      placeholder="Create a username"
+                      placeholder="Create a username (at least 5 characters)"
                     />
                     {usernameErr && <p>{usernameErr}</p>}
                   </Form.Group>
                   <br></br>
                   <Form.Group>
-                    <Form.Label>Password:</Form.Label>
+                    <Form.Label>*Password:</Form.Label>
                     <Form.Control
                       type="password"
                       value={password}
                       onChange={e => setPassword(e.target.value)}
                       required
-                      placeholder="Create a Password (8 or more characters)"
+                      placeholder="Create a Password (8 to 32 characters)"
                       minLength="8"
                     />
                     {passwordErr && <p>{passwordErr}</p>}
                   </Form.Group>
                   <br></br>
                   <Form.Group>
-                    <Form.Label>Email:</Form.Label>
+                    <Form.Label>*Email:</Form.Label>
                     <Form.Control
                       type="email"
                       value={email}
@@ -120,7 +143,7 @@ export function RegistrationView(props) {
                   </Form.Group>
                   <br></br>
                   <Form.Group>
-                    <Form.Label>BirthDay:</Form.Label>
+                    <Form.Label>*BirthDay:</Form.Label>
                     <Form.Control
                       type="date"
                       value={birthdate}
@@ -128,6 +151,7 @@ export function RegistrationView(props) {
                       required
                       placeholder="Your birthday"
                     />
+                    {birthdateErr && <p>{birthdateErr}</p>}
                   </Form.Group>
                   <br></br>
                   <Button variant="success"
