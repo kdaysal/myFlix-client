@@ -33,7 +33,6 @@ export function RegistrationView(props) {
     }
     else {
       setUsernameErr('');
-      isReq = true;
     }
     if (!password) {
       setPasswordErr('Password is Required');
@@ -44,7 +43,6 @@ export function RegistrationView(props) {
     }
     else {
       setPasswordErr('');
-      isReq = true;
     }
     if (!email) {
       setEmailErr('Email is Required');
@@ -56,7 +54,6 @@ export function RegistrationView(props) {
     }
     else {
       setEmailErr('');
-      isReq = true;
     }
     if (!birthdate) {
       setBirthdateErr('BirthDay is Required');
@@ -64,16 +61,21 @@ export function RegistrationView(props) {
     }
     else {
       setBirthdateErr('');
-      isReq = true;
     }
 
-
+    console.log(`isReq at validate is: ${isReq}`);
+    console.log(`usernameErr is: ${usernameErr}`);
+    console.log(`passwordErr is: ${passwordErr}`);
+    console.log(`emailErr is: ${emailErr}`);
+    console.log(`birthDateErr is: ${birthdateErr}`);
     return isReq;
   }
 
   const handleRegister = (e) => {
     e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
     const isReq = validate();
+    console.log(`isReq at handleRegister is: ${isReq}`);
+
     if (isReq) {
       console.log(`username: ${username}, password: ${password}, email: ${email}, birthdate: ${birthdate}`);
       /* Send a request to the server for authentication, then call props.onLoggedIn(username) */

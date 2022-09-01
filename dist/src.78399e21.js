@@ -57919,7 +57919,6 @@ function RegistrationView(props) {
       isReq = false;
     } else {
       setUsernameErr('');
-      isReq = true;
     }
 
     if (!password) {
@@ -57930,7 +57929,6 @@ function RegistrationView(props) {
       isReq = false;
     } else {
       setPasswordErr('');
-      isReq = true;
     }
 
     if (!email) {
@@ -57941,7 +57939,6 @@ function RegistrationView(props) {
       isReq = false;
     } else {
       setEmailErr('');
-      isReq = true;
     }
 
     if (!birthdate) {
@@ -57949,9 +57946,13 @@ function RegistrationView(props) {
       isReq = false;
     } else {
       setBirthdateErr('');
-      isReq = true;
     }
 
+    console.log("isReq at validate is: ".concat(isReq));
+    console.log("usernameErr is: ".concat(usernameErr));
+    console.log("passwordErr is: ".concat(passwordErr));
+    console.log("emailErr is: ".concat(emailErr));
+    console.log("birthDateErr is: ".concat(birthdateErr));
     return isReq;
   };
 
@@ -57959,6 +57960,7 @@ function RegistrationView(props) {
     e.preventDefault(); //this is necessary for buttons whose type="submit" - in order to prevent the page from refreshing/reloading, which is not the user experience that I want
 
     var isReq = validate();
+    console.log("isReq at handleRegister is: ".concat(isReq));
 
     if (isReq) {
       console.log("username: ".concat(username, ", password: ").concat(password, ", email: ").concat(email, ", birthdate: ").concat(birthdate));
@@ -59428,7 +59430,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55178" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57483" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
