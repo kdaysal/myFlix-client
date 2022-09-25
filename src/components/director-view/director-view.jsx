@@ -8,6 +8,7 @@ export class DirectorView extends React.Component {
 
     render() {
         const { movies, director, onBackClick } = this.props; //not using 'movies' yet, but will be used to show related-movies from the same director (wip)
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); //scrolls to the top of the page
         return (
             <Container id="director-view-container">
                 <Row>

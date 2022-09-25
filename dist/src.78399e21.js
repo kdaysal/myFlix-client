@@ -58381,6 +58381,12 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
           director = _this$props.director,
           onBackClick = _this$props.onBackClick; //not using 'movies' yet, but will be used to show related-movies from the same director (wip)
 
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      }); //scrolls to the top of the page
+
       return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
         id: "director-view-container"
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, {
@@ -58497,6 +58503,12 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
           movies = _this$props.movies,
           genre = _this$props.genre,
           onBackClick = _this$props.onBackClick; //not using 'movies' yet, but will be used to show related-movies from the same genre (wip)
+
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      }); //scrolls to the top of the page
 
       return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
         id: "genre-view-container"
