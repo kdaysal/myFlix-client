@@ -28,13 +28,13 @@ export class DirectorView extends React.Component {
                 <Row>
                     <Col>
                         <CardGroup>
-                            <Card>
+                            <Card className="related-movies-card">
                                 <Card.Body>
-                                    <Card.Text>
+                                    <Card.Text className="related-movies-header-text">
                                         Related-movies:
                                     </Card.Text>
                                     {movies.filter((movie) => movie.Director.Name === director.Name).map((movie) => (
-                                        <Card>
+                                        <Card className="director-card bg-dark text-white mt-5 ml-auto mr-auto">
                                             <Card.Img variant="top" src={movie.ImagePath} />
                                             <Card.Body>
                                                 <Card.Title>{movie.Title}</Card.Title>

@@ -58,6 +58,22 @@ html {
   max-width: 100px;
   margin: 15px;
 }
+.director-card {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.related-movies-card {
+  margin-top: 20px;
+}
+
+#director-view-container {
+  margin-top: 15px;
+}
+
+.related-movies-header-text {
+  font-size: larger;
+}
 .genre-card {
   margin-top: 20px;
   margin-bottom: 30px;
