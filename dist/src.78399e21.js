@@ -58505,10 +58505,16 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           onBackClick(null);
         }
-      }, "Go Back")))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, "Related-movies:"), movies.filter(function (movie) {
+      }, "Go Back")))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.CardGroup, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, {
+        className: "related-movies-card"
+      }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, {
+        className: "related-movies-header-text"
+      }, "Related-movies:"), movies.filter(function (movie) {
         return movie.Genre.Name === genre.Name;
       }).map(function (movie) {
-        return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Img, {
+        return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, {
+          className: "genre-card bg-dark text-white mt-5 ml-auto mr-auto"
+        }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Img, {
           variant: "top",
           src: movie.ImagePath
         }), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Title, null, movie.Title), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
@@ -59431,7 +59437,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62342" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63124" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
