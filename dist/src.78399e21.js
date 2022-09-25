@@ -58154,6 +58154,12 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      }); //scrolls to the top of the page
+
       var _this$props = this.props,
           movie = _this$props.movie,
           onBackClick = _this$props.onBackClick;

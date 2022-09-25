@@ -65,6 +65,7 @@ export class MovieView extends React.Component {
   } //end addFavoriteMovie
 
   render() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); //scrolls to the top of the page
     const { movie, onBackClick } = this.props;
     return (
       <Container id="movie-view-container">
