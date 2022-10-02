@@ -1,0 +1,129 @@
+.movie-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+:root {
+  --background-color: #e5e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Josefin Sans, sans-serif;
+}
+
+html {
+  background-color: var(--background-color);
+}
+
+#login-view-container {
+  margin-top: 15px;
+}
+
+#register-btn {
+  margin-left: 10px;
+}
+
+
+
+#movie-view-container {
+  margin-top: 15px;
+}
+
+#back-btn, #favorites-btn {
+  margin-top: 10px;
+}
+
+.movie-poster {
+  margin-bottom: 15px;
+}
+
+#my-flix-title {
+  color: #e9df2be6;
+  font-size: 200%;
+  font-style: italic;
+}
+
+.nav-links {
+  font-size: 150%;
+}
+
+.nav-link-item {
+  color: #fff;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 15px;
+}
+
+#logout-btn {
+  max-width: 100px;
+  margin: 15px;
+}
+
+.director-card {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.related-movies-card {
+  margin-top: 20px;
+}
+
+#director-view-container {
+  margin-top: 15px;
+}
+
+.related-movies-header-text {
+  font-size: larger;
+}
+
+.genre-card {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.related-movies-card {
+  margin-top: 20px;
+}
+
+#genre-view-container {
+  margin-top: 15px;
+}
+
+.related-movies-header-text {
+  font-size: larger;
+}
+
+.profile-card {
+  margin-top: 15px;
+}
+
+.profile-title, .favorite-movies {
+  text-align: center;
+  justify-content: center;
+}
+
+.favorite-movies {
+  margin: 5px;
+}
+
+.update-account-title {
+  text-align: center;
+  justify-content: center;
+}
+
+.update-profile-card {
+  margin-top: 15px;
+}
+
+.card-body-favorites {
+  background-color: #fafad2;
+}
+
+
+
+.my-flix {
+  color: orange;
+}
+
+/*# sourceMappingURL=index.e3f97e84.css.map */
