@@ -58,7 +58,8 @@ export function LoginView(props) {
           props.onLoggedIn(data);
         })
         .catch(e => {
-          console.log('Error: No such user/password combo found')
+          console.log('Error: No such user/password combo found');
+          alert('No such username/password combo found, please try again')
         });
     }
   };
